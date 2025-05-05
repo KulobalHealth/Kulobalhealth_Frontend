@@ -17,6 +17,8 @@ export default function AdminInfo() {
         <p className='text-sm text-gray-500 mt-1'>Provide your details below to continue</p>
 
         <form className='w-full max-w-sm mt-6 space-y-4'>
+          {/* Step indicator */}
+          <div className='w-full max-w-sm text-emerald-600 font-bold mt-4 text-sm'>Pharmacy Info <span className='float-right'>2/2</span></div>
           <TextInput
             label="Enter your full name"
             placeholder='Admin Full Name'
@@ -49,7 +51,7 @@ export default function AdminInfo() {
             <Button variant="outline" className='w-1/2'>
               <Link href="/login">Back</Link>
             </Button>
-            <Button variant="default" className='w-1/2 ' size={"lg"}>
+            <Button variant="default" className='w-1/2 '>
               <Link href="/login" className='text-white'>Confirm</Link>
             </Button>
           </div>
