@@ -8,78 +8,128 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-  	screens: {
-  		sm: '540px',
-  		md: '720px',
-  		lg: '960px',
-  		xl: '1140px',
-  		'2xl': '1320px'
-  	},
-  	extend: {
-  		fontFamily: {
-  			urbanist: [
-  				'var(--font-urbanist)',
-  				'sans'
-  			]
-  		},
-  		colors: {
-  			background: 'hsl(var(--background))',
-  			foreground: 'hsl(var(--foreground))',
-  			card: {
-  				DEFAULT: 'hsl(var(--card))',
-  				foreground: 'hsl(var(--card-foreground))'
-  			},
-  			popover: {
-  				DEFAULT: 'hsl(var(--popover))',
-  				foreground: 'hsl(var(--popover-foreground))'
-  			},
-  			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
-  			},
-  			secondary: {
-  				DEFAULT: 'hsl(var(--secondary))',
-  				foreground: 'hsl(var(--secondary-foreground))'
-  			},
-  			muted: {
-  				DEFAULT: 'hsl(var(--muted))',
-  				foreground: 'hsl(var(--muted-foreground))'
-  			},
-  			accent: {
-  				DEFAULT: 'hsl(var(--accent))',
-  				foreground: 'hsl(var(--accent-foreground))'
-  			},
-  			destructive: {
-  				DEFAULT: 'hsl(var(--destructive))',
-  				foreground: 'hsl(var(--destructive-foreground))'
-  			},
-  			border: 'hsl(var(--border))',
-  			input: 'hsl(var(--input))',
-  			ring: 'hsl(var(--ring))',
-  			chart: {
-  				'1': 'hsl(var(--chart-1))',
-  				'2': 'hsl(var(--chart-2))',
-  				'3': 'hsl(var(--chart-3))',
-  				'4': 'hsl(var(--chart-4))',
-  				'5': 'hsl(var(--chart-5))'
-  			},
-  			sidebar: {
-  				DEFAULT: 'hsl(var(--sidebar-background))',
-  				foreground: 'hsl(var(--sidebar-foreground))',
-  				primary: 'hsl(var(--sidebar-primary))',
-  				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-  				accent: 'hsl(var(--sidebar-accent))',
-  				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-  				border: 'hsl(var(--sidebar-border))',
-  				ring: 'hsl(var(--sidebar-ring))'
-  			}
-  		},
-  		borderRadius: {
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
-  		}
-  	}
+    screens: {
+      sm: "540px",
+      md: "720px",
+      lg: "960px",
+      xl: "1140px",
+      "2xl": "1320px",
+    },
+    extend: {
+      fontFamily: {
+        urbanist: ["var(--font-urbanist)", "sans"],
+        euclid: ["var(--font-euclid-circular-b)", "sans"],
+      },
+      colors: {
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        primary: {
+          "50": "#e6f7f2",
+          "100": "#b1e7d6",
+          "200": "#8bdbc3",
+          "300": "#55cba7",
+          "400": "#35c196",
+          "500": "#02b17c",
+          "600": "#02a171",
+          "700": "#017e58",
+          "800": "#016144",
+          "900": "#014a34",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        warning: {
+          "50": "#fff8ea",
+          "100": "#ffe8bd",
+          "200": "#ffdd9d",
+          "300": "#ffcd71",
+          "400": "#ffc355",
+          "500": "#ffb42b",
+          "600": "#e8a427",
+          "700": "#b5801f",
+          "800": "#8c6318",
+          "900": "#6b4c12",
+        },
+        danger: {
+          "50": "#ffeaea",
+          "100": "#ffbdbd",
+          "200": "#ff9d9d",
+          "300": "#fe7171",
+          "400": "#fe5555",
+          "500": "#fe2b2b",
+          "600": "#e72727",
+          "700": "#b41f1f",
+          "800": "#8c1818",
+          "900": "#6b1212",
+        },
+        success: {
+          "50": "#edf9ee",
+          "100": "#c7eecb",
+          "200": "#abe5b1",
+          "300": "#85d98e",
+          "400": "#6dd278",
+          "500": "#49c756",
+          "600": "#42b54e",
+          "700": "#348d3d",
+          "800": "#286d2f",
+          "900": "#1f5424",
+        },
+        neutral: {
+          "50": "#fcfcfd",
+          "100": "#f5f6f7",
+          "200": "#f1f2f4",
+          "300": "#eaecee",
+          "400": "#e6e8eb",
+          "500": "#e0e2e6",
+          "600": "#ccced1",
+          "700": "#9fa0a3",
+          "800": "#7b7c7f",
+          "900": "#5e5f61",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        chart: {
+          "1": "hsl(var(--chart-1))",
+          "2": "hsl(var(--chart-2))",
+          "3": "hsl(var(--chart-3))",
+          "4": "hsl(var(--chart-4))",
+          "5": "hsl(var(--chart-5))",
+        },
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+    },
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;

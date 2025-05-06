@@ -24,7 +24,7 @@ export function User({
 }: {
   user: {
     name: string;
-    email: string;
+    email?: string;
     avatar: string;
   };
 }) {
