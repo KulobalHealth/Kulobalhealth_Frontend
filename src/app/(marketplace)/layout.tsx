@@ -30,7 +30,7 @@ export default function MarketplaceLayout({
         <>
           <section className="bg-green-50 py-8 px-4 relative">
             <div className="absolute inset-0">
-              <Icons.Banner className="w-full h-full opacity-20" />
+              <Icons.Banner className="h-full opacity-20" />
             </div>
             <div className="container mx-auto max-w-6xl relative z-10">
               <h1 className="text-center text-2xl font-medium text-green-600 mb-2">
