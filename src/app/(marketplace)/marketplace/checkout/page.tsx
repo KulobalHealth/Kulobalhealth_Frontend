@@ -44,7 +44,6 @@ export default function CheckoutPage() {
       ...prev,
       [name]: value,
     }));
-    // Clear error when user types
     if (errors[name as keyof ShippingInfo]) {
       setErrors((prev) => ({
         ...prev,
@@ -228,7 +227,7 @@ export default function CheckoutPage() {
           </div>
 
           <div className="flex gap-4">
-            <Link href="/cart" className="flex-1">
+            <Link href="/marketplace/cart" className="flex-1">
               <Button type="button" variant="outline" className="w-full">
                 Back to Cart
               </Button>

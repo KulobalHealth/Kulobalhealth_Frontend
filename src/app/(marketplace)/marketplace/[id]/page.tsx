@@ -29,7 +29,10 @@ export default function ProductDetail() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
       <div className="mb-6">
-        <Link href="#" className="inline-flex items-center text-lg font-medium">
+        <Link
+          href="/marketplace"
+          className="inline-flex items-center text-lg font-medium"
+        >
           <ArrowLeft className="mr-2 h-5 w-5" />
           Back
         </Link>
@@ -77,9 +80,21 @@ export default function ProductDetail() {
           <div>
             <h1 className="text-3xl font-bold">Malaria Test Kits</h1>
             <div className="mt-4">
-              <span className="text-3xl font-bold">GH₵ 200.00</span>
-              <div className="flex items-center mt-1 text-gray-500">
-                <span className="text-sm">Per Box</span>
+              <span className="text-3xl font-bold">
+                GH₵ {product.price.toFixed(2)}
+              </span>
+              <div className="flex items-center mt-1">
+                <span
+                  className={`text-sm ${
+                    product.stockQuantity > 0
+                      ? "text-emerald-600"
+                      : "text-rose-600"
+                  }`}
+                >
+                  {product.stockQuantity > 0
+                    ? `${product.stockQuantity} ${product.unit || "items"} left`
+                    : "Out of Stock"}
+                </span>
               </div>
             </div>
           </div>

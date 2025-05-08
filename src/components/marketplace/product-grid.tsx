@@ -53,83 +53,102 @@ export default function ProductGrid() {
             : "space-y-4"
         }
       >
-        {filteredProducts.map((product) => (
-          <Link
-            key={product.id}
-            href={`/marketplace/${product.id}`}
-            className={`group block ${
-              viewMode === "list" ? "border rounded-lg p-4" : ""
-            }`}
-          >
-            <div
-              className={
-                viewMode === "grid"
-                  ? "border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
-                  : "flex gap-4 items-center"
-              }
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
+            <Link
+              key={product.id}
+              href={`/marketplace/${product.id}`}
+              className={`group block ${
+                viewMode === "list" ? "border rounded-lg p-4" : ""
+              }`}
             >
               <div
                 className={
                   viewMode === "grid"
-                    ? "w-full h-full bg-[var(--search-bar-bg)] relative flex items-center justify-center"
-                    : "w-[260px] h-[189px] bg-[var(--search-bar-bg)] relative flex-shrink-0 flex items-center justify-center"
+                    ? "border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
+                    : "flex gap-4 items-center"
                 }
               >
-                <div className="relative w-[260px] h-[189px]">
-                  <Image
-                    src={product.images[0]}
-                    alt={product.name}
-                    fill
-                    className="object-cover object-center"
-                  />
-                </div>
-              </div>
-              <div className={viewMode === "grid" ? "p-4" : "flex-1"}>
-                <h3 className="font-medium group-hover:text-emerald-600 transition-colors">
-                  {product.name}
-                </h3>
-                <p className="text-sm text-gray-600 mt-1">{product.brand}</p>
                 <div
-                  className={`flex ${
-                    viewMode === "grid" ? "justify-between" : "gap-4"
-                  } items-center mt-2`}
+                  className={
+                    viewMode === "grid"
+                      ? "w-full h-full bg-(--search-bar-bg) relative flex items-center justify-center"
+                      : "w-[260px] h-[189px] bg-(--search-bar-bg) relative shrink-0 flex items-center justify-center"
+                  }
                 >
-                  <p className="font-medium">GH₵ {product.price.toFixed(2)}</p>
-                  <span
-                    className={`text-sm ${
-                      product.inStock ? "text-warning-600" : "text-danger-600"
-                    }`}
-                  >
-                    {product.inStock ? "In Stock" : "Out of Stock"}
-                  </span>
+                  <div className="relative w-[260px] h-[189px]">
+                    <Image
+                      src={product.images[0]}
+                      alt={product.name}
+                      fill
+                      className="object-cover object-center"
+                    />
+                  </div>
                 </div>
-                {viewMode === "list" && (
-                  <>
-                    <p className="text-sm text-gray-600 mt-2">
-                      {product.description}
+                <div className={viewMode === "grid" ? "p-4" : "flex-1"}>
+                  <h3 className="font-medium group-hover:text-emerald-600 transition-colors">
+                    {product.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 mt-1">{product.brand}</p>
+                  <div
+                    className={`flex ${
+                      viewMode === "grid" ? "justify-between" : "gap-4"
+                    } items-center mt-2`}
+                  >
+                    <p className="font-medium">
+                      GH₵ {product.price.toFixed(2)}
                     </p>
+                    <span
+                      className={`text-sm ${
+                        product.stockQuantity > 0
+                          ? "text-warning-600"
+                          : "text-danger-600"
+                      }`}
+                    >
+                      {product.stockQuantity > 0
+                        ? `${product.stockQuantity} ${
+                            product.unit || "items"
+                          } left`
+                        : "Out of Stock"}
+                    </span>
+                  </div>
+                  {viewMode === "list" && (
+                    <>
+                      <p className="text-sm text-gray-600 mt-2">
+                        {product.description}
+                      </p>
+                      <Button
+                        className="mt-3 bg-primary-600 text-white"
+                        disabled={!product.inStock}
+                        onClick={(e) => handleAddToCart(e, product.id)}
+                      >
+                        Add to Cart
+                      </Button>
+                    </>
+                  )}
+                  {viewMode === "grid" && (
                     <Button
-                      className="mt-3 bg-primary-600 text-white"
+                      className="w-full mt-3 text-white bg-primary-600"
                       disabled={!product.inStock}
                       onClick={(e) => handleAddToCart(e, product.id)}
                     >
                       Add to Cart
                     </Button>
-                  </>
-                )}
-                {viewMode === "grid" && (
-                  <Button
-                    className="w-full mt-3 text-white bg-primary-600"
-                    disabled={!product.inStock}
-                    onClick={(e) => handleAddToCart(e, product.id)}
-                  >
-                    Add to Cart
-                  </Button>
-                )}
+                  )}
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))
+        ) : (
+          <div className="col-span-full text-center py-8">
+            <p className="text-gray-500">
+              No items found matching your search criteria
+            </p>
+            <p className="text-sm text-gray-400 mt-2">
+              Try adjusting your search or filters
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
