@@ -32,7 +32,7 @@ export default function MarketplaceLayout({
               <input
                 type="text"
                 placeholder="Search for product"
-                className="w-full rounded-md border border-gray-300 py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full rounded-md border border-gray-300 py-2 pl-10 pr-4 focus:outline-hidden focus:ring-2 focus:ring-green-500"
               />
             </div>
             <button className="bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-md">

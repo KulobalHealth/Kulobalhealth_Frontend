@@ -71,8 +71,8 @@ export default function ProductGrid() {
               <div
                 className={
                   viewMode === "grid"
-                    ? "w-full h-full bg-[var(--search-bar-bg)] relative flex items-center justify-center"
-                    : "w-[260px] h-[189px] bg-[var(--search-bar-bg)] relative flex-shrink-0 flex items-center justify-center"
+                    ? "w-full h-full bg-(--search-bar-bg) relative flex items-center justify-center"
+                    : "w-[260px] h-[189px] bg-(--search-bar-bg) relative shrink-0 flex items-center justify-center"
                 }
               >
                 <div className="relative w-[260px] h-[189px]">

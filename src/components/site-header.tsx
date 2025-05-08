@@ -10,7 +10,7 @@ import { ModeToggle } from "@/components/ui/mode-toggle";
 export function SiteHeader() {
   return (
     <header className="flex flex-1 sticky top-0 z-50 w-full items-center border-b bg-background py-3">
-      <div className="flex h-[--header-height] w-full items-center justify-between px-4">
+      <div className="flex h-(--header-height) w-full items-center justify-between px-4">
         <div className="flex items-center gap-2"></div>
 
         <div className="flex items-center gap-2">
