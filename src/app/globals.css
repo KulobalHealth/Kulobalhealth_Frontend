@@ -37,6 +37,8 @@
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
+  --color-stroke: var(--stroke-color);
+  --color-search-bar-bg: var(--search-bar-bg);
 
   --color-primary-50: #e6f7f2;
   --color-primary-100: #b1e7d6;
@@ -185,7 +187,7 @@ h6 {
   --sidebar-border: hsl(220 13% 91%);
   --sidebar-ring: hsl(217.2 91.2% 59.8%);
   --search-bar-bg: hsl(240 6% 97%);
-  --stroke-color: hsl(220 11% 89% 1);
+  --stroke-color: hsl(220 11% 89%);
 }
 .dark {
   --background: hsl(20 14.3% 4.1%);
