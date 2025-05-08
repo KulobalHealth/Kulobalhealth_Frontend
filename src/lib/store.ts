@@ -94,6 +94,19 @@ export const useMarketplaceStore = create<MarketplaceStore>((set) => ({
       normalRange: "Negative",
       unit: "Box",
     },
+    {
+      id: "6",
+      name: "Malaria Test Kits",
+      description:
+        "Rapid diagnostic test for malaria detection. Results in 15-20 minutes.",
+      brand: "OraSure Technologies",
+      category: "Rapid Test Kits",
+      price: 600.0,
+      images: [medImg.src],
+      inStock: false,
+      normalRange: "Negative",
+      unit: "Box",
+    },
     // Add more products as needed
   ],
   selectedCategory: "All Products",
