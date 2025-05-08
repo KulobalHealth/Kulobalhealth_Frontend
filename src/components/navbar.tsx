@@ -92,7 +92,7 @@ export function Navbar() {
             }}
           />
           <div className="relative">
-            <Link href="/cart">
+            <Link href="/marketplace/cart">
               <ShoppingCart className="cursor-pointer hover:text-emerald-500 transition-colors" />
               {cart.length > 0 && (
                 <span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
