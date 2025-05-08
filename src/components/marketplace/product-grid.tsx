@@ -97,10 +97,16 @@ export default function ProductGrid() {
                   <p className="font-medium">GH₵ {product.price.toFixed(2)}</p>
                   <span
                     className={`text-sm ${
-                      product.inStock ? "text-warning-600" : "text-danger-600"
+                      product.stockQuantity > 0
+                        ? "text-warning-600"
+                        : "text-danger-600"
                     }`}
                   >
-                    {product.inStock ? "In Stock" : "Out of Stock"}
+                    {product.stockQuantity > 0
+                      ? `${product.stockQuantity} ${
+                          product.unit || "items"
+                        } left`
+                      : "Out of Stock"}
                   </span>
                 </div>
                 {viewMode === "list" && (
