@@ -93,7 +93,7 @@ export default function MedicalLabDashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <Card className="shadow-sm col-span-2">
+        <Card className="shadow-xs col-span-2">
           <div className="p-4 flex justify-between items-center border-b">
             <h1 className="text-lg font-medium">Test records</h1>
             <DropdownMenu>

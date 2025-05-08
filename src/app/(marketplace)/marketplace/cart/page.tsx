@@ -2,14 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Minus, Plus } from "lucide-react";
+import { useMarketplaceStore } from "@/lib/store";
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { useMarketplaceStore } from "@/lib/store";
 
 export default function CartPage() {
-  const { products, cart, removeFromCart, updateQuantity } =
+  const { cart, products, removeFromCart, updateQuantity } =
     useMarketplaceStore();
 
   const cartItems = cart.map((item) => {
@@ -21,7 +20,7 @@ export default function CartPage() {
     return sum + (item.product?.price || 0) * item.quantity;
   }, 0);
 
-  const tax = subtotal * 0.03; // 3% tax
+  const tax = subtotal * 0.03;
   const total = subtotal + tax;
 
   return (
@@ -53,14 +52,14 @@ export default function CartPage() {
                       <h3 className="text-xl font-bold">
                         {item.product?.name}
                       </h3>
-                      <p className="text-red-500 text-sm mt-1">
-                        {item.product?.inStock ? "In Stock" : "Out of Stock"}
+                      <p className="text-gray-600 mt-1">
+                        {item.product?.brand}
                       </p>
                     </div>
 
                     <button
                       onClick={() => removeFromCart(item.productId)}
-                      className="text-emerald-500 text-sm font-medium mt-2 w-fit"
+                      className="text-primary-600 text-sm font-medium mt-2 w-fit"
                     >
                       Remove from cart
                     </button>
@@ -82,7 +81,7 @@ export default function CartPage() {
                           )
                         }
                       >
-                        <Minus className="h-4 w-4" />
+                        -
                       </button>
                       <span className="w-8 text-center">{item.quantity}</span>
                       <button
@@ -91,7 +90,7 @@ export default function CartPage() {
                           updateQuantity(item.productId, item.quantity + 1)
                         }
                       >
-                        <Plus className="h-4 w-4" />
+                        +
                       </button>
                     </div>
                   </div>
@@ -157,10 +156,8 @@ export default function CartPage() {
               </div>
 
               <div className="p-4">
-                <Link href="/checkout">
-                  <Button className="w-full bg-emerald-500 hover:bg-emerald-600">
-                    Continue to checkout
-                  </Button>
+                <Link href="/marketplace/checkout">
+                  <Button className="w-full ">Continue to checkout</Button>
                 </Link>
               </div>
             </div>

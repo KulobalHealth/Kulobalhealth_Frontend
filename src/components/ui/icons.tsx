@@ -369,9 +369,9 @@ export const Icons = {
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      width="1440"
-      height="185"
-      viewBox="0 0 1440 185"
+      width="100%"
+      // height="185"
+      viewBox="0 0 100"
       fill="none"
     >
       <g opacity="0.17">
@@ -410,6 +410,18 @@ export const Icons = {
           height="256"
           transform="matrix(1 0 0 -1 1232 220)"
           fill="url(#pattern5_100_1589)"
+        />
+        <rect
+          width="256"
+          height="256"
+          transform="matrix(1 0 0 -1 1488 220)"
+          fill="url(#pattern6_100_1589)"
+        />
+        <rect
+          width="256"
+          height="256"
+          transform="matrix(1 0 0 -1 1744 220)"
+          fill="url(#pattern7_100_1589)"
         />
       </g>
       <defs>
@@ -455,6 +467,22 @@ export const Icons = {
         </pattern>
         <pattern
           id="pattern5_100_1589"
+          patternContentUnits="objectBoundingBox"
+          width="1"
+          height="1"
+        >
+          <use xlinkHref="#image0_100_1589" transform="scale(0.00135135)" />
+        </pattern>
+        <pattern
+          id="pattern6_100_1589"
+          patternContentUnits="objectBoundingBox"
+          width="1"
+          height="1"
+        >
+          <use xlinkHref="#image0_100_1589" transform="scale(0.00135135)" />
+        </pattern>
+        <pattern
+          id="pattern7_100_1589"
           patternContentUnits="objectBoundingBox"
           width="1"
           height="1"
