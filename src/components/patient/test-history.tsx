@@ -140,7 +140,7 @@ export function TestHistory({ testHistory = [] }: TestHistoryProps) {
           </svg>
           <p className="text-xl font-medium">No test history</p>
           <p className="text-muted-foreground mb-4">
-            This patient doesn't have any test results recorded
+            This patient doesn&apos;t have any test results recorded
           </p>
           <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600">
             <svg

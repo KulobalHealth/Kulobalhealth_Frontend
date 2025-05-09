@@ -142,7 +142,7 @@ export function PatientMedications({
           </svg>
           <p className="text-xl font-medium">No medications</p>
           <p className="text-muted-foreground mb-4">
-            This patient doesn't have any medications recorded
+            This patient doesn&apos;t have any medications recorded
           </p>
           <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600">
             <svg
