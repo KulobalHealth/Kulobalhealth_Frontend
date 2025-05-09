@@ -1,5 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,12 +13,9 @@ import { PatientMedications } from "@/components/patient/medications";
 import { TestHistory } from "@/components/patient/test-history";
 import { PatientVitals } from "@/components/patient/vitals";
 
-export default function PatientDetailsPage({
-  params,
-}: Readonly<{
-  params: { id: string };
-}>) {
-  const patient = patients.find((patient) => patient.id === Number(params.id));
+export default function PatientDetailsPage() {
+  const { id } = useParams<{ id: string }>();
+  const patient = patients.find((patient) => patient.id === Number(id));
 
   if (!patient) {
     notFound();
