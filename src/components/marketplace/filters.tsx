@@ -21,7 +21,7 @@ function FilterSection({
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="border rounded-md p-4 bg-white">
+    <div className="border rounded-md p-4 bg-white dark:bg-background ">
       <div
         className="flex items-center justify-between mb-2 cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
