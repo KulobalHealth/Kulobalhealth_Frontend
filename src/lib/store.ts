@@ -15,20 +15,58 @@ export interface Product {
   stockQuantity: number;
 }
 
+interface OrderItem {
+  productId: string;
+  quantity: number;
+  price: number;
+}
+
+interface Order {
+  id: string;
+  items: OrderItem[];
+  status: "processing" | "shipped" | "delivered" | "cancelled";
+  total: number;
+  createdAt: string;
+  deliveredAt?: string;
+  paymentMethod: "mobile-money" | "card";
+  paymentType: "full" | "half" | "credit";
+  paymentDetails: {
+    network?: string;
+    accountNumber?: string;
+    accountName?: string;
+    cardLast4?: string;
+  };
+  shippingAddress: {
+    pharmacyName: string;
+    phone: string;
+    email: string;
+    location: string;
+    streetAddress: string;
+    gpsAddress?: string;
+  };
+  tracking: {
+    status: string;
+    date: string;
+  }[];
+}
+
 interface MarketplaceStore {
   products: Product[];
   selectedCategory: string;
   searchQuery: string;
   cart: { productId: string; quantity: number }[];
+  orders: Order[];
   setProducts: (products: Product[]) => void;
   setSelectedCategory: (category: string) => void;
   setSearchQuery: (query: string) => void;
   addToCart: (productId: string) => void;
   removeFromCart: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
+  addOrder: (orderData: Omit<Order, "id" | "createdAt" | "tracking">) => void;
+  getOrderById: (id: string) => Order | undefined;
 }
 
-export const useMarketplaceStore = create<MarketplaceStore>((set) => ({
+export const useMarketplaceStore = create<MarketplaceStore>((set, get) => ({
   products: [
     {
       id: "1",
@@ -119,6 +157,37 @@ export const useMarketplaceStore = create<MarketplaceStore>((set) => ({
   selectedCategory: "All Products",
   searchQuery: "",
   cart: [],
+  orders: [
+    {
+      id: "1",
+      items: [
+        { productId: "1", quantity: 2, price: 200.0 },
+        { productId: "2", quantity: 1, price: 450.0 },
+      ],
+      status: "processing",
+      total: 850.0,
+      createdAt: new Date().toISOString(),
+      paymentMethod: "mobile-money",
+      paymentType: "full",
+      paymentDetails: {
+        network: "MTN",
+        accountNumber: "1234567890",
+        accountName: "John Doe",
+      },
+      shippingAddress: {
+        pharmacyName: "Health Pharmacy",
+        phone: "+233123456789",
+        email: "healthpharmacy@example.com",
+        location: "Accra",
+        streetAddress: "123 Main St",
+        gpsAddress: "GA-123-4567",
+      },
+      tracking: [
+        { status: "Order placed", date: new Date().toISOString() },
+        { status: "Pending Confirmation", date: new Date().toISOString() },
+      ],
+    },
+  ],
   setProducts: (products) => set({ products }),
   setSelectedCategory: (category) => set({ selectedCategory: category }),
   setSearchQuery: (query) => set({ searchQuery: query }),
@@ -150,4 +219,24 @@ export const useMarketplaceStore = create<MarketplaceStore>((set) => ({
         item.productId === productId ? { ...item, quantity } : item
       ),
     })),
+  addOrder: (orderData) => {
+    const order: Order = {
+      ...orderData,
+      id: Math.random().toString(36).substring(7),
+      createdAt: new Date().toISOString(),
+      tracking: [
+        { status: "Order placed", date: new Date().toISOString() },
+        { status: "Pending Confirmation", date: new Date().toISOString() },
+      ],
+    };
+
+    set((state) => ({
+      orders: [...state.orders, order],
+    }));
+
+    return order;
+  },
+  getOrderById: (id) => {
+    return get().orders.find((order) => order.id === id);
+  },
 }));
