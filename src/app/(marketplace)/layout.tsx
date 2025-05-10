@@ -28,15 +28,15 @@ export default function MarketplaceLayout({
 
       {!isProductDetail && (
         <>
-          <section className="bg-green-50 py-8 px-4 relative">
+          <section className="bg-green-50 py-8 px-4 relative dark:bg-primary-900">
             <div className="absolute inset-0">
-              <Icons.Banner className="h-full opacity-20" />
+              <Icons.Banner className="h-full opacity-20 dark:bg-primary-900" />
             </div>
             <div className="container mx-auto max-w-6xl relative z-10">
               <h1 className="text-center text-2xl font-medium text-green-600 mb-2">
                 What product are you looking for?
               </h1>
-              <p className="text-center text-sm text-gray-600 mb-4">
+              <p className="text-center text-sm text-gray-600 mb-4 dark:text-white">
                 One-Stop Med Supply Ordering. Find all the medical supplies you
                 need for your pharmacy in one place.
               </p>
