@@ -133,7 +133,7 @@ export default function CheckoutPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
-          <div className="border rounded-lg overflow-hidden bg-white mb-8">
+          <div className="border rounded-lg overflow-hidden bg-white dark:bg-background mb-8">
             <div className="p-4 border-b flex justify-between items-center">
               <h2 className="font-bold">Shipping & Delivery Address</h2>
               <button className="text-emerald-500 text-sm font-medium">
@@ -264,7 +264,7 @@ export default function CheckoutPage() {
             </div>
           </div>
 
-          <div className="border rounded-lg overflow-hidden bg-white">
+          <div className="border rounded-lg overflow-hidden bg-white dark:bg-background">
             <div className="p-4 border-b">
               <h2 className="font-bold">Payment Method</h2>
               <p className="text-sm text-gray-500 mt-1">
@@ -384,7 +384,7 @@ export default function CheckoutPage() {
                         }`}
                       >
                         <div
-                          className={`bg-white w-3 h-3 rounded-full shadow-md transform duration-300 ease-in-out ${
+                          className={`bg-white dark:bg-background w-3 h-3 rounded-full shadow-md transform duration-300 ease-in-out ${
                             paymentInfo.savePayment ? "translate-x-5" : ""
                           }`}
                         />
@@ -407,7 +407,7 @@ export default function CheckoutPage() {
         </div>
 
         <div className="lg:col-span-1">
-          <div className="border rounded-lg overflow-hidden bg-white sticky top-4">
+          <div className="border rounded-lg overflow-hidden bg-white dark:bg-background sticky top-4">
             <div className="p-4 border-b">
               <h2 className="font-bold">Cart Summary</h2>
             </div>
