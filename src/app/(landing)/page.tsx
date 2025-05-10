@@ -57,7 +57,7 @@ export default function LandingPage() {
     // </div>
     // page under construction
 
-    <div>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <h1>Page Under Construction</h1>
     </div>
   );
