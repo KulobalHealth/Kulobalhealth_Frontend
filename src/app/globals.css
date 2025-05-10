@@ -190,7 +190,7 @@ h6 {
   --stroke-color: hsl(220 11% 89%);
 }
 .dark {
-  --background: hsl(20 14.3% 4.1%);
+  --background:hsl(60,4%,11%);
   --foreground: hsl(0 0% 95%);
   --card: hsl(24 9.8% 10%);
   --card-foreground: hsl(0 0% 95%);
