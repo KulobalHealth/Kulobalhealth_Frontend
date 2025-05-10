@@ -15,45 +15,50 @@ export default function LandingPage() {
   redirect("/login");
 
   return (
-    <div className="font-urbanist">
-      <AnimationWrapper>
-        <Hero />
-      </AnimationWrapper>
-      <AnimationWrapper>
-        <ValuedInvestors />
-      </AnimationWrapper>
+    // <div className="font-urbanist">
+    //   <AnimationWrapper>
+    //     <Hero />
+    //   </AnimationWrapper>
+    //   <AnimationWrapper>
+    //     <ValuedInvestors />
+    //   </AnimationWrapper>
 
-      <AnimationWrapper>
-        <Approach />
-      </AnimationWrapper>
+    //   <AnimationWrapper>
+    //     <Approach />
+    //   </AnimationWrapper>
 
-      <AnimationWrapper>
-        <Impact />
-      </AnimationWrapper>
+    //   <AnimationWrapper>
+    //     <Impact />
+    //   </AnimationWrapper>
 
-      <AnimationWrapper>
-        <ImpactCashFlow />
-      </AnimationWrapper>
+    //   <AnimationWrapper>
+    //     <ImpactCashFlow />
+    //   </AnimationWrapper>
 
-      <AnimationWrapper>
-        <ImpactCounterfeits />
-      </AnimationWrapper>
+    //   <AnimationWrapper>
+    //     <ImpactCounterfeits />
+    //   </AnimationWrapper>
 
-      <AnimationWrapper>
-        <ImpactStats />
-      </AnimationWrapper>
+    //   <AnimationWrapper>
+    //     <ImpactStats />
+    //   </AnimationWrapper>
 
-      <AnimationWrapper>
-        <ImpactMap />
-      </AnimationWrapper>
+    //   <AnimationWrapper>
+    //     <ImpactMap />
+    //   </AnimationWrapper>
 
-      <AnimationWrapper>
-        <DawaMkononiApp />
-      </AnimationWrapper>
+    //   <AnimationWrapper>
+    //     <DawaMkononiApp />
+    //   </AnimationWrapper>
 
-      <AnimationWrapper>
-        <Grants />
-      </AnimationWrapper>
+    //   <AnimationWrapper>
+    //     <Grants />
+    //   </AnimationWrapper>
+    // </div>
+    // page under construction
+
+    <div>
+      <h1>Page Under Construction</h1>
     </div>
   );
 }
