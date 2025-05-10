@@ -17,7 +17,7 @@ export default function CartPage() {
   });
 
   const subtotal = cartItems.reduce((sum, item) => {
-    return sum + (item.product?.price || 0) * item.quantity;
+    return sum + (item.product?.price ?? 0) * item.quantity;
   }, 0);
 
   const tax = subtotal * 0.03;
@@ -28,19 +28,22 @@ export default function CartPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
           <div className="border rounded-lg overflow-hidden">
-            <div className="p-4 border-b bg-white">
+            <div className="p-4 border-b dark:bg-background bg-white">
               <h1 className="text-xl font-bold">
                 My Cart ({cartItems.length})
               </h1>
             </div>
 
             {cartItems.map((item) => (
-              <div key={item.productId} className="p-4 border-b bg-white">
+              <div
+                key={item.productId}
+                className="p-4 border-b bg-white dark:bg-background"
+              >
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <div className="bg-gray-100 p-4 rounded-md w-full sm:w-36 h-36 flex items-center justify-center">
+                  <div className="bg-gray-100 p-4 rounded-md w-full sm:w-36 h-36 flex items-center justify-center dark:bg-neutral-900">
                     <Image
-                      src={item.product?.images[0] || "/placeholder.svg"}
-                      alt={item.product?.name || "Product"}
+                      src={item.product?.images[0] ?? "/placeholder.svg"}
+                      alt={item.product?.name ?? "Product"}
                       width={120}
                       height={120}
                       className="object-contain"
@@ -68,7 +71,7 @@ export default function CartPage() {
                   <div className="flex flex-col items-end justify-between">
                     <span className="font-bold text-lg">
                       GH₵{" "}
-                      {((item.product?.price || 0) * item.quantity).toFixed(2)}
+                      {((item.product?.price ?? 0) * item.quantity).toFixed(2)}
                     </span>
 
                     <div className="flex items-center mt-2 bg-gray-100 rounded-full">
@@ -114,7 +117,7 @@ export default function CartPage() {
 
         {cartItems.length > 0 && (
           <div className="lg:col-span-1">
-            <div className="border rounded-lg overflow-hidden bg-white">
+            <div className="border rounded-lg overflow-hidden dark:bg-background bg-white">
               <div className="p-4 border-b">
                 <h2 className="font-bold">Cart Summary</h2>
               </div>
