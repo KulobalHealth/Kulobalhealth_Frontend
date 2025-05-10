@@ -617,102 +617,100 @@ export default function CheckoutPage() {
                 </RadioGroup>
               </div>
             </div>
+          </div>
 
-            <div className="lg:col-span-1">
-              <div className="border rounded-lg overflow-hidden bg-white dark:bg-background sticky top-4">
-                <div className="p-4 border-b">
-                  <h2 className="font-bold">Cart Summary</h2>
-                </div>
+          <div className="lg:col-span-1">
+            <div className="border rounded-lg overflow-hidden bg-white dark:bg-background sticky top-4">
+              <div className="p-4 border-b">
+                <h2 className="font-bold">Cart Summary</h2>
+              </div>
 
-                <div className="p-4 border-b flex justify-between items-center">
-                  <span>Items</span>
-                  <span className="font-bold">{cartItems.length}</span>
-                </div>
+              <div className="p-4 border-b flex justify-between items-center">
+                <span>Items</span>
+                <span className="font-bold">{cartItems.length}</span>
+              </div>
 
-                <div className="p-4 border-b flex justify-between items-center">
-                  <span>Delivery fee</span>
-                  <span className="font-bold">
-                    GH₵ {deliveryFee.toFixed(2)}
-                  </span>
-                </div>
+              <div className="p-4 border-b flex justify-between items-center">
+                <span>Delivery fee</span>
+                <span className="font-bold">GH₵ {deliveryFee.toFixed(2)}</span>
+              </div>
 
-                <div className="p-4 border-b flex justify-between items-center">
-                  <span>Subtotal</span>
-                  <span className="font-bold">GH₵ {subtotal.toFixed(2)}</span>
-                </div>
+              <div className="p-4 border-b flex justify-between items-center">
+                <span>Subtotal</span>
+                <span className="font-bold">GH₵ {subtotal.toFixed(2)}</span>
+              </div>
 
-                <div className="p-4 border-b flex justify-between items-center">
-                  <span>Tax</span>
-                  <span className="font-bold">GH₵ {tax.toFixed(2)}</span>
-                </div>
+              <div className="p-4 border-b flex justify-between items-center">
+                <span>Tax</span>
+                <span className="font-bold">GH₵ {tax.toFixed(2)}</span>
+              </div>
 
-                <div className="p-4 border-b flex justify-between items-center">
-                  <span className="font-bold">Total</span>
-                  <span className="font-bold text-xl">
-                    GH₵ {total.toFixed(2)}
-                  </span>
-                </div>
+              <div className="p-4 border-b flex justify-between items-center">
+                <span className="font-bold">Total</span>
+                <span className="font-bold text-xl">
+                  GH₵ {total.toFixed(2)}
+                </span>
+              </div>
 
-                <div className="p-4 border-b">
-                  <h3 className="mb-2 font-medium">Payment Type</h3>
-                  <RadioGroup
-                    value={paymentType}
-                    onValueChange={(value) =>
-                      setPaymentType(value as "full" | "half" | "credit")
-                    }
-                    className="space-y-2"
-                  >
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="full" id="full" />
-                      <Label htmlFor="full">Full payment</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="half" id="half" />
-                      <Label htmlFor="half">Half payment</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="credit" id="credit" />
-                      <Label htmlFor="credit">Credit</Label>
-                    </div>
-                  </RadioGroup>
-                </div>
+              <div className="p-4 border-b">
+                <h3 className="mb-2 font-medium">Payment Type</h3>
+                <RadioGroup
+                  value={paymentType}
+                  onValueChange={(value) =>
+                    setPaymentType(value as "full" | "half" | "credit")
+                  }
+                  className="space-y-2"
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="full" id="full" />
+                    <Label htmlFor="full">Full payment</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="half" id="half" />
+                    <Label htmlFor="half">Half payment</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="credit" id="credit" />
+                    <Label htmlFor="credit">Credit</Label>
+                  </div>
+                </RadioGroup>
+              </div>
 
-                <div className="p-4">
-                  <Button
-                    onClick={handleSubmit}
-                    className="w-full bg-gray-200 hover:bg-gray-300 text-gray-800"
-                  >
-                    Confirm
-                  </Button>
-                </div>
+              <div className="p-4">
+                <Button
+                  onClick={handleSubmit}
+                  className="w-full bg-gray-200 hover:bg-gray-300 text-gray-800"
+                >
+                  Confirm
+                </Button>
               </div>
             </div>
           </div>
         </div>
-
-        <Dialog open={showConfirmation} onOpenChange={setShowConfirmation}>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Order Placed Successfully!</DialogTitle>
-              <DialogDescription className="py-4">
-                Your order has been placed and will be processed shortly. You
-                can track your order status or continue shopping.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="flex gap-4 justify-end">
-              <Button variant="outline" onClick={handleContinueShopping}>
-                Continue Shopping
-              </Button>
-              <Button
-                onClick={handleTrackOrder}
-                className="bg-emerald-500 hover:bg-emerald-600"
-              >
-                Track Order
-              </Button>
-            </div>
-          </DialogContent>
-        </Dialog>
       </div>
+
+      <Dialog open={showConfirmation} onOpenChange={setShowConfirmation}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Order Placed Successfully!</DialogTitle>
+            <DialogDescription className="py-4">
+              Your order has been placed and will be processed shortly. You can
+              track your order status or continue shopping.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex gap-4 justify-end">
+            <Button variant="outline" onClick={handleContinueShopping}>
+              Continue Shopping
+            </Button>
+            <Button
+              onClick={handleTrackOrder}
+              className="bg-emerald-500 hover:bg-emerald-600"
+            >
+              Track Order
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
