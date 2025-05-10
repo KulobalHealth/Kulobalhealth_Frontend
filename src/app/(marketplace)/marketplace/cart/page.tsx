@@ -24,7 +24,7 @@ export default function CartPage() {
   const total = subtotal + tax;
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <section className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
           <div className="border rounded-lg overflow-hidden">
@@ -74,9 +74,9 @@ export default function CartPage() {
                       {((item.product?.price ?? 0) * item.quantity).toFixed(2)}
                     </span>
 
-                    <div className="flex items-center mt-2 bg-gray-100 rounded-full">
+                    <div className="flex items-center mt-2 bg-neutral-500 dark:bg-neutral-900 rounded-full">
                       <button
-                        className="w-8 h-8 flex items-center justify-center rounded-full"
+                        className="w-9 h-9 p-[5px] flex items-center bg-neutral-500 justify-center rounded-full"
                         onClick={() =>
                           updateQuantity(
                             item.productId,
@@ -84,16 +84,20 @@ export default function CartPage() {
                           )
                         }
                       >
-                        -
+                        <span className="flex w-7 h-7 p-[15px] items-center justify-center rounded-full bg-[#F6F6F7] dark:bg-[#2e2e2e]">
+                          -
+                        </span>
                       </button>
                       <span className="w-8 text-center">{item.quantity}</span>
                       <button
-                        className="w-8 h-8 flex items-center justify-center rounded-full"
+                        className="w-9 h-9 bg-neutral-500 flex items-center justify-center rounded-full"
                         onClick={() =>
                           updateQuantity(item.productId, item.quantity + 1)
                         }
                       >
-                        +
+                        <span className="flex w-7 h-7 p-[15px] items-center justify-center rounded-full bg-[#F6F6F7] dark:bg-[#2e2e2e]">
+                          +
+                        </span>
                       </button>
                     </div>
                   </div>
@@ -167,6 +171,6 @@ export default function CartPage() {
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 }
