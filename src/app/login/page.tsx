@@ -33,7 +33,7 @@ export default function Login() {
       </a>
     </div>
 
-    <Button className='max-w-sm ' variant="default" type="submit" >
+    <Button className='w-full ' variant="default" type="submit" >
       Login
     </Button>
   </form>

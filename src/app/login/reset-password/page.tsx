@@ -34,7 +34,7 @@ export default function ResetPassword() {
                 </div>
 
                 {/* Button */}
-                <Button variant="default" size="lg" className="w-full mb-4">
+                <Button variant="default" size="lg" className=" w-full mb-4">
                     <Link href ="/login/success" >Reset Password</Link>
                 </Button>
 
