@@ -14,7 +14,7 @@ export function Hero() {
           transition={{ duration: 0.5 }}
           className="order-2 text-center md:order-1 md:text-left"
         >
-          <h1 className="mb-4 text-3xl font-bold leading-tight text-gray-800 font-urbanist md:mb-6 md:text-5xl">
+          <h1 className="mb-4 text-3xl font-bold dark:text-white leading-tight text-gray-800 font-urbanist md:mb-6 md:text-5xl">
             Improving Access to Medicines in Africa.
           </h1>
           <p className="mb-6 text-base md:text-lg md:mb-8">

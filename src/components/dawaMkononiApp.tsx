@@ -42,7 +42,7 @@ export default function DawaMkononiApp() {
             </figure>
           </motion.div>
 
-          <div className="relative z-20 space-y-8 bg-white">
+          <div className="relative z-20 space-y-8 bg-white dark:bg-primary-900 p-6 dark:rounded-lg dark:shadow-lg">
             <FeatureItem
               icon={
                 <Icons.Layers className="w-8 h-8 text-primary fill-primary" />

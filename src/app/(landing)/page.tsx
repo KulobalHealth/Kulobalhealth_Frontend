@@ -9,13 +9,10 @@ import ImpactMap from "@/components/impactMap";
 import DawaMkononiApp from "@/components/dawaMkononiApp";
 import Grants from "@/components/grants";
 import { AnimationWrapper } from "@/components/ui/animation-wrapper";
-import { redirect } from "next/navigation";
 
 export default function LandingPage() {
-  redirect("/login");
-
   return (
-    <div className="font-urbanist">
+    <div>
       <AnimationWrapper>
         <Hero />
       </AnimationWrapper>
