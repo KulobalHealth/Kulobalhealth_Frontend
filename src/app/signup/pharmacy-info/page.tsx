@@ -66,7 +66,7 @@ export default function PharmacyInfo() {
               <Link href="/login">Back</Link>
             </Button>
             <Button variant="default" className='w-1/2  ' size={"lg"} >
-              <Link href="/login" className='text-white'>Confirm</Link>
+              <Link href="/signup/verify-otp" className='text-white'>Confirm</Link>
             </Button>
          </div>
     
@@ -84,7 +84,7 @@ export default function PharmacyInfo() {
   
 </div>
 
-        <div className='fixed right-7'>
+        <div className='index-0 fixed right-0'>
           <Image 
             src= {groupImg}
             alt="login"

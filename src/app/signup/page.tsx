@@ -1,13 +1,28 @@
 'use client'
 import { Button } from '@/components/ui/button'
 import TextInput from '@/components/ui/text-input'
-import React from 'react'
+import React, { useState } from 'react'
 import Image from "next/image"
 import groupImg from "@/assets/images/groupImg.png"
 import Logo from '@/components/ui/logo'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 export default function SignUp() {
+  const [role, setRole] = useState("")
+  const router = useRouter()
+
+  const handleNavigate = (e: React.FormEvent) => {
+    e.preventDefault() // prevent form submission refresh
+    if (role === "pharmacist") {
+      router.push("/signup/pharmacy-info")
+    } else if (role === "hospitalAdmin") {
+      router.push("signup/admin-info")
+    } else {
+      alert("Please select a role to continue")
+    }
+  }
+
   return (
     <div className="flex flex-row justify-between overflow-hidden min-h-screen">
       {/* Left form section */}
@@ -17,49 +32,48 @@ export default function SignUp() {
         <h1 className='text-3xl font-bold text-center mt-4'>Create an account</h1>
         <p className='text-sm text-gray-500 mt-1'>Provide your details below to continue</p>
 
-        {/* Step indicator */}
         <div className='w-full max-w-sm text-emerald-600 font-bold mt-4 text-sm'>Pharmacy Info <span className='float-right'>1/2</span></div>
 
-        {/* Form */}
-        <form className='w-full max-w-sm mt-2 space-y-4'>
-          <TextInput
-            placeholder='Enter pharmacy name'
-            label="Pharmacy Name"
-          />
-          <TextInput
-            placeholder='Enter pharmacy licence number'
-            label="Pharmacy Licence Number"
-          />
-          <TextInput
-            placeholder='Enter location'
-            label="Pharmacy Location"
-          />
-          <TextInput
-            placeholder='Enter total number of branches'
-            label="Total Branches"
-          />
+        <form className='w-full max-w-sm mt-2 space-y-4' onSubmit={handleNavigate}>
+          <TextInput placeholder='Enter pharmacy name' label="Pharmacy Name" />
+          <TextInput placeholder='Enter pharmacy licence number' label="Pharmacy Licence Number" />
+          <TextInput placeholder='Enter location' label="Pharmacy Location" />
+          <TextInput placeholder='Enter total number of branches' label="Total Branches" />
 
           {/* Role selection */}
           <div>
             <label className='block text-sm font-medium text-gray-700 mb-1'>Select Role</label>
             <div className='flex space-x-4'>
               <label className='flex items-center gap-2 text-sm'>
-                <input type="radio" name="role" value="pharmacist" className='accent-emerald-600 '/>
+                <input
+                  type="radio"
+                  name="role"
+                  value="pharmacist"
+                  className='accent-emerald-600'
+                  onChange={(e) => setRole(e.target.value)}
+                  checked={role === "pharmacist"}
+                />
                 Pharmacist
               </label>
               <label className='flex items-center gap-2 text-sm'>
-                <input type="radio" name="role" value="hospitalAdmin" className='accent-emerald-600 ' />
+                <input
+                  type="radio"
+                  name="role"
+                  value="hospitalAdmin"
+                  className='accent-emerald-600'
+                  onChange={(e) => setRole(e.target.value)}
+                  checked={role === "hospitalAdmin"}
+                />
                 Hospital Admin
               </label>
             </div>
           </div>
 
-          {/* Legal and continue */}
           <p className='text-xs text-gray-500'>
             By continuing, you agree to our <a href="#" className='text-emerald-700 underline'>Terms & conditions</a> and our <a href="#" className='text-emerald-700 underline'>Privacy policy</a>.
           </p>
 
-          <Button variant="default" className='w-full' size={"lg"}>
+          <Button variant="default" className='w-full' size={"lg"} type="submit">
             Continue
           </Button>
 

@@ -7,8 +7,8 @@ import Helper from '@/components/auth-page-helper'
 
 export default function ForgetPassword() {
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100">
-            <div className="flex flex-col items-center w-full max-w-md bg-white p-9 rounded-xl shadow-lg">
+        <div className="flex justify-center items-center min-h-screen">
+            <div className="flex flex-col items-center w-full max-w-md bg-white p-9 ">
 
                 {/* Icon */}
                 <Helper
@@ -32,7 +32,7 @@ export default function ForgetPassword() {
 
                 {/* Button */}
                 <Button variant="default" size="lg" className="w-full mb-4">
-                    <Link href="" className='text-white'>Reset Password</Link>
+                    <Link href="/login/reset-password" className='text-white'>Reset Password</Link>
                 </Button>
 
                 {/* Back to Login */}
