@@ -28,12 +28,12 @@ export default function Login() {
     />
     
     <div className='text-right'>
-      <a href="#" className='text-sm text-emerald-700 font-bold hover:underline'>
+      <a href="/login/forgot-password" className='text-sm text-emerald-700 font-bold hover:underline'>
         Forgot password
       </a>
     </div>
 
-    <Button className='w-full' variant="default" type="submit" >
+    <Button className='w-full ' variant="default" type="submit" >
       Login
     </Button>
   </form>
@@ -50,7 +50,7 @@ export default function Login() {
   </p>
 </div>
 
-        <div>
+        <div className='hidden lg:flex lg:w-1/2 h-full'> 
           <Image 
             src= {groupImg}
             alt="login"

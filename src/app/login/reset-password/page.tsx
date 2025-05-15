@@ -6,8 +6,8 @@ import PasswordInput from '@/components/ui/password-input'
 
 export default function ResetPassword() {
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100">
-            <div className="flex flex-col justify-center items-center w-full max-w-md bg-white p-8 rounded-xl shadow-lg">
+        <div className="flex justify-center items-center min-h-screen ">
+            <div className="flex flex-col justify-center items-center w-full max-w-md bg-white p-8 ">
                 {/* Icon */}
                 <div className="flex items-center justify-center w-24 h-24 rounded-full bg-green-100 mb-4">
                     <div className="flex items-center justify-center w-16 h-16 rounded-full bg-green-300">
@@ -34,8 +34,8 @@ export default function ResetPassword() {
                 </div>
 
                 {/* Button */}
-                <Button variant="default" size="lg" className="w-full mb-4">
-                    Reset Password
+                <Button variant="default" size="lg" className=" w-full mb-4">
+                    <Link href ="/login/success" >Reset Password</Link>
                 </Button>
 
                 {/* Back to login */}

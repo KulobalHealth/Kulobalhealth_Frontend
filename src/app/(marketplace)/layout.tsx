@@ -21,22 +21,22 @@ export default function MarketplaceLayout({
   };
 
   return (
-    <div className="min-h-screen flex flex-col py-8">
+    <div className="min-h-screen flex flex-col">
       <header>
         <Navbar />
       </header>
 
       {!isProductDetail && (
         <>
-          <section className="bg-green-50 py-8 px-4 relative dark:bg-primary-900 my-7">
+          <section className="bg-green-50 py-8 px-4 relative">
             <div className="absolute inset-0">
-              <Icons.Banner className="h-full opacity-20 dark:bg-primary-900" />
+              <Icons.Banner className="h-full opacity-20" />
             </div>
             <div className="container mx-auto max-w-6xl relative z-10">
               <h1 className="text-center text-2xl font-medium text-green-600 mb-2">
                 What product are you looking for?
               </h1>
-              <p className="text-center text-sm text-gray-600 mb-4 dark:text-white">
+              <p className="text-center text-sm text-gray-600 mb-4">
                 One-Stop Med Supply Ordering. Find all the medical supplies you
                 need for your pharmacy in one place.
               </p>
@@ -64,7 +64,7 @@ export default function MarketplaceLayout({
             </div>
           </section>
 
-          <main className="flex-1 container mx-auto px-4">
+          <main className="flex-1 container mx-auto px-4 py-8">
             <span className="flex flex-col md:flex-row gap-6">
               <div className="w-full md:w-64 shrink-0">
                 <Filters />
@@ -75,7 +75,7 @@ export default function MarketplaceLayout({
         </>
       )}
 
-      {isProductDetail && <main className="flex-1 my-8">{children}</main>}
+      {isProductDetail && <main className="flex-1">{children}</main>}
     </div>
   );
 }

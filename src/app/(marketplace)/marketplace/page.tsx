@@ -27,7 +27,7 @@ export default function MarketplacePage() {
               className={`${
                 category === selectedCategory
                   ? "bg-primary-600 text-white"
-                  : "bg-white dark:bg-[#2e2e2e] dark:border-none border border-gray-200"
+                  : "bg-white border border-gray-200"
               } px-4 py-1.5 rounded-md text-sm whitespace-nowrap`}
             >
               {category}

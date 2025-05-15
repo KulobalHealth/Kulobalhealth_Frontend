@@ -52,13 +52,13 @@ export default function AdminInfo() {
               <Link href="/login">Back</Link>
             </Button>
             <Button variant="default" className='w-1/2 '>
-              <Link href="/login" className='text-white'>Confirm</Link>
+              <Link href="/signup/verify-otp" className='text-white'>Confirm</Link>
             </Button>
           </div>
         </form>
       </div>
 
-      <div className='fixed right-7'>
+      <div className='index-0 fixed right-0 w-1/2 h-full'>
         <Image
           src={groupImg}
           alt="login"
