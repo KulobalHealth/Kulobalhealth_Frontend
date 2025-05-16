@@ -7,6 +7,7 @@ import { ArrowLeft, ShieldCheck } from "lucide-react";
 import { useMarketplaceStore } from "@/lib/store";
 import { notFound, useParams } from "next/navigation";
 import placeholderMed from "@/../public/med.png";
+import { Button } from "@/components/ui/button";
 
 export default function ProductDetail() {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -38,9 +39,8 @@ export default function ProductDetail() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="flex flex-col md:flex-row gap-4">
-          {/* Thumbnails */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-[68px]">
+        <div className="flex flex-col md:flex-row gap-6">
           <div className="flex md:flex-col gap-2 order-2 md:order-1">
             {images.map((image, index) => (
               <div
@@ -63,7 +63,6 @@ export default function ProductDetail() {
             ))}
           </div>
 
-          {/* Main Image */}
           <div className="bg-gray-100 rounded-md overflow-hidden order-1 md:order-2 flex-1">
             <Image
               src={images[selectedImage] || "/placeholder.svg"}
@@ -75,7 +74,6 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        {/* Product Details */}
         <div className="space-y-6">
           <div>
             <h1 className="text-3xl font-bold">Malaria Test Kits</h1>
@@ -113,15 +111,15 @@ export default function ProductDetail() {
             </ul>
           </div>
 
-          <button
-            className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-3 px-4 rounded-md transition"
+          <Button
+            className="min-w-[222px] h-[50px] font-bold"
             disabled={product.stockQuantity === 0}
             onClick={() => addToCart(product.id)}
           >
             Add to cart
-          </button>
+          </Button>
 
-          <div className="flex items-center justify-center text-gray-600 mt-4">
+          <div className="flex text-gray-600 mt-4">
             <ShieldCheck className="h-5 w-5 mr-2" />
             <span>100% Secured Payment</span>
           </div>

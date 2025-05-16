@@ -37,10 +37,9 @@ export function User({
           <Avatar className="h-8 w-8 rounded-lg">
             <AvatarImage src={user.avatar} alt={user.name} />
             <AvatarFallback className="rounded-lg">TU</AvatarFallback>
-          </Avatar>
-          <div className="grid flex-1 text-left text-neutral-800 text-sm leading-tight">
+          </Avatar>{" "}
+          <div className="grid flex-1 text-left text-neutral-800 dark:text-white text-sm leading-tight">
             <span className="truncate">{user.name}</span>
-            <span className="truncate text-xs">{user.email}</span>
           </div>
           <ChevronDown className="ml-auto size-4" />
         </MenuButton>
@@ -51,7 +50,8 @@ export function User({
         align="end"
         sideOffset={4}
       >
-        <DropdownMenuLabel className="p-0 font-normal text-neutral-800">
+        {" "}
+        <DropdownMenuLabel className="p-0 font-normal text-neutral-800 dark:text-neutral-200">
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
             <Avatar className="h-8 w-8 rounded-lg">
               <AvatarImage src={user.avatar} alt={user.name} />
@@ -59,12 +59,13 @@ export function User({
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
               <span className="truncate">{user.name}</span>
-              <span className="truncate text-xs">{user.email}</span>
+              <span className="truncate text-xs text-neutral-600 dark:text-neutral-400">
+                {user.email}
+              </span>
             </div>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-
         <DropdownMenuGroup>
           <DropdownMenuItem>
             <BadgeCheck />
