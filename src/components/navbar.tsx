@@ -8,6 +8,7 @@ import { useMarketplaceStore } from "@/lib/store";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { ModeToggle } from "./ui/mode-toggle";
+import { Button } from "./ui/button";
 
 const navigationLinks = [
   { name: "Home", href: "/" },
@@ -18,6 +19,7 @@ const navigationLinks = [
 
 export function Navbar() {
   const cart = useMarketplaceStore((state) => state.cart);
+  const { user, isAuthenticated } = useMarketplaceStore();
   const pathname = usePathname();
   const isActive = (href: string) => pathname === href;
 
@@ -52,47 +54,44 @@ export function Navbar() {
               {item.name}
             </Link>
           ))}
-          <div className="relative group">
-            <div className="absolute hidden group-hover:block pt-2 w-48">
-              <div className="bg-white shadow-lg rounded-md py-2">
-                {navigationLinks.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className={clsx(
-                      "block px-4 py-2 hover:bg-emerald-50 transition-colors duration-300",
-                      {
-                        "text-primary-600": isActive(item.href),
-                        "text-neutral-800": !isActive(item.href),
-                      }
-                    )}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
         </div>
+
         <div className="flex text-neutral-800 items-center space-x-4">
-          <User
-            user={{
-              name: "Test User",
-              avatar:
-                "https://images.unsplash.com/photo-1675095680984-0b5a8b1e6c4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fG1lbnxlbnwwfHx8fDE2ODQ3MTg3NjE&ixlib=rb-4.0.3&q=80&w=400",
-            }}
-          />
-          <div className="relative">
-            <Link href="/marketplace/cart">
-              <ShoppingCart className="cursor-pointer text-neur hover:text-primary-700 transition-colors" />
-              {cart.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  {cart.length}
-                </span>
-              )}
-            </Link>
-          </div>
-          <Bell />
+          {isAuthenticated && user ? (
+            <>
+              <User
+                user={{
+                  name: user.name,
+                  email: user.email,
+                  avatar: user.avatar,
+                }}
+              />
+              <div className="relative">
+                <Link href="/marketplace/cart">
+                  <ShoppingCart className="cursor-pointer text-neur hover:text-primary-700 transition-colors" />
+                  {cart.length > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                      {cart.length}
+                    </span>
+                  )}
+                </Link>
+              </div>
+              <Bell className="cursor-pointer hover:text-primary-700 transition-colors" />
+            </>
+          ) : (
+            <>
+              <Link href="/login">
+                <Button variant="ghost" className="hover:text-primary-700">
+                  Login
+                </Button>
+              </Link>
+              <Link href="/signup">
+                <Button className="bg-emerald-500 hover:bg-emerald-600 text-white">
+                  Create Account
+                </Button>
+              </Link>
+            </>
+          )}
           <ModeToggle />
         </div>
       </div>
