@@ -88,27 +88,6 @@ export const useMarketplaceStore = create<MarketplaceState>((set, get) => ({
     }
   },
 
-  // Actions
-  addToCart: (productId: string) => {
-    const { cart, products } = get();
-    const product = findProduct(products, productId);
-    if (!product || product.stockQuantity === 0) return;
-
-    const existingItem = cart.find((item) => item.productId === productId);
-    if (existingItem) {
-      if (existingItem.quantity >= product.stockQuantity) return; // cap at stock
-      set({
-        cart: cart.map((item) =>
-          item.productId === productId
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        ),
-      });
-    } else {
-      set({ cart: [...cart, { productId, quantity: 1 }] });
-    }
-  },
-
   removeFromCart: (productId: string) => {
     set({
       cart: get().cart.filter((item) => item.productId !== productId),
