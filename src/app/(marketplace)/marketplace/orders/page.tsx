@@ -6,6 +6,7 @@ import { ArrowRight, CheckCircle, Clock, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Sidebar from "./sidebar";
 import { useMarketplaceStore } from "@/lib/store";
+import { useState } from "react";
 
 const getStatusClasses = (status: string) => {
   switch (status) {
@@ -22,6 +23,20 @@ const getStatusClasses = (status: string) => {
 
 export default function OrderHistory() {
   const { orders } = useMarketplaceStore();
+  const [filterStatus, setFilterStatus] = useState<string>("all");
+
+  const filterOptions = [
+    { label: "All Orders", value: "all" },
+    { label: "Processing", value: "processing" },
+    { label: "Shipped", value: "shipped" },
+    { label: "Delivered", value: "delivered" },
+    { label: "Cancelled", value: "cancelled" },
+  ];
+
+  const filteredOrders =
+    filterStatus === "all"
+      ? orders
+      : orders.filter((order) => order.status === filterStatus);
 
   return (
     <div className="flex flex-col md:flex-row container mx-auto">
@@ -32,25 +47,20 @@ export default function OrderHistory() {
           <h1 className="text-xl font-bold">Orders & Purchase History</h1>
 
           <div className="mt-4 flex flex-wrap gap-2">
-            <Button
-              variant="default"
-              className="bg-emerald-500 hover:bg-emerald-600 text-sm rounded-full"
-            >
-              All Orders
-            </Button>
-            <Button variant="outline" className="text-sm rounded-full">
-              Processing
-            </Button>
-            <Button variant="outline" className="text-sm rounded-full">
-              Shipped
-            </Button>
-            <Button variant="outline" className="text-sm rounded-full">
-              Delivered
-            </Button>
-            <Button variant="outline" className="text-sm rounded-full">
-              Cancelled
-            </Button>
-
+            {filterOptions.map((option) => (
+              <Button
+                key={option.value}
+                variant={filterStatus === option.value ? "default" : "outline"}
+                className={`text-sm rounded-full ${
+                  filterStatus === option.value
+                    ? "bg-emerald-500 hover:bg-emerald-600 text-white"
+                    : ""
+                }`}
+                onClick={() => setFilterStatus(option.value)}
+              >
+                {option.label}
+              </Button>
+            ))}
             <div className="ml-auto">
               <Button variant="outline" className="text-sm">
                 Filter by <Filter className="ml-2 h-4 w-4" />
@@ -60,8 +70,8 @@ export default function OrderHistory() {
         </div>
 
         <div className="space-y-4">
-          {orders.length > 0 ? (
-            orders.map((order) => (
+          {filteredOrders.length > 0 ? (
+            filteredOrders.map((order) => (
               <div
                 key={order.id}
                 className="border rounded-lg overflow-hidden bg-white dark:bg-background"
