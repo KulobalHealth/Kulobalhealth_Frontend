@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { motion } from "motion/react";
+import Link from "next/link";
 
 export function Hero() {
   return (
@@ -25,9 +26,11 @@ export function Hero() {
           Your One-Stop Marketplace for Rapid Test Kits, Medical Devices, and
           Essential Supplies
         </motion.p>
-        <Button className="px-6 py-2 bg-[#03C486] rounded-full md:px-8 md:py-5 hover:cursor-pointer text-white hover:bg-primary hover:text-underline">
-          Explore the Marketplace.
-        </Button>
+        <Link href="/marketplace">
+          <Button className="px-6 py-2 bg-[#03C486] rounded-full md:px-8 md:py-5 hover:cursor-pointer text-white hover:bg-primary hover:text-underline">
+            Explore the Marketplace.
+          </Button>
+        </Link>
       </div>
     </div>
   );
