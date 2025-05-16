@@ -679,7 +679,7 @@ export default function CheckoutPage() {
               <div className="p-4">
                 <Button
                   onClick={handleSubmit}
-                  className="w-full bg-gray-200 hover:bg-gray-300 text-gray-800"
+                  className="w-full bg-primary-600 hover:bg-primary-700 text-white font-medium"
                 >
                   Confirm
                 </Button>
@@ -704,7 +704,7 @@ export default function CheckoutPage() {
             </Button>
             <Button
               onClick={handleTrackOrder}
-              className="bg-emerald-500 hover:bg-emerald-600"
+              className="bg-emerald-500 hover:bg-emerald-600 text-white"
             >
               Track Order
             </Button>
