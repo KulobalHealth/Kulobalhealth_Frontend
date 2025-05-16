@@ -51,6 +51,7 @@ interface MarketplaceState {
     password: string;
     role: "pharmacist" | "hospitalAdmin";
   }) => Promise<boolean>;
+  getOrderById: (orderId: string) => Order | undefined;
 }
 
 export const useMarketplaceStore = create<MarketplaceState>((set, get) => ({
@@ -63,7 +64,10 @@ export const useMarketplaceStore = create<MarketplaceState>((set, get) => ({
   selectedCategory: "",
   searchQuery: "",
 
-  // Actions
+  getOrderById: (orderId: string) => {
+    return get().orders.find((order) => order.id === orderId);
+  },
+
   addToCart: (productId: string) => {
     const { cart, products } = get();
     const product = findProduct(products, productId);
