@@ -10,7 +10,7 @@ import placeholderMed from "@/../public/med.png";
 
 export default function ProductDetail() {
   const [selectedImage, setSelectedImage] = useState(0);
-  const { products } = useMarketplaceStore();
+  const { products, addToCart } = useMarketplaceStore();
   const { id } = useParams();
 
   const product = products.find((p) => p.id === id);
@@ -113,7 +113,11 @@ export default function ProductDetail() {
             </ul>
           </div>
 
-          <button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-3 px-4 rounded-md transition">
+          <button
+            className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-3 px-4 rounded-md transition"
+            disabled={product.stockQuantity === 0}
+            onClick={() => addToCart(product.id)}
+          >
             Add to cart
           </button>
 
