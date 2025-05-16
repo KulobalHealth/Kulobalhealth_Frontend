@@ -61,7 +61,7 @@ export const useMarketplaceStore = create<MarketplaceState>((set, get) => ({
   orders: mockOrders,
   user: null,
   isAuthenticated: false,
-  selectedCategory: "",
+  selectedCategory: "All Products",
   searchQuery: "",
 
   getOrderById: (orderId: string) => {
