@@ -6,6 +6,7 @@ import { Icons } from "@/components/ui/icons";
 import { Search } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useMarketplaceStore } from "@/lib/store";
+import Footer from "@/components/footer";
 
 export default function MarketplaceLayout({
   children,
@@ -64,7 +65,7 @@ export default function MarketplaceLayout({
             </div>
           </section>
 
-          <main className="flex-1 container mx-auto px-4">
+          <main className="flex-1 container min-h-screen mx-auto px-4 mb-[194px]">
             <span className="flex flex-col md:flex-row gap-6">
               <div className="w-full md:w-64 shrink-0">
                 <Filters />
@@ -75,7 +76,11 @@ export default function MarketplaceLayout({
         </>
       )}
 
-      {isProductDetail && <main className="flex-1 my-8">{children}</main>}
+      {isProductDetail && (
+        <main className="flex-1 min-h-screen my-8">{children}</main>
+      )}
+
+      <Footer />
     </div>
   );
 }

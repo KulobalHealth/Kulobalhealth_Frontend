@@ -44,10 +44,11 @@ export function Navbar() {
               key={item.name}
               href={item.href}
               className={clsx(
-                "transition-colors duration-300 hover:text-primary-700",
+                "transition-colors duration-300 hover:text-primary-700 dark:hover:text-primary-400",
                 {
-                  "text-primary-600": isActive(item.href),
-                  "text-neutral-800": !isActive(item.href),
+                  "text-primary-600 font-semibold dark:text-primary-400":
+                    isActive(item.href),
+                  "text-neutral-800 dark:text-white": !isActive(item.href),
                 }
               )}
             >

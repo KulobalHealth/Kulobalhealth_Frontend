@@ -103,7 +103,7 @@ export const mockOrders: Order[] = [
     ],
     status: "processing",
     total: 850.0,
-    createdAt: new Date().toISOString(),
+    createdAt: new Date("2025-05-16T10:00:00Z").toISOString(),
     paymentMethod: "mobile-money",
     paymentType: "full",
     paymentDetails: {
@@ -120,8 +120,126 @@ export const mockOrders: Order[] = [
       gpsAddress: "GA-123-4567",
     },
     tracking: [
-      { status: "Order placed", date: new Date().toISOString() },
-      { status: "Pending Confirmation", date: new Date().toISOString() },
+      {
+        status: "Order placed",
+        date: new Date("2025-05-16T10:00:00Z").toISOString(),
+      },
+      {
+        status: "Pending Confirmation",
+        date: new Date("2025-05-16T10:05:00Z").toISOString(),
+      },
+    ],
+  },
+  {
+    id: "2",
+    items: [
+      { productId: "3", quantity: 3, price: 320.0 },
+      { productId: "5", quantity: 1, price: 120.0 },
+    ],
+    status: "shipped",
+    total: 1080.0,
+    createdAt: new Date("2025-05-15T14:30:00Z").toISOString(),
+    paymentMethod: "card",
+    paymentType: "full",
+    paymentDetails: {
+      cardLast4: "4242",
+    },
+    shippingAddress: {
+      pharmacyName: "Care Plus Pharmacy",
+      phone: "+233234567890",
+      email: "care.plus@example.com",
+      location: "Kumasi",
+      streetAddress: "45 Hospital Road",
+      gpsAddress: "AK-789-0123",
+    },
+    tracking: [
+      {
+        status: "Order placed",
+        date: new Date("2025-05-15T14:30:00Z").toISOString(),
+      },
+      {
+        status: "Confirmed",
+        date: new Date("2025-05-15T14:35:00Z").toISOString(),
+      },
+      {
+        status: "Shipped",
+        date: new Date("2025-05-15T16:00:00Z").toISOString(),
+      },
+    ],
+  },
+  {
+    id: "3",
+    items: [{ productId: "4", quantity: 1, price: 580.0 }],
+    status: "delivered",
+    total: 580.0,
+    createdAt: new Date("2025-05-14T09:15:00Z").toISOString(),
+    deliveredAt: new Date("2025-05-14T14:30:00Z").toISOString(),
+    paymentMethod: "mobile-money",
+    paymentType: "half",
+    paymentDetails: {
+      network: "Vodafone",
+      accountNumber: "0987654321",
+      accountName: "Jane Smith",
+    },
+    shippingAddress: {
+      pharmacyName: "MediLife Pharmacy",
+      phone: "+233345678901",
+      email: "medilife@example.com",
+      location: "Tema",
+      streetAddress: "15 Industrial Ave",
+      gpsAddress: "GT-456-7890",
+    },
+    tracking: [
+      {
+        status: "Order placed",
+        date: new Date("2025-05-14T09:15:00Z").toISOString(),
+      },
+      {
+        status: "Confirmed",
+        date: new Date("2025-05-14T09:20:00Z").toISOString(),
+      },
+      {
+        status: "Shipped",
+        date: new Date("2025-05-14T11:00:00Z").toISOString(),
+      },
+      {
+        status: "Out for delivery",
+        date: new Date("2025-05-14T13:45:00Z").toISOString(),
+      },
+      {
+        status: "Delivered",
+        date: new Date("2025-05-14T14:30:00Z").toISOString(),
+      },
+    ],
+  },
+  {
+    id: "4",
+    items: [{ productId: "6", quantity: 2, price: 150.0 }],
+    status: "cancelled",
+    total: 300.0,
+    createdAt: new Date("2025-05-13T16:45:00Z").toISOString(),
+    paymentMethod: "card",
+    paymentType: "full",
+    paymentDetails: {
+      cardLast4: "1234",
+    },
+    shippingAddress: {
+      pharmacyName: "Wellness Pharmacy",
+      phone: "+233456789012",
+      email: "wellness@example.com",
+      location: "Cape Coast",
+      streetAddress: "78 Beach Road",
+      gpsAddress: "CC-234-5678",
+    },
+    tracking: [
+      {
+        status: "Order placed",
+        date: new Date("2025-05-13T16:45:00Z").toISOString(),
+      },
+      {
+        status: "Cancelled",
+        date: new Date("2025-05-13T17:00:00Z").toISOString(),
+      },
     ],
   },
 ];
