@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle, Clock, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Sidebar from "./sidebar";
+import Sidebar from "../sidebar";
 import { useMarketplaceStore } from "@/lib/store";
 import { useState } from "react";
 

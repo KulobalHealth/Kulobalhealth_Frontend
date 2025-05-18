@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { ArrowLeft, ArrowRight, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Sidebar from "../sidebar";
+import Sidebar from "../../sidebar";
 import { useMarketplaceStore } from "@/lib/store";
 
 export default function OrderDetails() {

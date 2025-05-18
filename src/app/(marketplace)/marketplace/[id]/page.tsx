@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ArrowLeft, ShieldCheck } from "lucide-react";
 import { useMarketplaceStore } from "@/lib/store";
 import { notFound, useParams } from "next/navigation";
-import placeholderMed from "@/../public/med.png";
+
 import { Button } from "@/components/ui/button";
 
 export default function ProductDetail() {
@@ -19,14 +19,6 @@ export default function ProductDetail() {
   if (!product) {
     notFound();
   }
-
-  const images = [
-    placeholderMed,
-    placeholderMed,
-    placeholderMed,
-    placeholderMed,
-  ];
-
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
       <div className="mb-6">
@@ -42,7 +34,7 @@ export default function ProductDetail() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-[68px]">
         <div className="flex flex-col md:flex-row gap-6">
           <div className="flex md:flex-col gap-2 order-2 md:order-1">
-            {images.map((image, index) => (
+            {product.images.map((image, index) => (
               <div
                 key={`thumbnail-${index}`}
                 className={`border-2 rounded-md overflow-hidden cursor-pointer w-20 h-20 ${
@@ -61,12 +53,11 @@ export default function ProductDetail() {
                 />
               </div>
             ))}
-          </div>
-
+          </div>{" "}
           <div className="bg-gray-100 rounded-md overflow-hidden order-1 md:order-2 flex-1">
             <Image
-              src={images[selectedImage] || "/placeholder.svg"}
-              alt="Malaria Test Kit"
+              src={product.images[selectedImage] || "/placeholder.svg"}
+              alt={product.name}
               width={600}
               height={600}
               className="object-contain w-full h-full"
@@ -76,7 +67,8 @@ export default function ProductDetail() {
 
         <div className="space-y-6">
           <div>
-            <h1 className="text-3xl font-bold">Malaria Test Kits</h1>
+            {" "}
+            <h1 className="text-3xl font-bold">{product.name}</h1>
             <div className="mt-4">
               <span className="text-3xl font-bold">
                 GH₵ {product.price.toFixed(2)}
@@ -99,16 +91,12 @@ export default function ProductDetail() {
 
           <div>
             <h2 className="text-lg font-semibold">Brand</h2>
-            <p className="text-gray-700">OraSure Technologies</p>
+            <p className="text-gray-700">{product.brand}</p>
           </div>
 
           <div>
             <h2 className="text-lg font-semibold mb-2">Description</h2>
-            <ul className="space-y-2 list-disc pl-5 text-gray-700">
-              <li>Description goes here</li>
-              <li>Description goes here</li>
-              <li>Description goes here</li>
-            </ul>
+            <p className="text-gray-700">{product.description}</p>
           </div>
 
           <Button
