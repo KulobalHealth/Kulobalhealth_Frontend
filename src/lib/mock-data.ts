@@ -1,5 +1,16 @@
 import medImg from "@/../public/med.png";
-import type { Product, Order } from "./types";
+import agaroGlucose1 from "@/../public/agaro-glucose-monitoring.jpg";
+import careTouchGlucose1 from "@/../public/caretouch-glucose-monitoring.jpeg";
+import careTouchGlucose2 from "@/../public/caretouch-glucose-monitoring-2.jpg";
+import easyHomeGlucose from "@/../public/easy-home-glucose-monitoring.webp";
+import omronBloodPressure from "@/../public/omron-blood-pressure-monitor.jpg";
+import omronBloodPressure2 from "@/../public/omron-blood-pressure-monitor-2.jpg";
+import omronBloodPressure3 from "@/../public/omron-blood-pressure-monitor-3.webp";
+import omronBloodPressure4 from "@/../public/omron-blood-pressure-monitor-4.jpg";
+import pangaBloodPressure from "@/../public/panga-blood-pressure-monitor.webp";
+import pangaBloodPressure2 from "@/../public/panga-blood-pressure-monitor-2.webp";
+import pangaBloodPressure3 from "@/../public/panga-blood-pressure-monitor-3.webp";
+import type { Product, Order, Payment } from "./types";
 
 export const mockProducts: Product[] = [
   {
@@ -25,12 +36,17 @@ export const mockProducts: Product[] = [
     brand: "Omron",
     category: "Medical Devices",
     price: 450.0,
-    images: [medImg.src],
+    images: [
+      omronBloodPressure.src,
+      omronBloodPressure2.src,
+      omronBloodPressure3.src,
+      omronBloodPressure4.src,
+    ],
     inStock: true,
     normalRange: "120/80 mmHg",
     unit: "Device",
     stockQuantity: 8,
-    imageUrl: medImg.src,
+    imageUrl: omronBloodPressure.src,
   },
   {
     id: "3",
@@ -40,27 +56,17 @@ export const mockProducts: Product[] = [
     brand: "AccuChek",
     category: "Diabetic Supplies",
     price: 320.0,
-    images: [medImg.src],
+    images: [
+      careTouchGlucose1.src,
+      careTouchGlucose2.src,
+      easyHomeGlucose.src,
+      agaroGlucose1.src,
+    ],
     inStock: true,
     normalRange: "70-140 mg/dL",
     unit: "Pack",
     stockQuantity: 23,
-    imageUrl: medImg.src,
-  },
-  {
-    id: "4",
-    name: "HIV Self-Test Kit",
-    description:
-      "Private, at-home testing kit for HIV with results in 20 minutes.",
-    brand: "BioSure",
-    category: "Rapid Test Kits",
-    price: 580.0,
-    images: [medImg.src],
-    inStock: true,
-    normalRange: "Negative",
-    unit: "Kit",
-    stockQuantity: 5,
-    imageUrl: medImg.src,
+    imageUrl: careTouchGlucose1.src,
   },
   {
     id: "5",
@@ -70,12 +76,16 @@ export const mockProducts: Product[] = [
     brand: "Braun",
     category: "Medical Devices",
     price: 120.0,
-    images: [medImg.src],
+    images: [
+      pangaBloodPressure.src,
+      pangaBloodPressure2.src,
+      pangaBloodPressure3.src,
+    ],
     inStock: true,
     normalRange: "36.5-37.5°C",
     unit: "Device",
     stockQuantity: 12,
-    imageUrl: medImg.src,
+    imageUrl: pangaBloodPressure.src,
   },
   {
     id: "6",
@@ -241,5 +251,128 @@ export const mockOrders: Order[] = [
         date: new Date("2025-05-13T17:00:00Z").toISOString(),
       },
     ],
+  },
+];
+
+export const mockPayments: Payment[] = [
+  {
+    id: "1",
+    orderNo: "#7578558686",
+    productName: "Malaria Test Kit",
+    paymentType: "Full Payment",
+    amount: 200.0,
+    lastPaymentDate: "11th April, 2025",
+    amountPaid: 200.0,
+    amountRemaining: 0.0,
+    status: "delivered",
+    date: "20th Mar, 2025",
+  },
+  {
+    id: "2",
+    orderNo: "#7578558687",
+    productName: "Digital Blood Pressure Monitor",
+    paymentType: "Partial",
+    amount: 450.0,
+    lastPaymentDate: "10th April, 2025",
+    amountPaid: 300.0,
+    amountRemaining: 150.0,
+    status: "shipped",
+    date: "19th Mar, 2025",
+  },
+  {
+    id: "3",
+    orderNo: "#7578558688",
+    productName: "Glucose Test Strips",
+    paymentType: "Credit",
+    amount: 320.0,
+    lastPaymentDate: "15th April, 2025",
+    amountPaid: 100.0,
+    amountRemaining: 220.0,
+    status: "processing",
+    date: "18th Mar, 2025",
+  },
+  {
+    id: "4",
+    orderNo: "#7578558689",
+    productName: "HIV Self-Test Kit",
+    paymentType: "Full Payment",
+    amount: 580.0,
+    lastPaymentDate: "14th April, 2025",
+    amountPaid: 580.0,
+    amountRemaining: 0.0,
+    status: "delivered",
+    date: "17th Mar, 2025",
+  },
+  {
+    id: "5",
+    orderNo: "#7578558690",
+    productName: "Digital Thermometer",
+    paymentType: "Full Payment",
+    amount: 120.0,
+    lastPaymentDate: "13th April, 2025",
+    amountPaid: 120.0,
+    amountRemaining: 0.0,
+    status: "delivered",
+    date: "16th Mar, 2025",
+  },
+  {
+    id: "6",
+    orderNo: "#7578558691",
+    productName: "Digital Blood Pressure Monitor",
+    paymentType: "Credit",
+    amount: 450.0,
+    lastPaymentDate: "12th April, 2025",
+    amountPaid: 150.0,
+    amountRemaining: 300.0,
+    status: "processing",
+    date: "15th Mar, 2025",
+  },
+  {
+    id: "7",
+    orderNo: "#7578558692",
+    productName: "Malaria Test Kit",
+    paymentType: "Full Payment",
+    amount: 200.0,
+    lastPaymentDate: "11th April, 2025",
+    amountPaid: 200.0,
+    amountRemaining: 0.0,
+    status: "processing",
+    date: "14th Mar, 2025",
+  },
+  {
+    id: "8",
+    orderNo: "#7578558693",
+    productName: "Glucose Test Strips",
+    paymentType: "Partial",
+    amount: 320.0,
+    lastPaymentDate: "10th April, 2025",
+    amountPaid: 160.0,
+    amountRemaining: 160.0,
+    status: "shipped",
+    date: "13th Mar, 2025",
+  },
+  {
+    id: "9",
+    orderNo: "#7578558694",
+    productName: "Digital Blood Pressure Monitor",
+    paymentType: "Credit",
+    amount: 450.0,
+    lastPaymentDate: "9th April, 2025",
+    amountPaid: 150.0,
+    amountRemaining: 300.0,
+    status: "delivered",
+    date: "12th Mar, 2025",
+  },
+  {
+    id: "10",
+    orderNo: "#7578558695",
+    productName: "HIV Self-Test Kit",
+    paymentType: "Full Payment",
+    amount: 580.0,
+    lastPaymentDate: "8th April, 2025",
+    amountPaid: 580.0,
+    amountRemaining: 0.0,
+    status: "delivered",
+    date: "11th Mar, 2025",
   },
 ];
