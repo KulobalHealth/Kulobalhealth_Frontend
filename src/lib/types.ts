@@ -60,3 +60,19 @@ export interface Order {
     date: string;
   }>;
 }
+
+export type PaymentStatus = "delivered" | "processing" | "shipped";
+export type PaymentType = "Full Payment" | "Credit" | "Partial";
+
+export interface Payment {
+  id: string;
+  orderNo: string;
+  productName: string;
+  paymentType: PaymentType;
+  amount: number;
+  lastPaymentDate: string;
+  amountPaid: number;
+  amountRemaining: number;
+  status: PaymentStatus;
+  date: string;
+}
