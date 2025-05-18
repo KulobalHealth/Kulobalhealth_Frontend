@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { mockAuth } from "./mock-auth";
-import { mockProducts, mockOrders } from "./mock-data";
-import type { User, Product, CartItem, Order } from "./types";
+import { mockProducts, mockOrders, mockPayments } from "./mock-data";
+import type { User, Product, CartItem, Order, Payment } from "./types";
 
 // Mock user is now imported from mock-auth.ts
 const dummyUser = mockAuth.getMockUser();
@@ -35,6 +35,7 @@ interface MarketplaceState {
   isAuthenticated: boolean;
   selectedCategory: string;
   searchQuery: string;
+  payments: Payment[];
   addToCart: (productId: string) => void;
   removeFromCart: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
@@ -52,6 +53,7 @@ interface MarketplaceState {
     role: "pharmacist" | "hospitalAdmin";
   }) => Promise<boolean>;
   getOrderById: (orderId: string) => Order | undefined;
+  getPayments: () => Payment[];
 }
 
 export const useMarketplaceStore = create<MarketplaceState>((set, get) => ({
@@ -59,6 +61,7 @@ export const useMarketplaceStore = create<MarketplaceState>((set, get) => ({
   products: mockProducts,
   cart: [],
   orders: mockOrders,
+  payments: mockPayments,
   user: null,
   isAuthenticated: false,
   selectedCategory: "All Products",
@@ -66,6 +69,10 @@ export const useMarketplaceStore = create<MarketplaceState>((set, get) => ({
 
   getOrderById: (orderId: string) => {
     return get().orders.find((order) => order.id === orderId);
+  },
+
+  getPayments: () => {
+    return get().payments;
   },
 
   addToCart: (productId: string) => {
