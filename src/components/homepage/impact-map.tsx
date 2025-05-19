@@ -1,5 +1,5 @@
-import { AnimationWrapper } from "./ui/animation-wrapper";
-import bgImage from "../../public/images/map.556e50b3b61d.webp";
+import { AnimationWrapper } from "@/components/ui/animation-wrapper";
+import bgImage from "@/../public/images/map.556e50b3b61d.webp";
 
 export default function ImpactMap() {
   return (

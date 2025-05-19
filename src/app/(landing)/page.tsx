@@ -1,14 +1,12 @@
-import Approach from "@/components/approach";
-import { Hero } from "@/components/hero";
-import ValuedInvestors from "@/components/investors";
-import Impact from "@/components/impact";
-import ImpactCashFlow from "@/components/impactCashflow";
-import ImpactCounterfeits from "@/components/impactCounterfeits";
-import ImpactStats from "@/components/impactStats";
-import ImpactMap from "@/components/impactMap";
-import DawaMkononiApp from "@/components/dawaMkononiApp";
-import Grants from "@/components/grants";
+import { Hero } from "@/components/homepage/hero";
+
 import { AnimationWrapper } from "@/components/ui/animation-wrapper";
+import ReliableAccess from "@/components/homepage/reliable-access";
+import Empowerment from "@/components/homepage/empowerment";
+import PatientSafety from "@/components/homepage/patient-safety";
+import Features from "@/components/homepage/features";
+import Partners from "@/components/homepage/partners";
+import ImpactMap from "@/components/homepage/impact-map";
 
 export default function LandingPage() {
   return (
@@ -17,27 +15,17 @@ export default function LandingPage() {
         <Hero />
       </AnimationWrapper>
       <AnimationWrapper>
-        <ValuedInvestors />
+        <ReliableAccess />
+      </AnimationWrapper>
+      <AnimationWrapper>
+        <PatientSafety />
+      </AnimationWrapper>
+      <AnimationWrapper>
+        <Features />
       </AnimationWrapper>
 
       <AnimationWrapper>
-        <Approach />
-      </AnimationWrapper>
-
-      <AnimationWrapper>
-        <Impact />
-      </AnimationWrapper>
-
-      <AnimationWrapper>
-        <ImpactCashFlow />
-      </AnimationWrapper>
-
-      <AnimationWrapper>
-        <ImpactCounterfeits />
-      </AnimationWrapper>
-
-      <AnimationWrapper>
-        <ImpactStats />
+        <Empowerment />
       </AnimationWrapper>
 
       <AnimationWrapper>
@@ -45,11 +33,7 @@ export default function LandingPage() {
       </AnimationWrapper>
 
       <AnimationWrapper>
-        <DawaMkononiApp />
-      </AnimationWrapper>
-
-      <AnimationWrapper>
-        <Grants />
+        <Partners />
       </AnimationWrapper>
     </div>
   );
