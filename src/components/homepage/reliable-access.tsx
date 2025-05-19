@@ -1,5 +1,7 @@
 import reliableAccessImg from "@/../public/allKits.webp";
 import Image from "next/image";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 export default function ReliableAccess() {
   return (
@@ -26,12 +28,17 @@ export default function ReliableAccess() {
             <h2 className="mb-4 text-4xl font-semibold text-primary-600">
               Reliable Access to RDT&apos;s
             </h2>
-            <div className="mb-6">
+            <div className="mb-6 flex gap-4 flex-col">
               <p className="mb-0">
                 Get high-quality rapid test kits for your pharmacy with flexible
                 payment options. Order online no need to call suppliers—and
                 receive delivery within 48 hours.
               </p>
+              <Link href="/login" className="w-fit ">
+                <Button className="w-fit hover:cursor-pointer">
+                  Order Test Kits
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

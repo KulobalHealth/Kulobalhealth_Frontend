@@ -1,5 +1,7 @@
 import patientSafetyImg from "@/../public/patientSafety.webp";
 import Image from "next/image";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 export default function PatientSafety() {
   return (
@@ -10,13 +12,18 @@ export default function PatientSafety() {
             <h2 className="mb-4 text-4xl font-semibold text-primary-600">
               Prioritizing Patient Safety
             </h2>
-            <div className="mb-6">
+            <div className="mb-6 flex flex-col gap-4">
               <p className="mb-0">
                 We prioritize patient safety by using AI-powered drug-drug
                 interaction (DDI) checks, real-time prescription verification,
                 and secure medication ordering to prevent errors and harmful
                 interactions.
               </p>
+              <Link href="/login" className="w-fit">
+                <Button className="w-fit hover:cursor-pointer">
+                  Track Your Patient for Free
+                </Button>
+              </Link>
             </div>
           </div>
 
