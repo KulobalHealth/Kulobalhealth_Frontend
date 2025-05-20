@@ -5,7 +5,6 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  // SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -14,9 +13,10 @@ import {
   Users,
   Home,
   FileText,
+  CreditCard,
   Settings,
   ShoppingBasket,
-  Bot,
+  Bell,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -26,18 +26,28 @@ import clsx from "clsx";
 const items = [
   {
     title: "Dashboard",
-    url: "/",
+    url: "/dashboard",
     icon: Home,
   },
   {
-    title: "Patient Care",
+    title: "Patients",
     url: "/patients",
     icon: Users,
   },
   {
-    title: "Test Manager",
+    title: "Rapid Test",
     url: "/rapid-tests",
     icon: FileText,
+  },
+  {
+    title: "DDI",
+    url: "/ddi",
+    icon: Bell,
+  },
+  {
+    title: "My Account",
+    url: "/account",
+    icon: Settings,
   },
   {
     title: "Orders",
@@ -45,14 +55,14 @@ const items = [
     icon: ShoppingBasket,
   },
   {
-    title: "Pharma Ai",
-    url: "/pharma-ai",
-    icon: Bot,
+    title: "Payments",
+    url: "/payments",
+    icon: CreditCard,
   },
   {
-    title: "Account",
-    url: "/account",
-    icon: Settings,
+    title: "Subscriptions",
+    url: "/subscriptions",
+    icon: FileText,
   },
 ];
 
@@ -60,8 +70,8 @@ export function AppSidebar() {
   const pathname = usePathname();
 
   return (
-    <Sidebar variant="inset" collapsible="icon">
-      <SidebarContent className="pt-20">
+    <Sidebar variant="inset" collapsible="icon" className="mt-20 h-[500px] bg-white pl-10">
+      <SidebarContent className="bg-white border border-gray-200 rounded-lg">
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -70,11 +80,12 @@ export function AppSidebar() {
                   <SidebarMenuButton
                     asChild
                     className={clsx(
-                      "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground hover:text-foreground",
-                      pathname === item.url &&
-                        "bg-sidebar-accent text-blue-800 dark:text-white text-sm"
+                      "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground hover:bg-emerald-500 hover:text-white",
+                      "transition-colors duration-200",
+                      pathname === item.url && "bg-emerald-600 text-white "
                     )}
                   >
+
                     <Link
                       href={item.url}
                       className="flex items-center justify-between"

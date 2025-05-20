@@ -6,10 +6,14 @@ import { EyeOff } from "lucide-react"
 interface PasswordInputProps {
   label?: string
   placeholder?: string
+  value?: string
+  name?: string
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 
 }
 
-export default function PasswordInput({label, placeholder}: PasswordInputProps) {
+export default function PasswordInput({label, placeholder , value, onChange,onBlur,name,}: PasswordInputProps) {
   const  [showPassword, setShowPassword] = useState(false)
   
   const togglePasswordVisibility = () => {
@@ -25,7 +29,10 @@ export default function PasswordInput({label, placeholder}: PasswordInputProps) 
             type={showPassword ? "text" : "password"}
             placeholder={placeholder}
             className="peer relative h-12 w-full rounded border border-slate-200 px-4 pr-12 text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
-         
+            onChange={onChange}
+            value={value}
+            onBlur={onBlur}
+            name={name}
          />
 
           {showPassword ? (
