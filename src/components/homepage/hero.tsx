@@ -3,11 +3,16 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "motion/react";
 import Link from "next/link";
+import { Icons } from "../ui/icons";
 
 export function Hero() {
   return (
-    <div className="container py-8 mx-auto min-h-[500px] md:h-[700px] rounded-md flex flex-col items-center justify-center">
-      <div className="w-full max-w-2xl text-center flex flex-col items-center justify-center">
+    <section className="py-8 min-h-[500px] md:h-[700px] rounded-md flex flex-col items-center justify-center relative overflow-hidden">
+      {" "}
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <Icons.Banner className="w-full h-full opacity-20 object-cover" />
+      </div>
+      <div className="w-full container mx-auto max-w-2xl relative text-center flex flex-col items-center justify-center">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -32,6 +37,6 @@ export function Hero() {
           </Button>
         </Link>
       </div>
-    </div>
+    </section>
   );
 }
