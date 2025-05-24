@@ -10,13 +10,14 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import {
-  Users,
+  CircleUserRound,
   Home,
   FileText,
-  CreditCard,
-  Settings,
+  Tag,
   ShoppingBasket,
-  Bell,
+  ScrollText,
+  BriefcaseMedicalIcon,
+  LucidePersonStanding,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -32,22 +33,28 @@ const items = [
   {
     title: "Patients",
     url: "/patients",
-    icon: Users,
+    icon:LucidePersonStanding
+  },
+ 
+  {
+    title: "Prescriptions",
+    url: "/prescriptions",
+    icon: ScrollText,
   },
   {
     title: "Rapid Test",
     url: "/rapid-tests",
-    icon: FileText,
+    icon: BriefcaseMedicalIcon,
   },
   {
     title: "DDI",
     url: "/ddi",
-    icon: Bell,
+    icon: FileText,
   },
   {
     title: "My Account",
     url: "/account",
-    icon: Settings,
+    icon: CircleUserRound,
   },
   {
     title: "Orders",
@@ -57,12 +64,12 @@ const items = [
   {
     title: "Payments",
     url: "/payments",
-    icon: CreditCard,
+    icon:ScrollText,
   },
   {
     title: "Subscriptions",
     url: "/subscriptions",
-    icon: FileText,
+    icon: Tag,
   },
 ];
 
@@ -80,7 +87,7 @@ export function AppSidebar() {
                   <SidebarMenuButton
                     asChild
                     className={clsx(
-                      "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground hover:bg-emerald-500 hover:text-white",
+                      "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground hover:bg-emerald-200 hover:text-white",
                       "transition-colors duration-200",
                       pathname === item.url && "bg-emerald-600 text-white "
                     )}

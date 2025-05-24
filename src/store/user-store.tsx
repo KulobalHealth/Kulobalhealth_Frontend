@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { create } from 'zustand';
 import { User } from './types';
-import { use } from 'react';
 
 
 
@@ -24,7 +23,7 @@ export const useUserStore = create((set,get)=>({
 
 //Creating a new user
     createUser: async () => {
-        const { userData } = get();
+        const { userData }: { userData?: Partial<User> } = get();
         set({ isloading: true });
         try {
             const response = await axios.post('/pharmacy/auth/register', userData);
