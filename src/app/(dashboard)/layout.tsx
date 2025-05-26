@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Footer from "@/components/dashbord/footer";
 
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";

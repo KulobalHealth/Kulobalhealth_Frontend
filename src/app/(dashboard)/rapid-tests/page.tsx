@@ -3,10 +3,11 @@ import PatientRegistration from "@/components/dashbord/add-patients";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import {  ChevronLeft, ChevronRight, UserRound, MoreHorizontal, Eye, Plus } from "lucide-react";
+import {  ChevronLeft, ChevronRight, UserRound, MoreHorizontal, Eye, Plus,User } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import TableHeaderComponent from "@/components/dashbord/table-header";
 import { AppBadge } from "@/components/dashbord/badge";
+import { useRouter } from "next/navigation";
 
 
 const patientsData = [
@@ -54,6 +55,7 @@ const ITEMS_PER_PAGE = 10
 
 
 export default function  RapidTests() {
+  const router = useRouter()
   const [currentPage, setCurrentPage] = useState(1)
   const [searchTerm, setSearchTerm] = useState("")
 
@@ -87,7 +89,10 @@ export default function  RapidTests() {
         title="Prescription Management"
         text="Manage your prescriptions effectively"
         component={
-         <PatientRegistration/>
+          <Button className="bg-emerald-600 text-white w-[200px]" onClick={() => router.push("/rapid-tests/add-new-test")}>
+            <User width={24} height={24} />
+            Add Patient
+          </Button>
         }
        />
       <Table className="border-2 border-gray-100 rounded-t-2xl">
