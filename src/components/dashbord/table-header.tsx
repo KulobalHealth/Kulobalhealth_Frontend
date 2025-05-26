@@ -6,9 +6,10 @@ interface TableHeaderProps {
     text: string;
     component: React.ReactNode;
     handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onClick?: () => void;
 }
 
-export default function  TableHeaderComponent ({ handleSearch , title , text, component}: TableHeaderProps) {
+export default function  TableHeaderComponent ({ handleSearch , title , text, component ,}: TableHeaderProps) {
     return (
         <>
             <div className="flex justify-between items-center mb-4">
@@ -16,7 +17,7 @@ export default function  TableHeaderComponent ({ handleSearch , title , text, co
                     <h1 className="text-2xl font-bold">{title}</h1>
                     <small className="text-gray-500"> {text}</small>
                 </div>
-                {component}
+                {component  }
             </div>
             <div className="relative w-full max-w-md mb-4">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />

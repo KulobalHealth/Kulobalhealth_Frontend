@@ -14,7 +14,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white" style={{ fontFamily: inter.style.fontFamily }}>
+    <div className="" style={{ fontFamily: inter.style.fontFamily }}>
       <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
         <DashboardNavbar/>
 

@@ -13,6 +13,7 @@ import { Package, ChevronLeft, ChevronRight, UserRound, MoreHorizontal,  Eye, Pl
 import { Button } from "@/components/ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import TableHeaderComponent from '@/components/dashbord/table-header'
+import { useRouter } from 'next/navigation'
 
 const prescriptionData = [
   {
@@ -120,6 +121,7 @@ const prescriptionData = [
 const ITEMS_PER_PAGE = 10
 
 export default function Prescriotions() {
+  const router = useRouter()
   const [currentPage, setCurrentPage] = useState(1)
   const [searchTerm, setSearchTerm] = useState("")
 
@@ -153,7 +155,7 @@ export default function Prescriotions() {
         title="Prescription Management"
         text="Manage your prescriptions effectively"
         component={
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" onClick={() => router.push('/prescriptions/new-prescription')}>
             <Package className="w-4 h-4 mr-2" /> New Prescription
           </Button>
         }

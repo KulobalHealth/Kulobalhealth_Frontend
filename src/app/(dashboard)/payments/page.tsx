@@ -299,7 +299,7 @@ export default function Payment() {
 
   return (
     <div className="py-6 flex flex-col items-center">
-      <Table className="border-2 border-gray-100 rounded-t-2xl ">
+      <Table className="border-2 border-gray-100 rounded-t-2xl w-full max-w-7xl mx-auto ">
         <TableHeader className="bg-gray-100 h-5">
           <TableRow className=''>
             <TableHead className="text-left rounded-tl-2xl font-bold">Patient/Order No.</TableHead>
