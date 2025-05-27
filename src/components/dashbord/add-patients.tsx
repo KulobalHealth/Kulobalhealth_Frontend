@@ -28,14 +28,14 @@ export default function AddPatients() {
     }
 
     return (
-        <Dialog >
+        <Dialog>
             <DialogTrigger className="btn btn-primary">
                 <Button className="bg-emerald-600 text-white w-[200px]">
                     <User width={24} height={24} />
                     Add Patient
                 </Button>
             </DialogTrigger>
-            <DialogContent className=" w-screen" >
+            <DialogContent className=" min-w-[1000px]  " >
                 <DialogHeader>
                     <div className="flex items-center justify-between w-full pb-4 border-b border-b-gray-200">
                         <DialogTitle>Register Patient</DialogTitle>
@@ -116,12 +116,14 @@ export default function AddPatients() {
                     </div>
                 </div>
 
+
+                {/* Add your form inputs here */}
+
                 <DialogFooter className="mt-6 border-t border-t-gray-200 pt-4">
-                    <Button variant="ghost" className="">Cancel</Button>
+                    <Button variant="ghost">Cancel</Button>
                     <Button type="submit">Register Patient</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
     )
 }
-  

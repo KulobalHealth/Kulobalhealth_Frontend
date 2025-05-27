@@ -15,7 +15,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="" style={{ fontFamily: inter.style.fontFamily }}>
+    <div className="" style={{ fontFamily: inter.style.fontFamily  , backgroundColor: "#ffffff" }}>
       <DashboardNavbar/>
 
       <SidebarProvider>
