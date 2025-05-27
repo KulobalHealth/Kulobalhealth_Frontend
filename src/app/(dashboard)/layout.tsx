@@ -5,9 +5,9 @@ import Footer from "@/components/dashbord/footer";
 
 
 const inter = Inter({ subsets: ["latin"] });
-import NavbarDashboard from "@/components/dashbord/navbar";
 
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { DashboardNavbar } from "@/components/dashbord/navbar";
 
 export default function DashboardLayout({
   children,
@@ -16,7 +16,7 @@ export default function DashboardLayout({
 }) {
   return (
     <div className="" style={{ fontFamily: inter.style.fontFamily }}>
-      <NavbarDashboard/>
+      <DashboardNavbar/>
 
       <SidebarProvider>
 
