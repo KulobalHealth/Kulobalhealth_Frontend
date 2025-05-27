@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+"use client"
+=======
+>>>>>>> origin
 import { Button } from '@/components/ui/button'
 import TextInput from '@/components/ui/text-input'
 import React from 'react'
@@ -6,8 +10,70 @@ import  groupImg from "@/assets/images/groupImg.png"
 import Logo from '@/components/ui/logo'
 import Link from 'next/link'
 import PasswordInput from '@/components/ui/password-input'
+<<<<<<< HEAD
+import { useState } from 'react'
+import { useUserStore } from "@/store/user-store"
+import Loader from '@/components/loader'
 
 export default function PharmacyInfo() {
+
+  const updateUserData = useUserStore((state) => state.updateUserData);
+  const createUser = useUserStore((state) => state.createUser);
+  const loading = useUserStore((state) => state.isloading);
+
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [pharmacyData, setPharmacyData] = useState({
+    pharmacistName: "",
+    pharmacyLicenseNumber: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    if (name === "confirmPassword") {
+      setConfirmPassword(value);
+    } else {
+      setPharmacyData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+  };
+
+  const handlePassword = () => {
+    // const password = pharmacyData.password;
+    // if (password.length < 8) {
+    //   console.log("Password must be at least 8 characters long");
+    //   return false;
+    // }
+    // if (!/[A-Z]/.test(password)) {
+    //   console.log("Password must contain at least one uppercase letter");
+    //   return false;
+    // }
+    if (pharmacyData.password !== confirmPassword) {
+      console.log("Passwords do not match");
+      return false;
+    }
+    return true;
+  };
+
+  //Handle form submission
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!handlePassword()) {
+      return;
+    }
+  console.log("pharmacyData", pharmacyData)
+    updateUserData(pharmacyData);
+   
+    createUser();
+  };
+=======
+
+export default function PharmacyInfo() {
+>>>>>>> origin
   return (
     <div className="flex flex-row  justify-between   overflow-hidden">
        <div className='flex flex-col justify-center items-center w-full lg:w-1/2 h-full bg-white  p-9'>
@@ -16,6 +82,24 @@ export default function PharmacyInfo() {
   <h1 className='text-3xl font-bold text-center mt-4'>Create An Account </h1>
   <p className='text-sm text-gray-500 mt-1'>Provide your details below to continue</p>
 
+<<<<<<< HEAD
+  <form className='w-full max-w-sm mt-6 space-y-4' onSubmit={handleSubmit}>
+          {/* Step indicator */}
+          <div className='w-full max-w-sm text-emerald-600 font-bold mt-4 text-sm'>Hospital Admin Info <span className='float-right'>2/2</span></div>
+    <TextInput 
+      label="Enter pharmacist full name"
+      placeholder='Pharmacist Full Name'
+      name='pharmacistName'
+      onChange={handleChange}
+      value={pharmacyData.pharmacistName}
+    />
+    <TextInput
+        placeholder='License Number'
+        label="Enter  pharmacy license number"
+        name='pharmacyLicenseNumber'
+        onChange={handleChange}
+        value={pharmacyData.pharmacyLicenseNumber}
+=======
   <form className='w-full max-w-sm mt-6 space-y-4'>
           {/* Step indicator */}
           <div className='w-full max-w-sm text-emerald-600 font-bold mt-4 text-sm'>Hospital Admin Info <span className='float-right'>2/2</span></div>
@@ -30,14 +114,38 @@ export default function PharmacyInfo() {
         label="Enter  pharmacy license number"
           
 
+>>>>>>> origin
     />
      <TextInput 
         placeholder='Enter email'
         label="Email"
+<<<<<<< HEAD
+        name='email'
+        onChange={handleChange}
+        value={pharmacyData.email}
+=======
+>>>>>>> origin
           
 
     />
      <TextInput
+<<<<<<< HEAD
+        label='Phone Number'
+        placeholder='Enter phone number'
+        name='phoneNumber'
+        onChange={handleChange}
+        value={pharmacyData.phoneNumber}
+      
+          
+    />
+  
+      <PasswordInput
+        placeholder='Create password'
+        label="Create password"
+        name='password'
+        onChange={handleChange}
+        value={pharmacyData.password}
+=======
         placeholder='Phone Number'
         label="eg. 05534567890"
            
@@ -52,11 +160,20 @@ export default function PharmacyInfo() {
       <PasswordInput
         placeholder='Create password'
         label="Create password"
+>>>>>>> origin
             
       />
           <PasswordInput
             placeholder='Confirm password'
             label="Confirm your password"
+<<<<<<< HEAD
+            name='confirmPassword'
+            onChange={handleChange}
+            value={confirmPassword}
+            
+
+=======
+>>>>>>> origin
             
           />
 
@@ -65,8 +182,15 @@ export default function PharmacyInfo() {
             <Button variant="outline" className='w-1/2'>
               <Link href="/login">Back</Link>
             </Button>
+<<<<<<< HEAD
+            <Button variant="default" className='w-1/2  ' size={"lg"} type='submit'>
+            {
+              loading ? <Loader/>: "Continue"
+            }
+=======
             <Button variant="default" className='w-1/2  ' size={"lg"} >
               <Link href="/signup/verify-otp" className='text-white'>Confirm</Link>
+>>>>>>> origin
             </Button>
          </div>
     

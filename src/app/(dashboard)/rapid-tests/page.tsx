@@ -3,22 +3,50 @@ import PatientRegistration from "@/components/dashbord/add-patients";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import {  ChevronLeft, ChevronRight, UserRound, MoreHorizontal, Eye, Plus } from "lucide-react";
+import {  ChevronLeft, ChevronRight, UserRound, MoreHorizontal, Eye, Plus,User } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import TableHeaderComponent from "@/components/dashbord/table-header";
+import { AppBadge } from "@/components/dashbord/badge";
+import { useRouter } from "next/navigation";
 
 
 const patientsData = [
   {
     id: 1,
-    name: "Olivia Rhye",
-    dob: "9 Mar 2000",
-    gender: "Male",
-    contact: "0540777343",
-    condition: "Asthma",
-    lastVisit: "7 May, 2025",
-    avatar: "/avatars/olivia.png"
+    name: "John Doe",
+    testType: "Blood Test",
+    results: "145mg/dL",
+    status: "Normal",
+    date: "7th March 2023",
+    conductedBy: "Dr. Smith",    
   },
+    {
+        id: 1,
+        name: "John Doe",
+        testType: "Blood Test",
+        results: "145mg/dL",
+        status: "Elevated",
+        date: "7th March 2023",
+        conductedBy: "Dr. Smith",
+    },
+    {
+        id: 1,
+        name: "John Doe",
+        testType: "Blood Test",
+        results: "145mg/dL",
+        status: "High",
+        date: "7th March 2023",
+        conductedBy: "Dr. Smith",
+      },
+    {
+        id: 1,
+        name: "John Doe",
+        testType: "Blood Test",
+        results: "145mg/dL",
+        status: "BorderLine High",
+        date: "7th March 2023",
+        conductedBy: "Dr. Smith",
+    },
 ]
 
 
@@ -26,7 +54,8 @@ const ITEMS_PER_PAGE = 10
 
 
 
-export default function  Patients() {
+export default function  RapidTests() {
+  const router = useRouter()
   const [currentPage, setCurrentPage] = useState(1)
   const [searchTerm, setSearchTerm] = useState("")
 
@@ -37,8 +66,8 @@ export default function  Patients() {
 
   const filteredData = patientsData.filter((item) =>
     item.name.toLowerCase().includes(searchTerm) ||
-    item.condition.toLowerCase().includes(searchTerm) ||
-    item.contact.toLowerCase().includes(searchTerm)
+    item.testType.toLowerCase().includes(searchTerm) ||
+    item.conductedBy.toLowerCase().includes(searchTerm)
   )
 
   const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE)
@@ -60,18 +89,21 @@ export default function  Patients() {
         title="Prescription Management"
         text="Manage your prescriptions effectively"
         component={
-         <PatientRegistration/>
+          <Button className="bg-emerald-600 text-white w-[200px]" onClick={() => router.push("/rapid-tests/add-new-test")}>
+            <User width={24} height={24} />
+            Add Patient
+          </Button>
         }
        />
       <Table className="border-2 border-gray-100 rounded-t-2xl">
         <TableHeader className="bg-gray-100 h-5">
           <TableRow>
-            <TableHead className="text-left rounded-tl-2xl font-bold">Name</TableHead>
-            <TableHead className="text-left font-bold">Date of Birth</TableHead>
-            <TableHead className="text-left font-bold">Gender</TableHead>
-            <TableHead className="text-left font-bold">Contact</TableHead>
-            <TableHead className="text-left font-bold">Medical Condition</TableHead>
-            <TableHead className="text-left font-bold">Last Visit</TableHead>
+            <TableHead className="text-left rounded-tl-2xl font-bold">Patient</TableHead>
+            <TableHead className="text-left font-bold">Test Type</TableHead>
+            <TableHead className="text-left font-bold">Results</TableHead>
+            <TableHead className="text-left font-bold">Date</TableHead>
+            <TableHead className="text-left font-bold">Status</TableHead>
+            <TableHead className="text-left font-bold">Conducted By</TableHead>
             <TableHead className="text-left font-bold">Actions</TableHead>
           </TableRow>
         </TableHeader>
@@ -86,11 +118,13 @@ export default function  Patients() {
                   </div>
                 </div>
               </TableCell>
-              <TableCell>{order.dob}</TableCell>
-              <TableCell>{order.gender}</TableCell>
-              <TableCell>{order.contact}</TableCell>
-              <TableCell>{order.condition}</TableCell>
-              <TableCell>{order.lastVisit}</TableCell>
+              <TableCell>{order.testType}</TableCell>
+              <TableCell>{order.results}</TableCell>
+              <TableCell>{order.date}</TableCell>
+              <TableCell>
+                <AppBadge type={order.status}/>
+              </TableCell>
+              <TableCell>{order.conductedBy}</TableCell>
               
               <TableCell>
                 <Popover>

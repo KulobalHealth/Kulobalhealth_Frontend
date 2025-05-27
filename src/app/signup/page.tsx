@@ -7,21 +7,52 @@ import groupImg from "@/assets/images/groupImg.png"
 import Logo from '@/components/ui/logo'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useUserStore } from '../../store/user-store'
 
 export default function SignUp() {
   const [role, setRole] = useState("")
+  const [userData, setUserData] = useState({
+    pharmacyName: "",
+    pharmacyLicenseNumber: "",
+    location: "",
+    role: "",
+    totalBranches: "",
+  })
   const router = useRouter()
+  const updateUserData = useUserStore((state) => state.updateUserData);
+ 
+
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const handleNavigate = (e: React.FormEvent) => {
-    e.preventDefault() // prevent form submission refresh
+    e.preventDefault(); // prevent form submission refresh
+
     if (role === "pharmacist") {
-      router.push("/signup/pharmacy-info")
+      const updatedData = { ...userData, role: "pharmacist" };
+      setUserData(updatedData);
+      updateUserData(updatedData);
+      router.push("/signup/pharmacy-info");
+      console.log(updatedData);
+
     } else if (role === "hospitalAdmin") {
-      router.push("signup/admin-info")
+      const updatedData = { ...userData, role: "hospitalAdmin" };
+      setUserData(updatedData);
+      updateUserData(updatedData);
+      router.push("/signup/admin-info");
+      console.log(updatedData);
+
     } else {
-      alert("Please select a role to continue")
+      alert("Please select a role to continue");
     }
-  }
+  };
+  
 
   return (
     <div className="flex flex-row justify-between overflow-hidden min-h-screen">
@@ -35,10 +66,34 @@ export default function SignUp() {
         <div className='w-full max-w-sm text-emerald-600 font-bold mt-4 text-sm'>Pharmacy Info <span className='float-right'>1/2</span></div>
 
         <form className='w-full max-w-sm mt-2 space-y-4' onSubmit={handleNavigate}>
-          <TextInput placeholder='Enter pharmacy name' label="Pharmacy Name" />
-          <TextInput placeholder='Enter pharmacy licence number' label="Pharmacy Licence Number" />
-          <TextInput placeholder='Enter location' label="Pharmacy Location" />
-          <TextInput placeholder='Enter total number of branches' label="Total Branches" />
+          <TextInput 
+            placeholder='Enter pharmacy name' 
+            label="Pharmacy Name" 
+            onChange={handleChange}
+            name='pharmacyName'
+            value={userData.pharmacyName}
+          />
+          <TextInput 
+            placeholder='Enter pharmacy licence number' 
+            label="Pharmacy Licence Number" 
+            onChange={handleChange}  
+            name='pharmacyLicenseNumber'
+            value={userData.pharmacyLicenseNumber}
+          />
+          <TextInput 
+            placeholder='Enter location' 
+            label="Pharmacy Location" 
+            onChange={handleChange}  
+            name='location'
+            value={userData.location}
+          />
+          <TextInput 
+            placeholder='Enter total number of branches' 
+            label="Total Branches" 
+            onChange={handleChange} 
+            name='totalBranches'
+            value={userData.totalBranches}
+          />
 
           {/* Role selection */}
           <div>
