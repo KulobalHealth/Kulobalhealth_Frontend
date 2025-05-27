@@ -1,58 +1,47 @@
-import Approach from "@/components/approach";
-import { Hero } from "@/components/hero";
-import ValuedInvestors from "@/components/investors";
-import Impact from "@/components/impact";
-import ImpactCashFlow from "@/components/impactCashflow";
-import ImpactCounterfeits from "@/components/impactCounterfeits";
-import ImpactStats from "@/components/impactStats";
-import ImpactMap from "@/components/impactMap";
-import DawaMkononiApp from "@/components/dawaMkononiApp";
-import Grants from "@/components/grants";
+import { Hero } from "@/components/homepage/hero";
+
 import { AnimationWrapper } from "@/components/ui/animation-wrapper";
+<<<<<<< HEAD
 import { redirect } from "next/navigation";
+=======
+import ClinicsPharmacies from "@/components/homepage/reliable-access";
+import Empowerment from "@/components/homepage/empowerment";
+import HospitalsHealthCenters from "@/components/homepage/patient-safety";
+import PublicRuralHealth from "@/components/homepage/public-rural-health";
+import Features from "@/components/homepage/features";
+import Partners from "@/components/homepage/partners";
+import ImpactMap from "@/components/homepage/impact-map";
+>>>>>>> origin
 
 export default function LandingPage() {
   redirect("/login");
 
   return (
-    <div className="font-urbanist">
+    <div>
+      {" "}
       <AnimationWrapper>
         <Hero />
       </AnimationWrapper>
       <AnimationWrapper>
-        <ValuedInvestors />
+        <ClinicsPharmacies />
       </AnimationWrapper>
-
       <AnimationWrapper>
-        <Approach />
+        <HospitalsHealthCenters />
       </AnimationWrapper>
-
       <AnimationWrapper>
-        <Impact />
+        <PublicRuralHealth />
       </AnimationWrapper>
-
       <AnimationWrapper>
-        <ImpactCashFlow />
+        <Features />
       </AnimationWrapper>
-
       <AnimationWrapper>
-        <ImpactCounterfeits />
+        <Empowerment />
       </AnimationWrapper>
-
-      <AnimationWrapper>
-        <ImpactStats />
-      </AnimationWrapper>
-
       <AnimationWrapper>
         <ImpactMap />
       </AnimationWrapper>
-
       <AnimationWrapper>
-        <DawaMkononiApp />
-      </AnimationWrapper>
-
-      <AnimationWrapper>
-        <Grants />
+        <Partners />
       </AnimationWrapper>
     </div>
   );

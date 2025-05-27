@@ -142,14 +142,6 @@
     font-family: var(--font-euclid-circular-b), Arial, Helvetica, sans-serif;
   }
 
-  /* h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 600;
-} */
 }
 
 :root {
@@ -160,7 +152,7 @@ h6 {
   --popover: hsl(0 0% 100%);
   --popover-foreground: hsl(240 10% 3.9%);
   --primary: hsl(142.1 76.2% 36.3%);
-  --primary-foreground: hsl(355.7 100% 97.3%);
+  --primary-foreground: var(--color-primary-200);
   --secondary: hsl(240 4.8% 95.9%);
   --secondary-foreground: hsl(240 5.9% 10%);
   --muted: hsl(240 4.8% 95.9%);
@@ -190,7 +182,7 @@ h6 {
   --stroke-color: hsl(220 11% 89%);
 }
 .dark {
-  --background: hsl(20 14.3% 4.1%);
+  --background:hsl(60,4%,11%);
   --foreground: hsl(0 0% 95%);
   --card: hsl(24 9.8% 10%);
   --card-foreground: hsl(0 0% 95%);

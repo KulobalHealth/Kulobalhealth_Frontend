@@ -1,11 +1,10 @@
 "use client";
 import {
   BadgeCheck,
-  Bell,
-  ChevronsUpDown,
-  HelpingHand,
+  ChevronDown,
+  House,
   LogOut,
-  Settings,
+  ShoppingBasket,
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -33,17 +32,16 @@ export function User({
       <DropdownMenuTrigger asChild>
         <MenuButton
           size="lg"
-          className="data-[state=open]:bg-sidebar-accent w-56 data-[state=open]:text-sidebar-accent-foreground"
+          className="data-[state=open]:bg-sidebar-accent w-[151px] data-[state=open]:text-sidebar-accent-foreground"
         >
           <Avatar className="h-8 w-8 rounded-lg">
             <AvatarImage src={user.avatar} alt={user.name} />
             <AvatarFallback className="rounded-lg">TU</AvatarFallback>
-          </Avatar>
-          <div className="grid flex-1 text-left text-sm leading-tight">
-            <span className="truncate font-semibold">{user.name}</span>
-            <span className="truncate text-xs">{user.email}</span>
+          </Avatar>{" "}
+          <div className="grid flex-1 text-left text-neutral-800 dark:text-white text-sm leading-tight">
+            <span className="truncate">{user.name}</span>
           </div>
-          <ChevronsUpDown className="ml-auto size-4" />
+          <ChevronDown className="ml-auto size-4" />
         </MenuButton>
       </DropdownMenuTrigger>
       <DropdownMenuContent
@@ -52,40 +50,38 @@ export function User({
         align="end"
         sideOffset={4}
       >
-        <DropdownMenuLabel className="p-0 font-normal">
+        {" "}
+        <DropdownMenuLabel className="p-0 font-normal text-neutral-800 dark:text-neutral-200">
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
             <Avatar className="h-8 w-8 rounded-lg">
               <AvatarImage src={user.avatar} alt={user.name} />
               <AvatarFallback className="rounded-lg">DR</AvatarFallback>
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate font-semibold">{user.name}</span>
-              <span className="truncate text-xs">{user.email}</span>
+              <span className="truncate">{user.name}</span>
+              <span className="truncate text-xs text-neutral-600 dark:text-neutral-400">
+                {user.email}
+              </span>
             </div>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-
         <DropdownMenuGroup>
           <DropdownMenuItem>
             <BadgeCheck />
-            Account
+            My Account
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Bell />
-            Notifications
+            <House />
+            Dashboard
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Settings />
-            Settings
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <HelpingHand />
-            Support
+            <ShoppingBasket />
+            Orders
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem className="text-danger-500">
           <LogOut />
           Log out
         </DropdownMenuItem>

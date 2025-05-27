@@ -6,6 +6,7 @@ import { Icons } from "@/components/ui/icons";
 import { Search } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useMarketplaceStore } from "@/lib/store";
+import Footer from "@/components/footer";
 
 export default function MarketplaceLayout({
   children,
@@ -21,22 +22,22 @@ export default function MarketplaceLayout({
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col py-8">
       <header>
         <Navbar />
       </header>
 
       {!isProductDetail && (
         <>
-          <section className="bg-green-50 py-8 px-4 relative">
+          <section className="bg-green-50 py-8 px-4 relative dark:bg-primary-900 my-7">
             <div className="absolute inset-0">
-              <Icons.Banner className="h-full opacity-20" />
+              <Icons.Banner className="h-full opacity-20 dark:bg-primary-900" />
             </div>
             <div className="container mx-auto max-w-6xl relative z-10">
               <h1 className="text-center text-2xl font-medium text-green-600 mb-2">
                 What product are you looking for?
               </h1>
-              <p className="text-center text-sm text-gray-600 mb-4">
+              <p className="text-center text-sm text-gray-600 mb-4 dark:text-white">
                 One-Stop Med Supply Ordering. Find all the medical supplies you
                 need for your pharmacy in one place.
               </p>
@@ -64,7 +65,7 @@ export default function MarketplaceLayout({
             </div>
           </section>
 
-          <main className="flex-1 container mx-auto px-4 py-8">
+          <main className="flex-1 container min-h-screen mx-auto px-4 mb-[194px]">
             <span className="flex flex-col md:flex-row gap-6">
               <div className="w-full md:w-64 shrink-0">
                 <Filters />
@@ -75,7 +76,11 @@ export default function MarketplaceLayout({
         </>
       )}
 
-      {isProductDetail && <main className="flex-1">{children}</main>}
+      {isProductDetail && (
+        <main className="flex-1 min-h-screen my-8">{children}</main>
+      )}
+
+      <Footer />
     </div>
   );
 }

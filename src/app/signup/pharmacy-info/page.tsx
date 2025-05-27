@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 "use client"
+=======
+>>>>>>> origin
 import { Button } from '@/components/ui/button'
 import TextInput from '@/components/ui/text-input'
 import React from 'react'
@@ -7,6 +10,7 @@ import  groupImg from "@/assets/images/groupImg.png"
 import Logo from '@/components/ui/logo'
 import Link from 'next/link'
 import PasswordInput from '@/components/ui/password-input'
+<<<<<<< HEAD
 import { useState } from 'react'
 import { useUserStore } from "@/store/user-store"
 import Loader from '@/components/loader'
@@ -66,6 +70,10 @@ export default function PharmacyInfo() {
    
     createUser();
   };
+=======
+
+export default function PharmacyInfo() {
+>>>>>>> origin
   return (
     <div className="flex flex-row  justify-between   overflow-hidden">
        <div className='flex flex-col justify-center items-center w-full lg:w-1/2 h-full bg-white  p-9'>
@@ -74,6 +82,7 @@ export default function PharmacyInfo() {
   <h1 className='text-3xl font-bold text-center mt-4'>Create An Account </h1>
   <p className='text-sm text-gray-500 mt-1'>Provide your details below to continue</p>
 
+<<<<<<< HEAD
   <form className='w-full max-w-sm mt-6 space-y-4' onSubmit={handleSubmit}>
           {/* Step indicator */}
           <div className='w-full max-w-sm text-emerald-600 font-bold mt-4 text-sm'>Hospital Admin Info <span className='float-right'>2/2</span></div>
@@ -90,17 +99,37 @@ export default function PharmacyInfo() {
         name='pharmacyLicenseNumber'
         onChange={handleChange}
         value={pharmacyData.pharmacyLicenseNumber}
+=======
+  <form className='w-full max-w-sm mt-6 space-y-4'>
+          {/* Step indicator */}
+          <div className='w-full max-w-sm text-emerald-600 font-bold mt-4 text-sm'>Hospital Admin Info <span className='float-right'>2/2</span></div>
+    <TextInput 
+      placeholder='Pharmacy Name' 
+      label="Enter your pharmacy name" 
+      
+
+    />
+    <TextInput
+        placeholder='Pharmacy License Number'
+        label="Enter  pharmacy license number"
+          
+
+>>>>>>> origin
     />
      <TextInput 
         placeholder='Enter email'
         label="Email"
+<<<<<<< HEAD
         name='email'
         onChange={handleChange}
         value={pharmacyData.email}
+=======
+>>>>>>> origin
           
 
     />
      <TextInput
+<<<<<<< HEAD
         label='Phone Number'
         placeholder='Enter phone number'
         name='phoneNumber'
@@ -116,16 +145,35 @@ export default function PharmacyInfo() {
         name='password'
         onChange={handleChange}
         value={pharmacyData.password}
+=======
+        placeholder='Phone Number'
+        label="eg. 05534567890"
+           
+
+    />
+    <TextInput
+            placeholder='Enter  pharmacy license number'
+        label="Pharmacy License Number"
+           
+
+       />
+      <PasswordInput
+        placeholder='Create password'
+        label="Create password"
+>>>>>>> origin
             
       />
           <PasswordInput
             placeholder='Confirm password'
             label="Confirm your password"
+<<<<<<< HEAD
             name='confirmPassword'
             onChange={handleChange}
             value={confirmPassword}
             
 
+=======
+>>>>>>> origin
             
           />
 
@@ -134,10 +182,15 @@ export default function PharmacyInfo() {
             <Button variant="outline" className='w-1/2'>
               <Link href="/login">Back</Link>
             </Button>
+<<<<<<< HEAD
             <Button variant="default" className='w-1/2  ' size={"lg"} type='submit'>
             {
               loading ? <Loader/>: "Continue"
             }
+=======
+            <Button variant="default" className='w-1/2  ' size={"lg"} >
+              <Link href="/signup/verify-otp" className='text-white'>Confirm</Link>
+>>>>>>> origin
             </Button>
          </div>
     
