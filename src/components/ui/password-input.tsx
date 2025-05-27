@@ -40,15 +40,10 @@ export default function PasswordInput({label, placeholder , value, onChange,onBl
               className="absolute top-9 right-4 h-6 w-6 cursor-pointer stroke-slate-400 peer-disabled:cursor-not-allowed"
               onClick={togglePasswordVisibility}
             />
-<<<<<<< HEAD
-
-=======
->>>>>>> origin
           ) : (
             <EyeOff
               className="absolute top-9 right-4 h-6 w-6 cursor-pointer stroke-slate-400 peer-disabled:cursor-not-allowed"
               onClick={togglePasswordVisibility}
-<<<<<<< HEAD
 
             />
           )}
@@ -59,16 +54,3 @@ export default function PasswordInput({label, placeholder , value, onChange,onBl
     </>
   )
 }
-=======
-            />
-          )}
-        </label>
-      </div>
-    );
-  }
-);
-
-PasswordInput.displayName = "PasswordInput";
-
-export default PasswordInput;
->>>>>>> origin

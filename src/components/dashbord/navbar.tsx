@@ -35,9 +35,7 @@ export function DashboardNavbar() {
   return (
     <nav
       className={
-        isScrolled
-          ? "fixed top-0 left-0 right-0 z-50 bg-white shadow-lg transition duration-300"
-          : "transition duration-300"
+        "fixed top-0 left-0 right-0 z-50 bg-white shadow-lg transition duration-300"
       }
     >
       <div className="flex items-center justify-between px-6 py-4  ">
