@@ -7,12 +7,12 @@ export default function LandingPageLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="font-urbanist">
-      <header>
+    <>
+      <header className="pb-20">
         <Navbar />
       </header>
       <main>{children}</main>
       <Footer />
-    </div>
+    </>
   );
 }

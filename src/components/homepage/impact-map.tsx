@@ -27,23 +27,23 @@ export default function ImpactMap() {
               <div className="grid items-center grid-cols-1 gap-4 md:grid-cols-3">
                 <div className="text-center">
                   <h3 className="text-3xl font-bold md:text-4xl text-primary">
-                    500,000+
+                    17
+                  </h3>
+                  <p className="mt-2">Pharmacies</p>
+                </div>
+
+                <div className="text-center">
+                  <h3 className="text-3xl font-bold md:text-4xl text-primary">
+                    2,318
+                  </h3>
+                  <p className="mt-2">Test Kits Supplied</p>
+                </div>
+
+                <div className="text-center">
+                  <h3 className="text-3xl font-bold md:text-4xl text-primary">
+                    103
                   </h3>
                   <p className="mt-2">Patients Served</p>
-                </div>
-
-                <div className="text-center">
-                  <h3 className="text-3xl font-bold md:text-4xl text-primary">
-                    1000+
-                  </h3>
-                  <p className="mt-2">Pharmacies Reached</p>
-                </div>
-
-                <div className="text-center">
-                  <h3 className="text-3xl font-bold md:text-4xl text-primary">
-                    $4M+
-                  </h3>
-                  <p className="mt-2">Credit Financing Provided</p>
                 </div>
               </div>
             </div>

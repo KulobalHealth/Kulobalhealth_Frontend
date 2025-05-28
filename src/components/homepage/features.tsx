@@ -1,5 +1,7 @@
 import appFeatures from "@/../public/appDashboard.webp";
 import Image from "next/image";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 export default function Features() {
   return (
@@ -13,13 +15,18 @@ export default function Features() {
             <h2 className="mb-4 text-4xl font-semibold text-primary-600">
               Fast, secure, and automated medication ordering
             </h2>
-            <div className="mb-6">
+            <div className="mb-6 flex flex-col gap-4">
               <p className="mb-0">
                 Getting the right medication should be quick, safe, and
                 hassle-free. With Kulobal Health, we empower pharmacies with an
                 automated ordering system that ensures seamless, error-free
                 medication requests whether online or via WhatsApp
               </p>
+              <Link href="/login" className="w-fit">
+                <Button className="w-fit hover:cursor-pointer">
+                  Connect Your Pharmacy
+                </Button>
+              </Link>
             </div>
           </div>
           <div className="relative">

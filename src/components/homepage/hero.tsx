@@ -3,11 +3,16 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "motion/react";
 import Link from "next/link";
+import { Icons } from "../ui/icons";
 
 export function Hero() {
   return (
-    <div className="container py-8 mx-auto min-h-[500px] md:h-[700px] rounded-md flex flex-col items-center justify-center">
-      <div className="w-full max-w-2xl text-center flex flex-col items-center justify-center">
+    <section className="min-h-screen rounded-md flex flex-col items-center justify-center relative overflow-hidden">
+      {" "}
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <Icons.Banner className="w-full h-full opacity-20 object-cover" />
+      </div>
+      <div className="w-full container mx-auto max-w-2xl relative text-center flex flex-col items-center justify-center">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -25,13 +30,34 @@ export function Hero() {
         >
           Your One-Stop Marketplace for Rapid Test Kits, Medical Devices, and
           Essential Supplies
-        </motion.p>
+        </motion.p>{" "}
         <Link href="/marketplace">
           <Button className="px-6 py-2 bg-[#03C486] rounded-full md:px-8 md:py-5 hover:cursor-pointer text-white hover:bg-primary hover:text-underline">
             Explore the Marketplace.
           </Button>
         </Link>
-      </div>
-    </div>
+      </div>{" "}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1 }}
+        className="absolute bottom-32 right-8 flex flex-col items-center"
+      >
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Scroll to explore
+        </p>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          className="w-6 h-10 border-2 border-gray-400 dark:border-gray-300 rounded-full flex justify-center"
+        >
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="w-1 h-3 bg-gray-400 dark:bg-gray-300 rounded-full mt-2"
+          />
+        </motion.div>
+      </motion.div>
+    </section>
   );
 }
