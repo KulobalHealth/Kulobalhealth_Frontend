@@ -1,16 +1,17 @@
-import medImg from "@/../public/med.png";
-import agaroGlucose1 from "@/../public/agaro-glucose-monitoring.jpg";
-import careTouchGlucose1 from "@/../public/caretouch-glucose-monitoring.jpeg";
-import careTouchGlucose2 from "@/../public/caretouch-glucose-monitoring-2.jpg";
-import easyHomeGlucose from "@/../public/easy-home-glucose-monitoring.webp";
-import omronBloodPressure from "@/../public/omron-blood-pressure-monitor.jpg";
-import omronBloodPressure2 from "@/../public/omron-blood-pressure-monitor-2.jpg";
-import omronBloodPressure3 from "@/../public/omron-blood-pressure-monitor-3.webp";
-import omronBloodPressure4 from "@/../public/omron-blood-pressure-monitor-4.jpg";
-import pangaBloodPressure from "@/../public/panga-blood-pressure-monitor.webp";
-import pangaBloodPressure2 from "@/../public/panga-blood-pressure-monitor-2.webp";
-import pangaBloodPressure3 from "@/../public/panga-blood-pressure-monitor-3.webp";
 import type { Product, Order, Payment } from "./types";
+
+const medImg = "/med.png";
+const agaroGlucose1 = "/agaro-glucose-monitoring.jpg";
+const careTouchGlucose1 = "/caretouch-glucose-monitoring.jpeg";
+const careTouchGlucose2 = "/caretouch-glucose-monitoring-2.jpg";
+const easyHomeGlucose = "/easy-home-glucose-monitoring.webp";
+const omronBloodPressure = "/omron-blood-pressure-monitor.jpg";
+const omronBloodPressure2 = "/omron-blood-pressure-monitor-2.jpg";
+const omronBloodPressure3 = "/omron-blood-pressure-monitor-3.webp";
+const omronBloodPressure4 = "/omron-blood-pressure-monitor-4.jpg";
+const pangaBloodPressure = "/panga-blood-pressure-monitor.webp";
+const pangaBloodPressure2 = "/panga-blood-pressure-monitor-2.webp";
+const pangaBloodPressure3 = "/panga-blood-pressure-monitor-3.webp";
 
 export const mockProducts: Product[] = [
   {
@@ -21,12 +22,12 @@ export const mockProducts: Product[] = [
     brand: "OraSure Technologies",
     category: "Rapid Test Kits",
     price: 200.0,
-    images: [medImg.src],
+    images: [medImg],
     inStock: true,
     normalRange: "Negative",
     unit: "Box",
     stockQuantity: 15,
-    imageUrl: medImg.src,
+    imageUrl: medImg,
   },
   {
     id: "2",
@@ -37,16 +38,16 @@ export const mockProducts: Product[] = [
     category: "Medical Devices",
     price: 450.0,
     images: [
-      omronBloodPressure.src,
-      omronBloodPressure2.src,
-      omronBloodPressure3.src,
-      omronBloodPressure4.src,
+      omronBloodPressure,
+      omronBloodPressure2,
+      omronBloodPressure3,
+      omronBloodPressure4,
     ],
     inStock: true,
     normalRange: "120/80 mmHg",
     unit: "Device",
     stockQuantity: 8,
-    imageUrl: omronBloodPressure.src,
+    imageUrl: omronBloodPressure,
   },
   {
     id: "3",
@@ -57,16 +58,16 @@ export const mockProducts: Product[] = [
     category: "Diabetic Supplies",
     price: 320.0,
     images: [
-      careTouchGlucose1.src,
-      careTouchGlucose2.src,
-      easyHomeGlucose.src,
-      agaroGlucose1.src,
+      careTouchGlucose1,
+      careTouchGlucose2,
+      easyHomeGlucose,
+      agaroGlucose1,
     ],
     inStock: true,
     normalRange: "70-140 mg/dL",
     unit: "Pack",
     stockQuantity: 23,
-    imageUrl: careTouchGlucose1.src,
+    imageUrl: careTouchGlucose1,
   },
   {
     id: "5",
@@ -76,16 +77,12 @@ export const mockProducts: Product[] = [
     brand: "Braun",
     category: "Medical Devices",
     price: 120.0,
-    images: [
-      pangaBloodPressure.src,
-      pangaBloodPressure2.src,
-      pangaBloodPressure3.src,
-    ],
+    images: [pangaBloodPressure, pangaBloodPressure2, pangaBloodPressure3],
     inStock: true,
     normalRange: "36.5-37.5°C",
     unit: "Device",
     stockQuantity: 12,
-    imageUrl: pangaBloodPressure.src,
+    imageUrl: pangaBloodPressure,
   },
   {
     id: "6",
@@ -95,12 +92,12 @@ export const mockProducts: Product[] = [
     brand: "ClearBlue",
     category: "Rapid Test Kits",
     price: 150.0,
-    images: [medImg.src],
+    images: [medImg],
     inStock: false,
     normalRange: "N/A",
     unit: "Pack of 2",
     stockQuantity: 0,
-    imageUrl: medImg.src,
+    imageUrl: medImg,
   },
 ];
 
