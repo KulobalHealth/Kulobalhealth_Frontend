@@ -82,7 +82,6 @@ export default function Login() {
             <TextInput
               placeholder="Enter email/phone"
               label="Email/ Phone Number"
-              type="email"
               {...register("email")}
             />
             {errors.email && (

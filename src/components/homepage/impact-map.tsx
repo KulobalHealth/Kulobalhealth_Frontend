@@ -1,12 +1,11 @@
 import { AnimationWrapper } from "@/components/ui/animation-wrapper";
-import bgImage from "@/../public/images/map.556e50b3b61d.webp";
 
 export default function ImpactMap() {
   return (
     <section
       className="relative py-16 text-center bg-center bg-no-repeat  font-urbanist"
       style={{
-        backgroundImage: `url(${bgImage.src})`,
+        backgroundImage: `url(/images/map.556e50b3b61d.webp)`,
       }}
     >
       <div className="container px-4 py-16 mx-auto">
