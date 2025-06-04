@@ -14,6 +14,7 @@ const navigationLinks = [
   { name: "For Pharmacies", href: "/pharmacies" },
   { name: "For Suppliers", href: "/suppliers" },
   { name: "Detection", href: "/detection" },
+  { name: "Marketplace", href: "/marketplace" },
   { name: "About Us", href: "/about-us" },
   { name: "Contact Us", href: "/contact" },
 ];
