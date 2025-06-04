@@ -2,7 +2,7 @@ import pointOfCare from "@/../public/point.webp";
 import raydos from "@/../public/raydos.webp";
 import kowri from "@/../public/kowri.webp";
 import royalEng from "@/../public/royalEng.webp";
-import jaza from "@/../public/jaza.webp";
+import dotGlasses from "@/../public/dotGlasses.webp";
 import Image from "next/image";
 
 const partners = [
@@ -10,7 +10,7 @@ const partners = [
   { id: 2, imgSrc: raydos },
   { id: 3, imgSrc: kowri },
   { id: 4, imgSrc: royalEng },
-  { id: 5, imgSrc: jaza },
+  { id: 5, imgSrc: dotGlasses },
 ];
 
 export default function Partners() {

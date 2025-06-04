@@ -102,7 +102,7 @@ export default function Footer() {
                 placeholder="Enter your email"
                 className="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
-              <Button className="w-[178px] rounded-xl h-12 font-bold">
+              <Button className="w-[178px] rounded-xl h-12 font-bold text-white">
                 Subscribe
               </Button>
             </div>
