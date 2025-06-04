@@ -13,6 +13,7 @@ export function Hero() {
         <Icons.Banner className="w-full h-full opacity-20 object-cover" />
       </div>
       <div className="w-full container mx-auto max-w-2xl relative text-center flex flex-col items-center justify-center">
+        {" "}
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -28,14 +29,25 @@ export function Hero() {
           transition={{ duration: 0.5 }}
           className="mb-6 text-base md:text-lg md:mb-8"
         >
-          Your One-Stop Marketplace for Rapid Test Kits, Medical Devices, and
-          Essential Supplies
-        </motion.p>{" "}
-        <Link href="/marketplace">
-          <Button className="px-6 py-2 bg-[#03C486] rounded-full md:px-8 md:py-5 hover:cursor-pointer text-white hover:bg-primary hover:text-underline">
-            Explore the Marketplace.
-          </Button>
-        </Link>
+          Connecting Pharmacies with Suppliers Seamlessly. Order Rapid Test
+          Kits, Medical Devices, and Supplies with Ease and Get Them Delivered
+          Within 48 Hours.
+        </motion.p>
+        <div className="flex flex-col sm:flex-row gap-4 mb-8">
+          <Link href="/pharmacies">
+            <Button className="px-6 py-2 bg-[#03C486] rounded-full md:px-8 md:py-3 hover:cursor-pointer text-white hover:bg-[#02b377]">
+              Shop as a Pharmacy
+            </Button>
+          </Link>
+          <Link href="/suppliers">
+            <Button
+              variant="outline"
+              className="px-6 py-2 border-[#03C486] text-[#03C486] rounded-full md:px-8 md:py-3 hover:bg-[#03C486] hover:text-white"
+            >
+              Partner as a Supplier
+            </Button>
+          </Link>
+        </div>
       </div>{" "}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
