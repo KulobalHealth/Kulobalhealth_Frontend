@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { Bell, Moon, ShoppingCart ,User} from "lucide-react";
+import { Bell, Moon, ShoppingCart, User } from "lucide-react";
 import { useMarketplaceStore } from "@/lib/store";
 
 const navigationLinks = {
@@ -21,6 +21,7 @@ const navigationLinks = {
 
 export function DashboardNavbar() {
   const [isOpen, setIsOpen] = useState(false);
+  //eslint-disable-next-line
   const [isScrolled, setIsScrolled] = useState(false);
   const cart = useMarketplaceStore((state) => state.cart);
 
@@ -81,11 +82,7 @@ export function DashboardNavbar() {
           </div>
         </div>
         <div className="flex items-center space-x-4">
-          <User
-            width={24}
-            height={24}
-           
-          />
+          <User width={24} height={24} />
           <div className="relative">
             <Link href="/marketplace/cart">
               <ShoppingCart className="cursor-pointer hover:text-emerald-500 transition-colors" />
@@ -106,8 +103,6 @@ export function DashboardNavbar() {
           <div className="w-6 h-0.5 bg-gray-600"></div>
         </button>
       </div>
-
-    
     </nav>
   );
 }
