@@ -1,41 +1,39 @@
 import { Hero } from "@/components/homepage/hero";
-
 import { AnimationWrapper } from "@/components/ui/animation-wrapper";
-import ClinicsPharmacies from "@/components/homepage/reliable-access";
-import Empowerment from "@/components/homepage/empowerment";
-import HospitalsHealthCenters from "@/components/homepage/patient-safety";
-import PublicRuralHealth from "@/components/homepage/public-rural-health";
-import Features from "@/components/homepage/features";
-import Partners from "@/components/homepage/partners";
-import ImpactMap from "@/components/homepage/impact-map";
+import HowItWorks from "@/components/homepage/how-it-works";
+import ValuePropositionPharmacies from "@/components/homepage/value-proposition-pharmacies";
+import ValuePropositionSuppliers from "@/components/homepage/value-proposition-suppliers";
+import FeaturedCategories from "@/components/homepage/featured-categories";
+import KulobalAdvantage from "@/components/homepage/kulobal-advantage";
+import TestimonialsPartners from "@/components/homepage/testimonials-partners";
+import CallToActionSection from "@/components/homepage/call-to-action-section";
 
 export default function LandingPage() {
   return (
     <div>
-      {" "}
       <AnimationWrapper>
         <Hero />
       </AnimationWrapper>
       <AnimationWrapper>
-        <ClinicsPharmacies />
+        <HowItWorks />
       </AnimationWrapper>
       <AnimationWrapper>
-        <HospitalsHealthCenters />
+        <ValuePropositionPharmacies />
       </AnimationWrapper>
       <AnimationWrapper>
-        <PublicRuralHealth />
+        <ValuePropositionSuppliers />
       </AnimationWrapper>
       <AnimationWrapper>
-        <Features />
+        <FeaturedCategories />
       </AnimationWrapper>
       <AnimationWrapper>
-        <Empowerment />
+        <KulobalAdvantage />
       </AnimationWrapper>
       <AnimationWrapper>
-        <ImpactMap />
+        <TestimonialsPartners />
       </AnimationWrapper>
       <AnimationWrapper>
-        <Partners />
+        <CallToActionSection />
       </AnimationWrapper>
     </div>
   );
