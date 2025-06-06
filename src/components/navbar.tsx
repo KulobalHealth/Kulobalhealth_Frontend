@@ -9,11 +9,36 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { ModeToggle } from "./ui/mode-toggle";
 import { Button } from "./ui/button";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuLink,
+} from "@/components/ui/navigation-menu";
+
+const solutions = [
+  {
+    name: "For Pharmacies",
+    href: "/pharmacies",
+    description:
+      "Source medical supplies effortlessly with competitive pricing and 48-hour delivery.",
+  },
+  {
+    name: "For Suppliers",
+    href: "/suppliers",
+    description: "Expand your reach and connect with pharmacies across Ghana.",
+  },
+  {
+    name: "Detection",
+    href: "/detection",
+    description:
+      "AI-powered counterfeit detection for medical supplies and pharmaceuticals.",
+  },
+];
 
 const navigationLinks = [
-  { name: "For Pharmacies", href: "/pharmacies" },
-  { name: "For Suppliers", href: "/suppliers" },
-  { name: "Detection", href: "/detection" },
   { name: "Marketplace", href: "/marketplace" },
   { name: "About Us", href: "/about-us" },
   { name: "Contact Us", href: "/contact" },
@@ -45,6 +70,57 @@ export function Navbar() {
         </div>
 
         <div className="items-center hidden space-x-8 md:flex">
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger
+                  className={clsx(
+                    "transition-colors duration-300 hover:text-primary-700 dark:hover:text-primary-400",
+                    {
+                      "text-primary-600 font-semibold dark:text-primary-400":
+                        isActive("/pharmacies") ||
+                        isActive("/suppliers") ||
+                        isActive("/detection"),
+                      "text-neutral-800 dark:text-white": !(
+                        isActive("/pharmacies") ||
+                        isActive("/suppliers") ||
+                        isActive("/detection")
+                      ),
+                    }
+                  )}
+                >
+                  Solutions
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] lg:w-[600px] md:grid-cols-2">
+                    {solutions.map((item) => (
+                      <li key={item.name}>
+                        <NavigationMenuLink asChild>
+                          <Link
+                            href={item.href}
+                            className={clsx(
+                              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground",
+                              {
+                                "bg-accent": isActive(item.href),
+                              }
+                            )}
+                          >
+                            <div className="text-sm font-medium leading-none">
+                              {item.name}
+                            </div>
+                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                              {item.description}
+                            </p>
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+
           {navigationLinks.map((item) => (
             <Link
               prefetch

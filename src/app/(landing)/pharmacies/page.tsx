@@ -9,15 +9,14 @@ import { steps, benefits, categories, testimonials } from "./data";
 export default function PharmaciesPage() {
   return (
     <div>
-      {/* Hero Section */}
-      <section className="px-4 bg-gradient-to-br from-blue-50 to-indigo-50">
+      <section className="px-4">
         <div className="container py-20 mx-auto">
           <div className="grid items-center grid-cols-1 gap-10 mb-10 lg:grid-cols-2 lg:gap-0">
             <div className="lg:max-w-xl container mx-auto">
-              <h1 className="mb-4 text-5xl font-bold text-primary-600">
+              <h1 className="mb-4 text-5xl font-bold text-primary-600 dark:text-primary-400">
                 Source All Your Medical Supplies, Effortlessly
               </h1>
-              <p className="text-gray-600 mb-6 text-lg">
+              <p className="text-gray-600 dark:text-gray-300 mb-6 text-lg">
                 Access a vast online marketplace with competitive pricing,
                 diverse brands, and guaranteed 48-hour delivery.
               </p>
@@ -52,7 +51,7 @@ export default function PharmaciesPage() {
                     alt="Pharmacy Supplies"
                     fill
                     objectFit="cover"
-                    className="rounded-lg"
+                    className="rounded-[7px]"
                   />
                 </figure>
               </div>
@@ -61,14 +60,13 @@ export default function PharmaciesPage() {
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="px-4 bg-white">
+      <section className="px-4 bg-white dark:bg-background">
         <div className="container py-16 mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
               How It Works for Pharmacies
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Simple steps to get all your medical supplies delivered to your
               pharmacy
             </p>
@@ -77,25 +75,26 @@ export default function PharmaciesPage() {
             {steps.map((step) => (
               <div
                 key={step.id}
-                className="text-center p-6 bg-gray-50 rounded-lg"
+                className="text-center p-6 bg-gray-50 dark:bg-neutral-900 rounded-lg border border-gray-200 dark:border-neutral-800"
               >
-                <div className="flex justify-center items-center bg-primary-600 w-12 h-12 rounded-full mx-auto mb-4">
+                <div className="flex justify-center items-center bg-primary-600 dark:bg-primary-500 w-12 h-12 rounded-full mx-auto mb-4">
                   <span className="text-white font-semibold">
                     {step.number}
                   </span>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
                   {step.title}
                 </h3>
-                <p className="text-gray-600 text-sm">{step.description}</p>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">
+                  {step.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Benefits */}
-      <section className="px-4 bg-gray-50">
+      <section className="px-4">
         <div className="container py-16 mx-auto">
           <div className="grid items-center grid-cols-1 gap-10 mb-10 lg:grid-cols-2 lg:gap-0">
             <div className="relative">
@@ -113,16 +112,16 @@ export default function PharmaciesPage() {
                     alt="Medical Supplies Benefits"
                     fill
                     objectFit="cover"
-                    className="rounded-lg"
+                    className="rounded-[7px]"
                   />
                 </figure>
               </div>
             </div>
             <div className="lg:max-w-xl container mx-auto">
-              <h2 className="mb-4 text-4xl font-semibold text-primary-600">
+              <h2 className="mb-4 text-4xl font-semibold text-primary-600 dark:text-primary-400">
                 Benefits for Your Pharmacy
               </h2>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
                 Transform your procurement process with our comprehensive
                 platform designed specifically for pharmacies
               </p>
@@ -130,14 +129,14 @@ export default function PharmaciesPage() {
                 <ul className="mt-4 space-y-3">
                   {benefits.map((benefit) => (
                     <li key={benefit.id} className="flex items-start">
-                      <div className="flex justify-center items-center bg-primary-600 w-5 h-5 rounded-full mr-3 flex-shrink-0 mt-1">
+                      <div className="flex justify-center items-center bg-primary-600 dark:bg-primary-500 w-5 h-5 rounded-full mr-3 flex-shrink-0 mt-1">
                         <Check className="w-3 h-3 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-800">
+                        <h4 className="font-semibold text-gray-800 dark:text-gray-100">
                           {benefit.title}
                         </h4>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
                           {benefit.description}
                         </p>
                       </div>
@@ -150,25 +149,24 @@ export default function PharmaciesPage() {
         </div>
       </section>
 
-      {/* Product Categories */}
-      <section className="px-4 bg-white">
+      <section className="px-4 bg-white dark:bg-background">
         <div className="container py-16 mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
               Explore Product Categories
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Discover our comprehensive range of medical products and supplies
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-12">
             {categories.map((category) => (
               <Link key={category.id} href="/marketplace" className="block">
-                <div className="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow cursor-pointer">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                <div className="bg-gray-50 dark:bg-neutral-900 p-6 rounded-lg border border-gray-200 dark:border-neutral-800 hover:shadow-md transition-shadow cursor-pointer">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
                     {category.name}
                   </h3>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">
                     {category.description}
                   </p>
                 </div>
@@ -185,14 +183,13 @@ export default function PharmaciesPage() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="px-4 bg-gray-50">
+      <section className="px-4">
         <div className="container py-16 mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
               What Pharmacies Say About Us
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Join hundreds of pharmacies who trust Kulobal Health for their
               supply needs
             </p>
@@ -201,7 +198,7 @@ export default function PharmaciesPage() {
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className="bg-white p-6 rounded-xl shadow-sm border border-gray-200"
+                className="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-neutral-800"
               >
                 <div className="flex items-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
@@ -211,17 +208,17 @@ export default function PharmaciesPage() {
                     />
                   ))}
                 </div>
-                <p className="text-gray-700 mb-4 italic">
+                <p className="text-gray-700 dark:text-gray-300 mb-4 italic">
                   &quot;{testimonial.content}&quot;
                 </p>
                 <div>
-                  <div className="font-semibold text-gray-800">
+                  <div className="font-semibold text-gray-800 dark:text-gray-100">
                     {testimonial.name}
                   </div>
-                  <div className="text-gray-600 text-sm">
+                  <div className="text-gray-600 dark:text-gray-400 text-sm">
                     {testimonial.role}
                   </div>
-                  <div className="text-primary-600 text-sm font-medium">
+                  <div className="text-primary-600 dark:text-primary-400 text-sm font-medium">
                     {testimonial.company}
                   </div>
                 </div>

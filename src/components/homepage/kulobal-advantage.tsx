@@ -7,7 +7,7 @@ import { advantages } from "./data";
 
 export default function KulobalAdvantage() {
   return (
-    <section className="px-4 bg-gradient-to-br from-blue-50 to-indigo-50">
+    <section className="px-4">
       <div className="container py-16 mx-auto">
         <div className="grid items-center grid-cols-1 gap-10 mb-10 lg:grid-cols-2 lg:gap-0">
           <div className="relative">
@@ -22,7 +22,7 @@ export default function KulobalAdvantage() {
                   alt="AI-Powered Healthcare Technology"
                   fill
                   objectFit="cover"
-                  className="rounded-lg"
+                  className="rounded-[7px]"
                 />
               </figure>
             </div>
@@ -36,7 +36,7 @@ export default function KulobalAdvantage() {
             <h2 className="mb-4 text-4xl font-semibold text-primary-600">
               The Kulobal Health Advantage
             </h2>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-6 dark:text-gray-300">
               Harness the power of artificial intelligence to revolutionize your
               healthcare supply chain management
             </p>
@@ -48,10 +48,10 @@ export default function KulobalAdvantage() {
                       <Check className="w-3 h-3 text-white" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-800">
+                      <h4 className="font-semibold text-gray-800 dark:text-white">
                         {advantage.title}
                       </h4>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 dark:text-gray-300">
                         {advantage.description}
                       </p>
                     </div>
