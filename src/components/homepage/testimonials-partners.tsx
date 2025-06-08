@@ -18,7 +18,7 @@ export default function TestimonialsPartners() {
               Join thousands of pharmacies and suppliers who trust Kulobal
               Health for their supply chain needs
             </p>
-            <div className="mb-6 flex gap-4 flex-col">
+            <div className="mb-6 flex gap-10 flex-col">
               {" "}
               <ul className="mt-4 space-y-4">
                 {testimonialPoints.map((point) => (
@@ -37,7 +37,7 @@ export default function TestimonialsPartners() {
                 ))}
               </ul>
               <Link href="/about-us" className="w-fit">
-                <Button className="w-fit hover:cursor-pointer">
+                <Button className="w-fit hover:cursor-pointer py-6">
                   Read More Testimonials
                 </Button>
               </Link>

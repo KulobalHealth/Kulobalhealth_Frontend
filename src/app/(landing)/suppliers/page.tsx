@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import devicesImg from "@/../public/images/devices.8e65df22d020.webp";
+import homeImg from "@/../public/appDashboard.webp";
 import nurseImg from "@/../public/nurse.webp";
 import { steps, benefits, features, testimonials } from "./data";
 
@@ -46,11 +46,12 @@ export default function SuppliersPage() {
                     paddingBottom: "95.25%",
                   }}
                 >
+                  {" "}
                   <Image
-                    src={devicesImg}
-                    alt="Medical Devices and Supplies"
+                    src={homeImg}
+                    alt="Healthcare Professionals Ready to Transform"
                     fill
-                    objectFit="contain"
+                    objectFit="cover"
                     className="rounded-lg"
                   />
                 </figure>

@@ -59,7 +59,7 @@ export default function HowItWorks() {
               Our platform simplifies the entire supply chain process from
               listing to delivery
             </p>
-            <div className="mb-6 flex gap-4 flex-col">
+            <div className="mb-6 flex gap-10 flex-col">
               <ul className="mt-4 space-y-4">
                 {steps.map((step, index) => (
                   <li key={index} className="flex items-start">
@@ -80,7 +80,7 @@ export default function HowItWorks() {
                 ))}
               </ul>
               <Link href="/marketplace" className="w-fit">
-                <Button className="w-fit hover:cursor-pointer">
+                <Button className="w-fit hover:cursor-pointer  py-6">
                   Explore Marketplace
                 </Button>
               </Link>

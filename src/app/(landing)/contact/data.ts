@@ -40,21 +40,21 @@ export const contactMethods: ContactMethod[] = [
     icon: Mail,
     title: "Email Us",
     description: "Send us an email and we'll respond within 24 hours",
-    details: ["support@kulobalhealth.com", "partnerships@kulobalhealth.com"],
+    details: ["Emmanuel.devi@kulobalhealth.com"],
   },
   {
     id: "phone",
     icon: Phone,
     title: "Call Us",
     description: "Speak directly with our support team",
-    details: ["+233 XX XXX XXXX", "Mon-Fri: 8:00 AM - 6:00 PM"],
+    details: ["+233 25 678 0758", "Mon-Fri: 8:00 AM - 6:00 PM"],
   },
   {
     id: "visit",
     icon: MapPin,
     title: "Visit Us",
-    description: "Come visit our office in Accra",
-    details: ["Accra, Ghana", "(Specific address to be provided)"],
+    description: "Come visit our office at Wangara Green Venture",
+    details: ["Wangara Green Ventures", "Accra, Ghana"],
   },
 ];
 
