@@ -1,6 +1,5 @@
 import type { Product, Order, Payment } from "./types";
 
-const medImg = "/med.png";
 const agaroGlucose1 = "/agaro-glucose-monitoring.jpg";
 const careTouchGlucose1 = "/caretouch-glucose-monitoring.jpeg";
 const careTouchGlucose2 = "/caretouch-glucose-monitoring-2.jpg";
@@ -14,7 +13,7 @@ const pangaBloodPressure2 = "/panga-blood-pressure-monitor-2.webp";
 const pangaBloodPressure3 = "/panga-blood-pressure-monitor-3.webp";
 
 const vagKit = "/VagKit.png";
-const hivKit = "/HIVKit.png";
+const hivKit = "/hiv.png";
 const hepBKit = "/HepB.png";
 const gonnorheaKit = "/Gonnorhea.png";
 const malariaKit = "/Malaria2.png";
