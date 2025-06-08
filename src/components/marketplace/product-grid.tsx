@@ -81,7 +81,7 @@ export default function ProductGrid() {
                       src={product.images[0]}
                       alt={product.name}
                       fill
-                      className="object-cover object-center"
+                      className="object-contain object-center"
                     />
                   </div>
                 </div>
