@@ -9,7 +9,7 @@ export default function ContactPage() {
   return (
     <div>
       {" "}
-      <section className="px-4 bg-gradient-to-br from-teal-50 to-cyan-50 dark:from-neutral-900 dark:to-neutral-800">
+      <section className="px-4 ">
         <div className="container py-20 mx-auto">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="mb-4 text-5xl font-bold text-primary-600 dark:text-primary-400">
