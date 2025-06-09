@@ -19,7 +19,7 @@ interface UserStore {
   updateUserData: (newData: Partial<User>) => void;
   createUser: () => Promise<void>;
   loginUser: (credentials: { email: string; password: string }) => Promise<void>;
-  sendVerificationEmail: (email: string) => Promise<void>;
+  VerificationEmail: (email: string, code : string) => Promise<void>;
   forgotPassword: (email: string) => Promise<void>;
   resetPassword: (token: string, newPassword: string) => Promise<void>;
   changePassword: (oldPassword: string, newPassword: string) => Promise<void>;
@@ -71,11 +71,12 @@ export const useUserStore = create<UserStore>((set, get) => ({
     }
   },
 
-  sendVerificationEmail: async (email: string) => {
+  VerificationEmail: async (email: string, code : string) => {
     set({ isloading: true });
     try {
       const response = await axios.post(`${API_URL}/auth/verify-email`, {
-        email,
+        email: email,
+        code: code,
       });
       set({ user: response.data, isloading: false });
     } catch (error) {
