@@ -12,11 +12,11 @@ import { useUserStore } from "../../store/user-store";
 export default function SignUp() {
   const [role, setRole] = useState("");
   const [userData, setUserData] = useState({
-    pharmacyName: "",
-    pharmacyLicenseNumber: "",
+    pharmacy: "",
+    licenceNumber: "",
     location: "",
-    role: "",
-    totalBranches: "",
+    branch: 0,
+  
   });
   const router = useRouter();
   const updateUserData = useUserStore((state) => state.updateUserData);
@@ -33,15 +33,18 @@ export default function SignUp() {
     e.preventDefault(); // prevent form submission refresh
 
     if (role === "pharmacist") {
-      const updatedData = { ...userData, role: "pharmacist" };
+      const updatedData = { ...userData, type: role
+       };
       setUserData(updatedData);
       updateUserData(updatedData);
       router.push("/signup/pharmacy-info");
       console.log(updatedData);
     } else if (role === "hospitalAdmin") {
-      const updatedData = { ...userData, role: "hospitalAdmin" };
+      const updatedData = { ...userData , type: role};
       setUserData(updatedData);
-      updateUserData(updatedData);
+      updateUserData({
+        ...updatedData,
+      });
       router.push("/signup/admin-info");
       console.log(updatedData);
     } else {
@@ -74,15 +77,15 @@ export default function SignUp() {
             placeholder="Enter pharmacy name"
             label="Pharmacy Name"
             onChange={handleChange}
-            name="pharmacyName"
-            value={userData.pharmacyName}
+            name="pharmacy"
+            value={userData.pharmacy}
           />
           <TextInput
             placeholder="Enter pharmacy licence number"
             label="Pharmacy Licence Number"
             onChange={handleChange}
-            name="pharmacyLicenseNumber"
-            value={userData.pharmacyLicenseNumber}
+            name="licenceNumber"
+            value={userData.licenceNumber}
           />
           <TextInput
             placeholder="Enter location"
@@ -95,8 +98,8 @@ export default function SignUp() {
             placeholder="Enter total number of branches"
             label="Total Branches"
             onChange={handleChange}
-            name="totalBranches"
-            value={userData.totalBranches}
+            name="branch"
+            value={userData.branch.toString()}
           />
 
           {/* Role selection */}

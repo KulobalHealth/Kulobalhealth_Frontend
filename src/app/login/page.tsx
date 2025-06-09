@@ -1,63 +1,33 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import TextInput from "@/components/ui/text-input";
-import React, { useState } from "react";
 import Image from "next/image";
 import groupImg from "@/assets/images/groupImg.png";
 import PasswordInput from "@/components/ui/password-input";
 import Logo from "@/components/ui/logo";
 import Link from "next/link";
-import { useMarketplaceStore } from "@/lib/store";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-
-const loginSchema = z.object({
-  email: z
-    .string()
-    .min(1, "Email is required")
-    .email("Please enter a valid email address"),
-  password: z
-    .string()
-    .min(1, "Password is required")
-    .min(8, "Password must be at least 8 characters"),
-});
-
-type LoginFormData = z.infer<typeof loginSchema>;
+import { useUserStore } from "@/store/user-store";
+import Loader from "@/components/loader";
+import { useState } from "react";
 
 export default function Login() {
-  const { login } = useMarketplaceStore();
-  const router = useRouter();
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormData>({
-    resolver: zodResolver(loginSchema),
+  const { loginUser, isloading } = useUserStore();
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
   });
 
-  const onSubmit = async (data: LoginFormData) => {
-    setError("");
-    setIsLoading(true);
-
-    try {
-      const success = await login(data.email, data.password);
-      if (success) {
-        router.push("/marketplace");
-      } else {
-        setError("Invalid email or password");
-      }
-    } catch (error) {
-      setError("An error occurred. Please try again.");
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
+  const handleLogin = (e) => {
+    e.preventDefault(); // Prevent form reload
+    loginUser({
+      email: loginData.email,
+      password: loginData.password,
+    })
+      .then(() => {
+      })
+      .catch((err) => {
+        console.error("Login failed:", err);
+      });
   };
 
   return (
@@ -70,34 +40,28 @@ export default function Login() {
           Please enter your details to log in.
         </p>
 
-        <form
-          className="w-full max-w-sm mt-6 space-y-4"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          {error && (
-            <div className="text-sm text-red-600 text-center">{error}</div>
-          )}
-
+        <form onSubmit={handleLogin} className="w-full max-w-sm mt-6 space-y-4">
           <div className="space-y-1">
             <TextInput
               placeholder="Enter email/phone"
               label="Email/ Phone Number"
-              {...register("email")}
+              onChange={(e) =>
+                setLoginData({ ...loginData, email: e.target.value })
+              }
+              value={loginData.email}
+              
             />
-            {errors.email && (
-              <p className="text-sm text-red-500">{errors.email.message}</p>
-            )}
           </div>
 
           <div className="space-y-1">
             <PasswordInput
               placeholder="Enter your password"
               label="Password"
-              {...register("password")}
+              onChange={(e) =>
+                setLoginData({ ...loginData, password: e.target.value })
+              }
+              value={loginData.password}
             />
-            {errors.password && (
-              <p className="text-sm text-red-500">{errors.password.message}</p>
-            )}
           </div>
 
           <div className="text-right">
@@ -113,9 +77,9 @@ export default function Login() {
             className="w-full"
             variant="default"
             type="submit"
-            disabled={isLoading}
+            disabled={isloading}
           >
-            {isLoading ? "Logging in..." : "Login"}
+            {isloading ? <Loader /> : "Login"}
           </Button>
         </form>
 

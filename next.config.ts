@@ -1,12 +1,18 @@
 import type { NextConfig } from "next";
 
+
+const apiUrl = process.env.NEXT_PUBLIC_API_URL
+if (!apiUrl) {
+  throw new Error("NEXT_PUBLIC_API_URL is not defined in the environment variables.");
+}
+
 const nextConfig: NextConfig = {
   /* config options here */
   async rewrites() {
     return [
       {
         source: '/pharmacy/:path*',
-        destination: 'https://kulobalhealth-backend.onrender.com/api/v1/pharmacy/', // Proxy to backend
+        destination: apiUrl
       },
     ];
   },

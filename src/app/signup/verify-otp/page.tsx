@@ -8,10 +8,12 @@ import {
 } from "@/components/ui/input-otp"
 import { Button } from "@/components/ui/button"
 import { MailIcon, ArrowLeft } from "lucide-react"
+import { useRouter } from "next/router"
 
 export default function OTPVerificationPage() {
     const [value, setValue] = React.useState("")
-
+    const router = useRouter()
+    const {email} = router.query;
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-white px-4">
             {/* Icon */}
@@ -23,7 +25,7 @@ export default function OTPVerificationPage() {
             <h1 className="text-4xl font-bold text-gray-800 mb-2">OTP Verification</h1>
             <p className="text-lg text-gray-600 mb-8 text-center leading-relaxed">
                 We sent an OTP verification code to <br />
-                <span className="font-semibold text-gray-800">isaacoseianane@gmail.com</span>
+                <span className="font-semibold text-gray-800">{email}</span>
             </p>
 
             {/* OTP Input */}
