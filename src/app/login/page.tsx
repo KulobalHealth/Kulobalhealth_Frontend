@@ -9,21 +9,24 @@ import Link from "next/link";
 import { useUserStore } from "@/store/user-store";
 import Loader from "@/components/loader";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
+  const router = useRouter();
   const { loginUser, isloading } = useUserStore();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent form reload
     loginUser({
       email: loginData.email,
       password: loginData.password,
     })
       .then(() => {
+        router.push("/dashboard");
       })
       .catch((err) => {
         console.error("Login failed:", err);

@@ -13,7 +13,7 @@ import ChronicPatients from '@/components/dashbord/chronic-patients'
 
 export default function MedicalDashboard() {
   return (
-    <div className='flex flex-col gap-4 mt-10 w-full px-10 space-y-4'>
+    <div className=''>
       {/* header Section */}
       <div className='flex items-center justify-between'>
         <h1 className='text-2xl font-bold'>Dashboard</h1>
