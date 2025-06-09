@@ -26,8 +26,8 @@ export default function MedicalDashboard() {
           icon={<Users />}
         />
         <StatCard
-          title="Order Value"
-          value={"30000"}
+          title="Rapid Tests"
+          value={"24"}
           discription="Amounts of products purchased"
           icon={<TestTube />}
         />
@@ -39,7 +39,7 @@ export default function MedicalDashboard() {
         />
         <StatCard
           title="Orders"
-          value={"24"}
+          value={"40"}
           discription="Pending orders"
           icon={<Package />}
         />
