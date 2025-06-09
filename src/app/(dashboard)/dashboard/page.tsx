@@ -3,7 +3,7 @@ import StatCard from "@/components/dashbord/stats-card";
 import { QuickActions } from "@/components/dashbord/quick-actions";
 import { DataDisplay } from "@/components/dashbord/data-display";
 import Calender from "@/components/dashbord/calender";
-import { FilePlus, Package, ShoppingBag, TestTube, User, Users } from "lucide-react";
+import { FilePlus, Package, ShoppingBag, TestTube,  Users } from "lucide-react";
 import RecentTransactions from "@/components/dashbord/transaction-card";
 import SubscriptionStatus from "@/components/dashbord/subscription-status";
 import ChronicPatients from "@/components/dashbord/chronic-patients";
@@ -49,7 +49,7 @@ export default function MedicalDashboard() {
       <div className="flex flex-col justify-between text-2xl font-bold">
         <p className="mb-3">Quick Actions</p>
         <section className="flex flex-row items-center space-x-4">
-          <QuickActions color="" text="Prescription" icon={<FilePlus />} />
+          <QuickActions  text="Prescription" icon={<FilePlus />} />
           <QuickActions
             color="bg-black"
             text="Rapid Testing"
