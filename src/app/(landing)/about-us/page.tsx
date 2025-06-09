@@ -9,14 +9,14 @@ import { values, challenges, whyChooseUs } from "./data";
 export default function AboutUsPage() {
   return (
     <div>
-      <section className="px-4 bg-gradient-to-br from-purple-50 to-indigo-50">
+      <section className="px-4">
         <div className="container py-20 mx-auto">
           <div className="grid items-center grid-cols-1 gap-10 mb-10 lg:grid-cols-2 lg:gap-0">
             <div className="lg:max-w-xl container mx-auto">
               <h1 className="mb-4 text-5xl font-bold text-primary-600">
                 Transforming Healthcare Supply Chains in Ghana
               </h1>
-              <p className="text-gray-600 mb-6 text-lg">
+              <p className="text-gray-600 mb-6 text-lg dark:text-white">
                 We&apos;re on a mission to revolutionize how medical supplies
                 reach pharmacies, ensuring every Ghanaian has access to quality
                 healthcare products when they need them most.
@@ -51,15 +51,15 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <section className="px-4 bg-white">
+      <section className="px-4 ">
         <div className="container py-16 mx-auto">
           <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
             <div className="text-center">
               <Target className="w-16 h-16 text-primary-600 mx-auto mb-6" />
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">
+              <h2 className="text-3xl font-bold dark:text-primary-600 text-gray-800 mb-4">
                 Our Mission
               </h2>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed dark:text-white">
                 To democratize access to medical supplies across Ghana by
                 creating a seamless, AI-powered marketplace that connects
                 pharmacies with reliable suppliers, ensuring quality healthcare
@@ -68,10 +68,10 @@ export default function AboutUsPage() {
             </div>
             <div className="text-center">
               <Lightbulb className="w-16 h-16 text-primary-600 mx-auto mb-6" />
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">
+              <h2 className="text-3xl font-bold dark:text-primary-600 text-gray-800 mb-4">
                 Our Vision
               </h2>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed dark:text-white">
                 To become the leading healthcare supply chain platform in West
                 Africa, empowering pharmacies and suppliers with innovative
                 technology while ultimately improving health outcomes for
@@ -82,7 +82,7 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <section className="px-4 bg-gray-50">
+      <section className="px-4">
         <div className="container py-16 mx-auto">
           <div className="grid items-center grid-cols-1 gap-10 mb-10 lg:grid-cols-2 lg:gap-0">
             <div className="relative">
@@ -110,19 +110,25 @@ export default function AboutUsPage() {
                 The Problem We Solve
               </h2>
               <div className="space-y-4 text-gray-600">
-                <p>
+                <p className="dark:text-white">
                   Ghana&apos;s healthcare supply chain faces significant
                   challenges that impact patient care:
                 </p>
                 <ul className="space-y-2 ml-4">
                   {challenges.map((challenge) => (
-                    <li key={challenge.id}>
-                      • <strong>{challenge.title}:</strong>{" "}
-                      {challenge.description}
+                    <li
+                      key={challenge.id}
+                      className="flex items-start space-x-2"
+                    >
+                      <Zap className="w-4 h-4 text-primary-600 mt-1 flex-shrink-0" />
+                      <span className="dark:text-white">
+                        <strong>{challenge.title}:</strong>{" "}
+                        {challenge.description}
+                      </span>
                     </li>
                   ))}
                 </ul>
-                <p>
+                <p className="dark:text-white">
                   Kulobal Health addresses these challenges by creating a
                   unified, technology-driven platform that streamlines the
                   entire supply chain from suppliers to pharmacies.
@@ -133,13 +139,13 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <section className="px-4 bg-white">
+      <section className="px-4 ">
         <div className="container py-16 mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-4xl font-bold text-gray-800 mb-4 dark:text-primary-600">
               Our Core Values
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 max-w-2xl mx-auto dark:text-white">
               The principles that guide everything we do at Kulobal Health
             </p>
           </div>
@@ -149,15 +155,17 @@ export default function AboutUsPage() {
               return (
                 <div
                   key={value.id}
-                  className="text-center p-6 bg-gray-50 rounded-lg"
+                  className="text-center p-6 bg-gray-50 dark:bg-transparent dark:border dark:border-gray-600 rounded-lg"
                 >
                   <div className="flex justify-center items-center bg-primary-600 w-16 h-16 rounded-lg mx-auto mb-4">
                     <Icon className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
                     {value.title}
                   </h3>
-                  <p className="text-gray-600 text-sm">{value.description}</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    {value.description}
+                  </p>
                 </div>
               );
             })}
@@ -165,11 +173,13 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <section className="px-4 bg-gray-50">
+      <section className="px-4">
         <div className="container py-16 mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Our Team</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold text-gray-800 mb-4 dark:text-primary-600">
+              Our Team
+            </h2>
+            <p className="text-gray-600 max-w-3xl mx-auto dark:text-white">
               Kulobal Health is powered by a diverse team of healthcare
               professionals, technology experts, and business leaders who are
               passionate about improving healthcare accessibility in Ghana. Our
@@ -182,13 +192,13 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <section className="px-4 bg-white">
+      <section className="px-4">
         <div className="container py-16 mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-4xl font-bold text-gray-800 dark:text-primary-600 mb-4">
               Why Choose Kulobal Health?
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-white max-w-2xl mx-auto">
               We&apos;re more than just a marketplace - we&apos;re your partner
               in transforming healthcare supply chains
             </p>
@@ -198,16 +208,16 @@ export default function AboutUsPage() {
               {whyChooseUs.map((reason) => (
                 <div
                   key={reason.id}
-                  className="flex items-start p-4 bg-gray-50 rounded-lg"
+                  className="flex items-start p-4 bg-gray-50 dark:bg-transparent dark:border dark:border-gray-600 rounded-lg"
                 >
                   <div className="flex justify-center items-center bg-primary-600 w-6 h-6 rounded-full mr-4 flex-shrink-0 mt-1">
                     <Zap className="w-3 h-3 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">
+                    <h4 className="font-semibold text-gray-800 dark:text-white">
                       {reason.title}
                     </h4>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
                       {reason.description}
                     </p>
                   </div>

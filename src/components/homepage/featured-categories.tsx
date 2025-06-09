@@ -26,7 +26,7 @@ export default function FeaturedCategories() {
               Discover our comprehensive range of medical products and supplies,
               carefully curated for pharmacies and healthcare providers
             </p>
-            <div className="mb-6 flex gap-4 flex-col">
+            <div className="mb-6 flex gap-10 flex-col">
               <ul className="mt-4 space-y-3">
                 {categories.map((category, index) => (
                   <li key={`category-${index}`} className="flex items-start">
@@ -40,7 +40,7 @@ export default function FeaturedCategories() {
                 ))}
               </ul>
               <Link href="/marketplace" className="w-fit">
-                <Button className="w-fit hover:cursor-pointer">
+                <Button className="w-fit hover:cursor-pointer py-6">
                   Browse All Categories
                 </Button>
               </Link>
