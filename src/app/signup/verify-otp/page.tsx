@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/input-otp";
 import { Button } from "@/components/ui/button";
 import { MailIcon, ArrowLeft } from "lucide-react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useUserStore } from "@/store/user-store";
 import Loader from "@/components/loader";
 export default function OTPVerificationPage() {
@@ -16,6 +16,7 @@ export default function OTPVerificationPage() {
   const searchParams = useSearchParams();
   const email = searchParams.get("email");
   const {VerificationEmail, isloading} = useUserStore()
+  const router = useRouter()
 
   const handleSubmit = (e: React.FormEvent) => {
 
@@ -26,6 +27,7 @@ export default function OTPVerificationPage() {
     }
 
     VerificationEmail(email, value)
+    router.push("/login");
 
     console.log("OTP submitted:", value);
     // You can also redirect or show a success message
