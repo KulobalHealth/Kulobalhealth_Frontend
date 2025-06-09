@@ -164,12 +164,12 @@ export function Navbar() {
             </>
           ) : (
             <>
-              <Link prefetch href="/login">
+              <Link target="_blank" prefetch href="/login">
                 <Button variant="ghost" className="hover:text-primary-700">
                   Login
                 </Button>
               </Link>
-              <Link prefetch href="/signup">
+              <Link target="_blank" prefetch href="/signup">
                 <Button className="bg-emerald-500 hover:bg-emerald-600 text-white">
                   Create Account
                 </Button>
