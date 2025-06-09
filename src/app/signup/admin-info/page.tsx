@@ -55,7 +55,7 @@ export default function AdminInfo() {
     console.log("adminData", adminData);
     updateUserData({
       firstName: adminData.firstName,
-      lastName: adminData.firstName,
+      lastName: adminData.lastName,
       email: adminData.email,
       phoneNumber: adminData.phoneNumber,
       password: adminData.password,
