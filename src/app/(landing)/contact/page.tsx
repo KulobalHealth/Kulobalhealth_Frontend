@@ -3,14 +3,18 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Phone } from "lucide-react";
 import Link from "next/link";
+import { Icons } from "@/components/ui/icons";
 import { contactMethods, inquiryTypes, contactInfo, faqSections } from "./data";
 
 export default function ContactPage() {
   return (
     <div>
       {" "}
-      <section className="px-4 ">
-        <div className="container py-20 mx-auto">
+      <section className="px-4 min-h-screen rounded-md flex flex-col items-center justify-center relative overflow-hidden">
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          <Icons.Banner className="w-full h-full opacity-20 object-cover" />
+        </div>
+        <div className="container py-20 mx-auto relative">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="mb-4 text-5xl font-bold text-primary-600 dark:text-primary-400">
               Get in Touch with Us
