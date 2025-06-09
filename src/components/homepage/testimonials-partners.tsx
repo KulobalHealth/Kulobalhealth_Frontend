@@ -2,19 +2,19 @@ import { Quote, Check } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import groupImg from "@/../public/images/groupImg.png";
+import groupImg from "@/../public/community.webp";
 import { testimonialPoints } from "./data";
 
 export default function TestimonialsPartners() {
   return (
-    <section className="px-4 bg-white">
+    <section className="px-4">
       <div className="container py-16 mx-auto">
         <div className="grid items-center grid-cols-1 gap-10 mb-10 lg:grid-cols-2 lg:gap-0">
           <div className="lg:max-w-xl container mx-auto">
             <h2 className="mb-4 text-4xl font-semibold text-primary-600">
               What Our Community Says
             </h2>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-6 dark:text-gray-300">
               Join thousands of pharmacies and suppliers who trust Kulobal
               Health for their supply chain needs
             </p>
@@ -30,7 +30,7 @@ export default function TestimonialsPartners() {
                         <Check className="w-3 h-3 text-white" />
                       )}
                     </div>
-                    <span className="text-gray-700 text-sm leading-relaxed">
+                    <span className="text-gray-700 text-sm leading-relaxed dark:text-white">
                       {point.text}
                     </span>
                   </li>
@@ -55,7 +55,7 @@ export default function TestimonialsPartners() {
                   alt="Happy Healthcare Professionals"
                   fill
                   objectFit="cover"
-                  className="rounded-lg"
+                  className="rounded-[7px]"
                 />
               </figure>
             </div>

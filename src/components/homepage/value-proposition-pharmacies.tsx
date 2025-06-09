@@ -7,14 +7,14 @@ import { pharmacyBenefits } from "./data";
 
 export default function ValuePropositionPharmacies() {
   return (
-    <section className="px-4 bg-gray-50">
+    <section className="px-4">
       <div className="container py-16 mx-auto">
         <div className="grid items-center grid-cols-1 gap-10 mb-10 lg:grid-cols-2 lg:gap-0">
           <div className="lg:max-w-xl container mx-auto">
-            <h2 className="mb-4 text-4xl font-semibold text-primary-600">
+            <h2 className="mb-4 text-4xl font-semibold text-primary-600 dark:text-primary-400">
               Everything Your Pharmacy Needs, All in One Place
             </h2>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
               Streamline your procurement process with our comprehensive
               marketplace designed specifically for pharmacies
             </p>
@@ -22,14 +22,14 @@ export default function ValuePropositionPharmacies() {
               <ul className="mt-4 space-y-3">
                 {pharmacyBenefits.map((benefit) => (
                   <li key={benefit.id} className="flex items-start">
-                    <div className="flex justify-center items-center bg-primary-600 w-5 h-5 rounded-full mr-3 flex-shrink-0 mt-1">
+                    <div className="flex justify-center items-center bg-primary-600 dark:bg-primary-500 w-5 h-5 rounded-full mr-3 flex-shrink-0 mt-1">
                       <Check className="w-3 h-3 text-white" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-800">
+                      <h4 className="font-semibold text-gray-800 dark:text-gray-100">
                         {benefit.title}
                       </h4>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 dark:text-gray-300">
                         {benefit.description}
                       </p>
                     </div>
@@ -55,7 +55,7 @@ export default function ValuePropositionPharmacies() {
                   alt="Pharmacy Marketplace"
                   fill
                   objectFit="cover"
-                  className="rounded-lg"
+                  className="rounded-[7px]"
                 />
               </figure>
             </div>

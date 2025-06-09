@@ -9,14 +9,14 @@ import { steps, benefits, features, testimonials } from "./data";
 export default function SuppliersPage() {
   return (
     <div>
-      <section className="px-4 bg-gradient-to-br from-green-50 to-emerald-50">
+      <section className="px-4">
         <div className="container py-20 mx-auto">
           <div className="grid items-center grid-cols-1 gap-10 mb-10 lg:grid-cols-2 lg:gap-0">
             <div className="lg:max-w-xl container mx-auto">
-              <h1 className="mb-4 text-5xl font-bold text-primary-600">
+              <h1 className="mb-4 text-5xl font-bold text-primary-600 dark:text-primary-400">
                 Connect Directly with Pharmacies Across Ghana
               </h1>
-              <p className="text-gray-600 mb-6 text-lg">
+              <p className="text-gray-600 dark:text-gray-300 mb-6 text-lg">
                 Showcase your inventory on our dedicated platform, gain valuable
                 market insights, and streamline your distribution.
               </p>
@@ -60,13 +60,13 @@ export default function SuppliersPage() {
         </div>
       </section>
 
-      <section className="px-4 bg-white">
+      <section className="px-4">
         <div className="container py-16 mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
               How It Works for Suppliers
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Simple steps to start selling to pharmacies across Ghana
             </p>
           </div>
@@ -74,24 +74,26 @@ export default function SuppliersPage() {
             {steps.map((step) => (
               <div
                 key={step.id}
-                className="text-center p-6 bg-gray-50 rounded-lg"
+                className="text-center p-6 bg-gray-50 dark:bg-neutral-900 rounded-lg border border-gray-200 dark:border-neutral-800"
               >
-                <div className="flex justify-center items-center bg-primary-600 w-12 h-12 rounded-full mx-auto mb-4">
+                <div className="flex justify-center items-center bg-primary-600 dark:bg-primary-500 w-12 h-12 rounded-full mx-auto mb-4">
                   <span className="text-white font-semibold">
                     {step.number}
                   </span>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
                   {step.title}
                 </h3>
-                <p className="text-gray-600 text-sm">{step.description}</p>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">
+                  {step.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="px-4 bg-gray-50">
+      <section className="px-4">
         <div className="container py-16 mx-auto">
           <div className="grid items-center grid-cols-1 gap-10 mb-10 lg:grid-cols-2 lg:gap-0">
             <div className="relative">
@@ -109,16 +111,16 @@ export default function SuppliersPage() {
                     alt="Healthcare Supply Chain"
                     fill
                     objectFit="contain"
-                    className="rounded-lg"
+                    className="rounded-[7px]"
                   />
                 </figure>
               </div>
             </div>
             <div className="lg:max-w-xl container mx-auto">
-              <h2 className="mb-4 text-4xl font-semibold text-primary-600">
+              <h2 className="mb-4 text-4xl font-semibold text-primary-600 dark:text-primary-400">
                 Benefits of Partnering with Kulobal Health
               </h2>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
                 Join our network of trusted suppliers and grow your business
                 with advanced technology and market insights
               </p>
@@ -126,14 +128,14 @@ export default function SuppliersPage() {
                 <ul className="mt-4 space-y-3">
                   {benefits.map((benefit) => (
                     <li key={benefit.id} className="flex items-start">
-                      <div className="flex justify-center items-center bg-primary-600 w-5 h-5 rounded-full mr-3 flex-shrink-0 mt-1">
+                      <div className="flex justify-center items-center bg-primary-600 dark:bg-primary-500 w-5 h-5 rounded-full mr-3 flex-shrink-0 mt-1">
                         <Check className="w-3 h-3 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-800">
+                        <h4 className="font-semibold text-gray-800 dark:text-gray-100">
                           {benefit.title}
                         </h4>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
                           {benefit.description}
                         </p>
                       </div>
@@ -146,13 +148,13 @@ export default function SuppliersPage() {
         </div>
       </section>
 
-      <section className="px-4 bg-white">
+      <section className="px-4">
         <div className="container py-16 mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
               Our Technology Platform Features
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Advanced tools designed to help suppliers succeed on our platform
             </p>
           </div>
@@ -162,15 +164,17 @@ export default function SuppliersPage() {
               return (
                 <div
                   key={feature.id}
-                  className="text-center p-6 bg-gray-50 rounded-lg"
+                  className="text-center p-6 bg-gray-50 dark:bg-neutral-900 rounded-lg border border-gray-200 dark:border-neutral-800"
                 >
-                  <div className="flex justify-center items-center bg-primary-600 w-16 h-16 rounded-lg mx-auto mb-4">
+                  <div className="flex justify-center items-center bg-primary-600 dark:bg-primary-500 w-16 h-16 rounded-lg mx-auto mb-4">
                     <Icon className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-600 text-sm">{feature.description}</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    {feature.description}
+                  </p>
                 </div>
               );
             })}
@@ -178,13 +182,13 @@ export default function SuppliersPage() {
         </div>
       </section>
 
-      <section className="px-4 bg-gray-50">
+      <section className="px-4">
         <div className="container py-16 mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
               What Suppliers Say About Us
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Join successful suppliers who are growing their business with
               Kulobal Health
             </p>
@@ -193,7 +197,7 @@ export default function SuppliersPage() {
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className="bg-white p-6 rounded-xl shadow-sm border border-gray-200"
+                className="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-neutral-800"
               >
                 <div className="flex items-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
@@ -202,17 +206,17 @@ export default function SuppliersPage() {
                     </div>
                   ))}
                 </div>
-                <p className="text-gray-700 mb-4 italic">
+                <p className="text-gray-700 dark:text-gray-300 mb-4 italic">
                   &quot;{testimonial.content}&quot;
                 </p>
                 <div>
-                  <div className="font-semibold text-gray-800">
+                  <div className="font-semibold text-gray-800 dark:text-gray-100">
                     {testimonial.name}
                   </div>
-                  <div className="text-gray-600 text-sm">
+                  <div className="text-gray-600 dark:text-gray-400 text-sm">
                     {testimonial.role}
                   </div>
-                  <div className="text-primary-600 text-sm font-medium">
+                  <div className="text-primary-600 dark:text-primary-400 text-sm font-medium">
                     {testimonial.company}
                   </div>
                 </div>

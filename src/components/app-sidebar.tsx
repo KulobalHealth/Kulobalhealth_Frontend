@@ -77,8 +77,8 @@ export function AppSidebar() {
   const pathname = usePathname();
 
   return (
-    <Sidebar variant="inset" collapsible="icon" className="mt-20 h-[500px] bg-white pl-10">
-      <SidebarContent className="bg-white border border-gray-200 rounded-lg">
+    <Sidebar variant="inset" collapsible="icon" className="mt-20 h-[500px] bg-background ">
+      <SidebarContent className="bg-background border rounded-lg">
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>

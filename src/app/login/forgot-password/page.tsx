@@ -1,11 +1,29 @@
-import React from 'react'
+"use client"
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import TextInput from '@/components/ui/text-input'
 import { ArrowLeft, KeyRound } from 'lucide-react'
 import Link from 'next/link'
 import Helper from '@/components/auth-page-helper'
+import { useUserStore } from '@/store/user-store'
+import Loader from '@/components/loader'
 
 export default function ForgetPassword() {
+    const [email, setEmail] = useState<string>("");
+    const { forgotPassword,isloading } = useUserStore();
+
+
+    const handleForgot =()=>{
+
+        
+        forgotPassword(email).then(() => {
+            console.log("Password reset instructions sent to:", email);
+
+        }).catch((error) => {
+            console.error("Error sending verification email:", error);
+        });
+    }
+    
     return (
         <div className="flex justify-center items-center min-h-screen">
             <div className="flex flex-col items-center w-full max-w-md bg-white p-9 ">
@@ -27,12 +45,18 @@ export default function ForgetPassword() {
                     <TextInput
                         label="Email/Phone Number"
                         placeholder="Enter email/phone number"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
 
                 {/* Button */}
-                <Button variant="default" size="lg" className="w-full mb-4">
-                    <Link href="/login/reset-password" className='text-white'>Reset Password</Link>
+                <Button variant="default" size="lg" className="w-full mb-4" onClick={handleForgot} disabled ={isloading}>
+                    <Link href="/login/reset-password" className='text-white'>
+                    {
+                        isloading? <Loader/>:" Reset Password"
+                    }  
+                    </Link>
                 </Button>
 
                 {/* Back to Login */}
