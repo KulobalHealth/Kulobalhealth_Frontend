@@ -15,13 +15,13 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-w-6xl" style={{ fontFamily: inter.style.fontFamily }}>
+    <div className="bg-background" style={{ fontFamily: inter.style.fontFamily  , backgroundColor: "#ffffff" }}>
       <DashboardNavbar/>
 
       <SidebarProvider>
 
         <AppSidebar />
-        <main className="flex flex-col flex-1 min-h-screen bg-background p-4 md:p-6">
+        <main className="flex flex-col flex-1 min-h-screen bg-background p-4 md:p-6 ">
           <SidebarTrigger />
           {children}
         </main>

@@ -3,8 +3,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { Bell, Moon, ShoppingCart, User } from "lucide-react";
+import { Bell, Moon, ShoppingCart, CircleUserRound} from "lucide-react";
 import { useMarketplaceStore } from "@/lib/store";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const navigationLinks = {
   primary: [
@@ -34,11 +41,7 @@ export function DashboardNavbar() {
   }, []);
 
   return (
-    <nav
-      className={
-        "fixed top-0 left-0 right-0 z-50 bg-white shadow-lg transition duration-300"
-      }
-    >
+    <nav className={"fixed top-0 left-0 right-0 z-50 bg-white shadow-sm "}>
       <div className="flex items-center justify-between px-6 py-4  ">
         <div className="flex items-center ">
           <Link href="/" className="text-2xl font-bold text-emerald-500">
@@ -82,7 +85,27 @@ export function DashboardNavbar() {
           </div>
         </div>
         <div className="flex items-center space-x-4">
-          <User width={24} height={24} />
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center space-x-2">
+              {" "}
+              <CircleUserRound /> Account
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem>
+                <Link href="/account">Profile</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/orders">Orders</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/payments">Payments</Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <Link href="/subscriptions">Subscriptions</Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <div className="relative">
             <Link href="/marketplace/cart">
               <ShoppingCart className="cursor-pointer hover:text-emerald-500 transition-colors" />
