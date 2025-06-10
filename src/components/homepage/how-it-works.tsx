@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import stockImg from "@/../public/ray.webp";
+import stockImg from "@/../public/community1.webp";
 
 const steps = [
   {
