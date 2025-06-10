@@ -3,7 +3,7 @@ import { Check, Star } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import allKitsImg from "@/../public/allKits.webp";
-import pharmaImg from "@/../public/pharmaImage-2.png";
+import pharmaImg from "@/../public/pharmacyPage.webp";
 import { steps, benefits, categories, testimonials } from "./data";
 import { Icons } from "@/components/ui/icons";
 
