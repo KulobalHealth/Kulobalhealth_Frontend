@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import pharmaImg from "@/../public/pharmaImage-2.png";
+import pharmaImg from "@/../public/pharmacyPage.webp";
 import { pharmacyBenefits } from "./data";
 
 export default function ValuePropositionPharmacies() {
