@@ -2,7 +2,7 @@ import { Quote, Check } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import groupImg from "@/../public/community1.webp";
+import groupImg from "@/../public/community2.webp";
 import { testimonialPoints } from "./data";
 
 export default function TestimonialsPartners() {
