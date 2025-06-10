@@ -12,7 +12,7 @@ interface StatsCardProps {
 
 export default function StatsCard({title, value, discription, icon}:StatsCardProps) {
     return (
-        <Card className="w-[300px]">
+        <Card className="w-full">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1">
                 <CardTitle className="text-sm font-medium">{title}</CardTitle>
                 <span className="h-4 w-4 text-muted-foreground">{icon}</span>

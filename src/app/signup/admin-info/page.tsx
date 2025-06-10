@@ -9,8 +9,10 @@ import Link from 'next/link'
 import PasswordInput from '@/components/ui/password-input'
 import { useUserStore } from "@/store/user-store"
 import Loader from '@/components/loader'
+import { useRouter } from 'next/navigation'
 
 export default function AdminInfo() {
+  const router =  useRouter();
 
   const updateUserData = useUserStore((state) => state.updateUserData);
   const createUser = useUserStore((state) => state.createUser);
@@ -18,11 +20,11 @@ export default function AdminInfo() {
 
   const [confirmPassword, setConfirmPassword] = useState("");
   const [adminData, setAdminData] = useState({
-    fullName: "",
-    licenseNumber: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phoneNumber: "",
-    pharmacyLicenseNumber: "",
+    // pharmacyLicenseNumber: "",
     password: "",
   });
 
@@ -51,7 +53,14 @@ export default function AdminInfo() {
     if (!handlePassword()) return;
 
     console.log("adminData", adminData);
-    updateUserData(adminData);
+    updateUserData({
+      firstName: adminData.firstName,
+      lastName: adminData.lastName,
+      email: adminData.email,
+      phoneNumber: adminData.phoneNumber,
+      password: adminData.password,
+    });
+    router.push(`/signup/verify-otp?email=${adminData.email}`);
     createUser();
   };
 
@@ -68,17 +77,17 @@ export default function AdminInfo() {
           <TextInput
             label="Enter your full name"
             placeholder='Admin Full Name'
-            name="fullName"
+            name="firstName"
             onChange={handleChange}
-            value={adminData.fullName}
+            value={adminData.firstName}
           />
-          <TextInput
+          {/* <TextInput
             label="License Number"
             placeholder='Enter your license number'
             name="licenseNumber"
             onChange={handleChange}
             value={adminData.licenseNumber}
-          />
+          /> */}
           <TextInput
             label="Email"
             placeholder='Enter email'
@@ -93,13 +102,13 @@ export default function AdminInfo() {
             onChange={handleChange}
             value={adminData.phoneNumber}
           />
-          <TextInput
+          {/* <TextInput
             label="Pharmacy License Number"
             placeholder='Enter pharmacy license number'
             name="pharmacyLicenseNumber"
             onChange={handleChange}
-            value={adminData.pharmacyLicenseNumber}
-          />
+            value={adminData.l}
+          /> */}
           <PasswordInput
             label="Create password"
             placeholder='Create password'
@@ -119,7 +128,7 @@ export default function AdminInfo() {
             <Button variant="outline" className='w-1/2'>
               <Link href="/login">Back</Link>
             </Button>
-            <Button variant="default" className='w-1/2' size="lg" type="submit">
+            <Button variant="default" className='w-1/2' size="lg" type="submit" >
               {loading ? <Loader /> : "Confirm"}
             </Button>
           </div>
