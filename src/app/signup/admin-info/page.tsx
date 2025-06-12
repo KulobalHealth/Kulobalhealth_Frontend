@@ -53,9 +53,10 @@ export default function AdminInfo() {
     if (!handlePassword()) return;
 
     console.log("adminData", adminData);
+    
     updateUserData({
       firstName: adminData.firstName,
-      lastName: adminData.firstName,
+      lastName: adminData.firstName.split(' ')[1] || '',
       email: adminData.email,
       phoneNumber: adminData.phoneNumber,
       password: adminData.password,

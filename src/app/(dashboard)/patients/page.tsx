@@ -1,12 +1,29 @@
-"use client"
+"use client";
 import PatientRegistration from "@/components/dashbord/add-patients";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import {  ChevronLeft, ChevronRight, UserRound, MoreHorizontal, Eye, Plus } from "lucide-react";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
+  ChevronLeft,
+  ChevronRight,
+  UserRound,
+  Eye,
+  Plus,
+  CircleEllipsis
+} from "lucide-react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import TableHeaderComponent from "@/components/dashbord/table-header";
-
 
 const patientsData = [
   {
@@ -17,67 +34,67 @@ const patientsData = [
     contact: "0540777343",
     condition: "Asthma",
     lastVisit: "7 May, 2025",
-    avatar: "/avatars/olivia.png"
+    avatar: "/avatars/olivia.png",
   },
-]
+];
 
+const ITEMS_PER_PAGE = 10;
 
-const ITEMS_PER_PAGE = 10
-
-
-
-export default function  Patients() {
-  const [currentPage, setCurrentPage] = useState(1)
-  const [searchTerm, setSearchTerm] = useState("")
+export default function Patients() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value.toLowerCase())
-    setCurrentPage(1) // Reset to page 1 on new search
-  }
+    setSearchTerm(event.target.value.toLowerCase());
+    setCurrentPage(1); // Reset to page 1 on new search
+  };
 
-  const filteredData = patientsData.filter((item) =>
-    item.name.toLowerCase().includes(searchTerm) ||
-    item.condition.toLowerCase().includes(searchTerm) ||
-    item.contact.toLowerCase().includes(searchTerm)
-  )
+  const filteredData = patientsData.filter(
+    (item) =>
+      item.name.toLowerCase().includes(searchTerm) ||
+      item.condition.toLowerCase().includes(searchTerm) ||
+      item.contact.toLowerCase().includes(searchTerm)
+  );
 
-  const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE)
+  const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
   const paginatedOrders = filteredData.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
-  )
+  );
 
   const goToPage = (page: number) => {
     if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page)
+      setCurrentPage(page);
     }
-  }
+  };
 
   return (
     <div className="py-6 ">
-      <TableHeaderComponent 
-        handleSearch={handleSearch} 
+      <TableHeaderComponent
+        handleSearch={handleSearch}
         title="Prescription Management"
         text="Manage your prescriptions effectively"
-        component={
-         <PatientRegistration/>
-        }
-       />
+        component={<PatientRegistration />}
+      />
       <Table className="border-2 border-gray-100 rounded-t-2xl">
         <TableHeader className="bg-gray-100 h-5">
           <TableRow>
-            <TableHead className="text-left rounded-tl-2xl font-bold">Name</TableHead>
+            <TableHead className="text-left rounded-tl-2xl font-bold">
+              Name
+            </TableHead>
             <TableHead className="text-left font-bold">Date of Birth</TableHead>
             <TableHead className="text-left font-bold">Gender</TableHead>
             <TableHead className="text-left font-bold">Contact</TableHead>
-            <TableHead className="text-left font-bold">Medical Condition</TableHead>
+            <TableHead className="text-left font-bold">
+              Medical Condition
+            </TableHead>
             <TableHead className="text-left font-bold">Last Visit</TableHead>
             <TableHead className="text-left font-bold">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {paginatedOrders.map((order) => (
-            <TableRow key={order.id} className='h-18'>
+            <TableRow key={order.id} className="h-18">
               <TableCell>
                 <div className="flex items-center space-x-2 pl-6">
                   <UserRound />
@@ -91,14 +108,16 @@ export default function  Patients() {
               <TableCell>{order.contact}</TableCell>
               <TableCell>{order.condition}</TableCell>
               <TableCell>{order.lastVisit}</TableCell>
-              
+
               <TableCell>
                 <Popover>
                   <PopoverTrigger asChild>
-                    <MoreHorizontal className="w-4 h-4 cursor-pointer" />
+                    <CircleEllipsis  />
                   </PopoverTrigger>
                   <PopoverContent className="w-56 p-2">
-                    <div className="font-semibold text-sm px-2 py-1">Actions</div>
+                    <div className="font-semibold text-sm px-2 py-1">
+                      Actions
+                    </div>
                     <div className="mt-1 space-y-1 text-sm">
                       <button className="flex items-center gap-2 w-full px-2 py-1.5 rounded hover:bg-gray-100">
                         <Eye className="w-4 h-4" /> View Details
@@ -148,7 +167,5 @@ export default function  Patients() {
         </Button>
       </div>
     </div>
-  )
+  );
 }
-
-

@@ -1,13 +1,8 @@
 import { AppSidebar } from "@/components/app-sidebar";
-import { Inter } from "next/font/google";
 import Footer from "@/components/dashbord/footer";
-
-
-
-const inter = Inter({ subsets: ["latin"] });
-
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { DashboardNavbar } from "@/components/dashbord/navbar";
+
 
 export default function DashboardLayout({
   children,
@@ -15,13 +10,13 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-background" style={{ fontFamily: inter.style.fontFamily  , backgroundColor: "#ffffff" }}>
+    <div className="bg-background min-h-screen ">
       <DashboardNavbar/>
 
       <SidebarProvider>
 
         <AppSidebar />
-        <main className="flex flex-col flex-1 min-h-screen bg-background p-4 md:p-6 ">
+        <main className="flex flex-col flex-1 bg-background p-4 md:p-6 ">
           <SidebarTrigger />
           {children}
         </main>
