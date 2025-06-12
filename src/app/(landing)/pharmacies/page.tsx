@@ -3,14 +3,19 @@ import { Check, Star } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import allKitsImg from "@/../public/allKits.webp";
-import pharmaImg from "@/../public/images/pharmaImage.webp";
+import pharmaImg from "@/../public/pharmacyPage.webp";
 import { steps, benefits, categories, testimonials } from "./data";
+import { Icons } from "@/components/ui/icons";
 
 export default function PharmaciesPage() {
   return (
     <div>
-      <section className="px-4">
-        <div className="container py-20 mx-auto">
+      {" "}
+      <section className="min-h-screen rounded-md flex flex-col items-center justify-center relative overflow-hidden">
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          <Icons.Banner className="w-full h-full opacity-20 object-cover" />
+        </div>
+        <div className="container py-20 mx-auto relative">
           <div className="grid items-center grid-cols-1 gap-10 mb-10 lg:grid-cols-2 lg:gap-0">
             <div className="lg:max-w-xl container mx-auto">
               <h1 className="mb-4 text-5xl font-bold text-primary-600 dark:text-primary-400">
@@ -29,7 +34,7 @@ export default function PharmaciesPage() {
                 <Link href="/signup">
                   <Button
                     variant="outline"
-                    className="px-8 py-3 border-primary-600 text-primary-600 rounded-lg hover:bg-primary-50 transition-colors"
+                    className="px-8 py-3 border-primary-600 text-primary-600 dark:border-primary-400 dark:text-primary-400 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
                   >
                     Create Your Pharmacy Account
                   </Button>
@@ -59,7 +64,6 @@ export default function PharmaciesPage() {
           </div>
         </div>
       </section>
-
       <section className="px-4 bg-white dark:bg-background">
         <div className="container py-16 mx-auto">
           <div className="text-center mb-12">
@@ -93,7 +97,6 @@ export default function PharmaciesPage() {
           </div>
         </div>
       </section>
-
       <section className="px-4">
         <div className="container py-16 mx-auto">
           <div className="grid items-center grid-cols-1 gap-10 mb-10 lg:grid-cols-2 lg:gap-0">
@@ -148,7 +151,6 @@ export default function PharmaciesPage() {
           </div>
         </div>
       </section>
-
       <section className="px-4 bg-white dark:bg-background">
         <div className="container py-16 mx-auto">
           <div className="text-center mb-12">
@@ -161,12 +163,16 @@ export default function PharmaciesPage() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-12">
             {categories.map((category) => (
-              <Link key={category.id} href="/marketplace" className="block">
-                <div className="bg-gray-50 dark:bg-neutral-900 p-6 rounded-lg border border-gray-200 dark:border-neutral-800 hover:shadow-md transition-shadow cursor-pointer">
+              <Link
+                key={category.id}
+                href="/marketplace"
+                className="block h-full"
+              >
+                <div className="bg-gray-50 dark:bg-neutral-900 p-6 rounded-lg border border-gray-200 dark:border-neutral-800 hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                   <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
                     {category.name}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm flex-grow">
                     {category.description}
                   </p>
                 </div>
@@ -182,7 +188,6 @@ export default function PharmaciesPage() {
           </div>
         </div>
       </section>
-
       <section className="px-4">
         <div className="container py-16 mx-auto">
           <div className="text-center mb-12">
@@ -227,7 +232,6 @@ export default function PharmaciesPage() {
           </div>
         </div>
       </section>
-
       {/* CTA Section */}
       <section className="px-4 bg-primary-600">
         <div className="container py-16 mx-auto text-center">

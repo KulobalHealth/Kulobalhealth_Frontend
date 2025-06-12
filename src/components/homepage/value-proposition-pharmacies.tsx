@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import pharmaImg from "@/../public/images/pharmaImage.webp";
+import pharmaImg from "@/../public/pharmacyPage.webp";
 import { pharmacyBenefits } from "./data";
 
 export default function ValuePropositionPharmacies() {
@@ -18,7 +18,7 @@ export default function ValuePropositionPharmacies() {
               Streamline your procurement process with our comprehensive
               marketplace designed specifically for pharmacies
             </p>
-            <div className="mb-6 flex gap-4 flex-col">
+            <div className="mb-6 flex gap-10 flex-col">
               <ul className="mt-4 space-y-3">
                 {pharmacyBenefits.map((benefit) => (
                   <li key={benefit.id} className="flex items-start">
@@ -37,7 +37,7 @@ export default function ValuePropositionPharmacies() {
                 ))}
               </ul>
               <Link href="/marketplace" className="w-fit">
-                <Button className="w-fit hover:cursor-pointer">
+                <Button className="w-fit py-6 hover:cursor-pointer">
                   Explore the Marketplace
                 </Button>
               </Link>

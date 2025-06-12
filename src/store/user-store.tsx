@@ -66,7 +66,7 @@ export const useUserStore = create<UserStore>((set, get) => ({
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : "An error occurred";
-        console.log(credentials)
+        // Removed logging of sensitive credentials to enhance security.
       set({ error: errorMessage, isloading: false });
     }
   },

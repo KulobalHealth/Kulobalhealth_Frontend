@@ -1,8 +1,0 @@
-{
-  "name": "kulobalhealth-frontend-auli",
-  "version": 2,
-  "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "installCommand": "npm ci"
-}

@@ -4,7 +4,10 @@ on:
   push:
     branches: [main, develop]
   pull_request:
-    branches: [main, develop]
+    branches: ["**"]
+
+env:
+  NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL || 'http://localhost:3001' }}
 
 jobs:
   lint:

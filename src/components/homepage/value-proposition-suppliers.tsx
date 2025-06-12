@@ -35,7 +35,7 @@ export default function ValuePropositionSuppliers() {
               Join our platform and connect with pharmacies that need your
               products. Scale your business with our powerful tools and network.
             </p>
-            <div className="mb-6 flex gap-4 flex-col">
+            <div className="mb-6 flex gap-10 flex-col">
               <ul className="mt-4 space-y-4 ">
                 {benefits.map((benefit) => (
                   <li key={benefit.id} className="flex items-start">
@@ -56,7 +56,7 @@ export default function ValuePropositionSuppliers() {
                 ))}
               </ul>
               <Link href="/suppliers" className="w-fit">
-                <Button className="w-fit hover:cursor-pointer">
+                <Button className="w-fit hover:cursor-pointer py-6">
                   Become a Supplier
                 </Button>
               </Link>

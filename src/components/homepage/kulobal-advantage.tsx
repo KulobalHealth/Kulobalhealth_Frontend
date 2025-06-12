@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import AiImg from "@/../public/ai.webp";
+import AiImg from "@/../public/pharmacist-working.webp";
 import { advantages } from "./data";
 
 export default function KulobalAdvantage() {
@@ -40,7 +40,7 @@ export default function KulobalAdvantage() {
               Harness the power of artificial intelligence to revolutionize your
               healthcare supply chain management
             </p>
-            <div className="mb-6 flex gap-4 flex-col">
+            <div className="mb-6 flex gap-10 flex-col">
               <ul className="mt-4 space-y-3">
                 {advantages.map((advantage) => (
                   <li key={advantage.id} className="flex items-start">
@@ -59,7 +59,7 @@ export default function KulobalAdvantage() {
                 ))}
               </ul>
               <Link href="/about-us" className="w-fit">
-                <Button className="w-fit hover:cursor-pointer">
+                <Button className="w-fit hover:cursor-pointer py-6">
                   Learn More About Our AI
                 </Button>
               </Link>
