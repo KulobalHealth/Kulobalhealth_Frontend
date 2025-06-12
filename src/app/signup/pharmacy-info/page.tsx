@@ -53,7 +53,7 @@ export default function PharmacyInfo() {
     console.log("Updating user data with:", PharmacyData);
     updateUserData({
       firstName: PharmacyData.firstName,
-      lastName:PharmacyData.firstName,
+      lastName:PharmacyData.firstName.split(' ')[1] || '',
       email: PharmacyData.email,
       phoneNumber: PharmacyData.phoneNumber,
       password: PharmacyData.password,

@@ -56,7 +56,7 @@ export default function AdminInfo() {
     
     updateUserData({
       firstName: adminData.firstName,
-      lastName: adminData.firstName.split(' ')[1] || '',
+      lastName: adminData.firstName.split(' ')[1] || '',  
       email: adminData.email,
       phoneNumber: adminData.phoneNumber,
       password: adminData.password,
