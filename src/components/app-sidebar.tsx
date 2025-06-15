@@ -77,8 +77,8 @@ export function AppSidebar() {
   const pathname = usePathname();
 
   return (
-    <Sidebar variant="inset" collapsible="icon" className="mt-20 h-[500px] bg-background ">
-      <SidebarContent className="bg-background border rounded-lg">
+    <Sidebar variant="inset" collapsible="icon" className="mt-20 h-[500px] relative border rounded-lg bg-background">
+      <SidebarContent className="bg-background" >
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -97,7 +97,7 @@ export function AppSidebar() {
                       href={item.url}
                       className="flex items-center justify-between"
                     >
-                      <span className="flex items-center gap-3">
+                      <span className="flex items-center gap-10">
                         <div className="flex items-center">
                           <item.icon
                             className={clsx(

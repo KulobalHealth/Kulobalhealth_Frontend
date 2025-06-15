@@ -1,32 +1,35 @@
-import { AppSidebar } from "@/components/app-sidebar";
-import { Inter } from "next/font/google";
-import Footer from "@/components/dashbord/footer";
+import type React from "react"
+import { AppSidebar } from "@/components/app-sidebar"
+import { Inter } from "next/font/google"
+import Footer from "@/components/dashbord/footer"
+import { SidebarProvider, SidebarInset} from "@/components/ui/sidebar"
+import { DashboardNavbar } from "@/components/dashbord/navbar"
 
-
-
-const inter = Inter({ subsets: ["latin"] });
-
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { DashboardNavbar } from "@/components/dashbord/navbar";
+const inter = Inter({ subsets: ["latin"] })
 
 export default function DashboardLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <div className="bg-background" style={{ fontFamily: inter.style.fontFamily  , backgroundColor: "#ffffff" }}>
-      <DashboardNavbar/>
+    <div className=" w-full min-h-screen bg-white " style={{ fontFamily: inter.style.fontFamily }}>
+      <DashboardNavbar />
 
       <SidebarProvider>
-
-        <AppSidebar />
-        <main className="flex flex-col flex-1 min-h-screen bg-background p-4 md:p-6 ">
-          <SidebarTrigger />
-          {children}
-        </main>
+        <SidebarInset>
+          <main className="flex min-h-screen b items-center justify-center">
+           
+            <div className=" h-full  flex p-4 md:py-24   w-[85%]">
+               <AppSidebar />
+         
+              {children}
+            </div>
+          </main>
+        </SidebarInset>
       </SidebarProvider>
-      <Footer/>
+
+      <Footer />
     </div>
-  );
+  )
 }
