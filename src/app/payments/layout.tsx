@@ -1,5 +1,5 @@
 import type React from "react"
-import { AppSidebar } from "@/components/app-sidebar"
+
 import { Inter } from "next/font/google"
 import Footer from "@/components/dashbord/footer"
 import { SidebarProvider, SidebarInset} from "@/components/ui/sidebar"
@@ -21,7 +21,7 @@ export default function DashboardLayout({
           <main className="flex min-h-screen b items-center justify-center">
            
             <div className=" h-full  flex p-4 md:py-24   w-[85%]">
-               <AppSidebar />
+              
          
               {children}
             </div>

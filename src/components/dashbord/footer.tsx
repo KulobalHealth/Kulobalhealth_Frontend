@@ -3,8 +3,8 @@ import {  Facebook, Instagram, Twitter } from "lucide-react";
 import Link from "next/link";
 export default function Footer() {
     return (
-        <footer className="py-6 bg-background border-t p-10">
-           <div className="flex flex-col md:flex-row justify-between items-center">
+        <footer className="py-6 bg-background border-t">
+           <div className="flex flex-col md:flex-row justify-between items-center w-[80%] mx-auto ">
                      <p className="text-sm text-gray-700 dark:text-white">
                        © 2025 KulobalHealth. All rights reserved.
                      </p>
