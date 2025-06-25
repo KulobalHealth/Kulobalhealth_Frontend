@@ -1,35 +1,35 @@
-import { Card, CardContent, CardFooter, CardHeader, } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import React from 'react'
-import {  TestTube, TestTube2 } from 'lucide-react';
-import { PlusCircle, AlertTriangle } from "lucide-react";
+import { AlertTriangle, PlusCircle, TestTube, TestTube2 } from 'lucide-react';
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from '@/components/ui/card';
 
-  
 export default function Page() {
   return (
     <div className="mt-10">
-      <div className="flex flex-row gap-3 w-full">
+      <div className="flex w-full flex-row gap-3">
         <PatientInfoCard />
         <HealthRecordsCard />
       </div>
-      <DdiRiskSummary/>
+      <DdiRiskSummary />
     </div>
   );
 }
-
-
-
 
 const PatientInfoCard = () => {
   return (
     <Card className="w-1/3">
       <CardHeader>
-        <h2 className="text-lg font-semibold">Patient Information</h2>
+        <h2 className="font-semibold text-lg">Patient Information</h2>
       </CardHeader>
 
-      <CardContent className="border-b pb-4 mb-4">
-        <h3 className="text-sm font-medium mb-2">Contact Information</h3>
-        <div className="text-sm space-y-1">
+      <CardContent className="mb-4 border-b pb-4">
+        <h3 className="mb-2 font-medium text-sm">Contact Information</h3>
+        <div className="space-y-1 text-sm">
           <div className="flex justify-between">
             <span className="font-medium">Phone:</span>
             <span>+233 540977343</span>
@@ -45,39 +45,42 @@ const PatientInfoCard = () => {
         </div>
       </CardContent>
 
-      <CardContent className='flex flex-col gap-4'>
-        <h3 className="text-sm font-medium mb-1">Medical Information</h3>
-        <p className="text-xs text-muted-foreground">Medical Conditions:</p>
-        <div className="flex gap-2 my-2 flex-wrap">
-          <span className="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-xs">
+      <CardContent className="flex flex-col gap-4">
+        <h3 className="mb-1 font-medium text-sm">Medical Information</h3>
+        <p className="text-muted-foreground text-xs">Medical Conditions:</p>
+        <div className="my-2 flex flex-wrap gap-2">
+          <span className="rounded-full bg-gray-200 px-2 py-1 text-gray-800 text-xs">
             Hypertension
           </span>
-          <span className="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-xs">
+          <span className="rounded-full bg-gray-200 px-2 py-1 text-gray-800 text-xs">
             Diabetes
           </span>
         </div>
 
-        <p className="text-xs text-muted-foreground">Allergies:</p>
-        <div className="flex gap-2 my-2 flex-wrap">
-          <span className="bg-red-500 text-white px-2 py-1 rounded-full text-xs">
+        <p className="text-muted-foreground text-xs">Allergies:</p>
+        <div className="my-2 flex flex-wrap gap-2">
+          <span className="rounded-full bg-red-500 px-2 py-1 text-white text-xs">
             Penicillin
           </span>
-          <span className="bg-red-500 text-white px-2 py-1 rounded-full text-xs">
+          <span className="rounded-full bg-red-500 px-2 py-1 text-white text-xs">
             Sulfa Drugs
           </span>
         </div>
       </CardContent>
 
-      <CardFooter className="pt-4 border-t flex gap-2 ">
-        <Button variant="outline" className="w-full text-emerald-700 border-emerald-700 ">
-          <TestTube className="w-4 h-4 mr-2" />
+      <CardFooter className="flex gap-2 border-t pt-4 ">
+        <Button
+          className="w-full border-emerald-700 text-emerald-700 "
+          variant="outline"
+        >
+          <TestTube className="mr-2 h-4 w-4" />
           New Prescription
         </Button>
         <Button
+          className="flex w-full items-center border-black text-sm "
           variant="outline"
-          className="w-full text-sm flex items-center border-black "
         >
-          <TestTube2 className="w-4 h-4" />
+          <TestTube2 className="h-4 w-4" />
           New Rapid Test
         </Button>
       </CardFooter>
@@ -85,34 +88,32 @@ const PatientInfoCard = () => {
   );
 };
 
-
-
 const HealthRecordsCard = () => {
   return (
     <Card className="w-2/3">
       <CardHeader>
-        <h2 className="text-lg font-semibold">Health Records</h2>
-        <p className="text-sm text-muted-foreground">
+        <h2 className="font-semibold text-lg">Health Records</h2>
+        <p className="text-muted-foreground text-sm">
           View medication history, test results, and visit records
         </p>
       </CardHeader>
 
       <CardContent>
         {/* Tabs */}
-        <div className="flex gap-1 bg-gray-100 p-1 rounded-lg mb-4">
-          <button className="flex-1 text-sm font-medium bg-white text-black py-2 rounded-md shadow-sm">
+        <div className="mb-4 flex gap-1 rounded-lg bg-gray-100 p-1">
+          <button className="flex-1 rounded-md bg-white py-2 font-medium text-black text-sm shadow-sm">
             Medications
           </button>
-          <button className="flex-1 text-sm font-medium text-muted-foreground py-2 rounded-md">
+          <button className="flex-1 rounded-md py-2 font-medium text-muted-foreground text-sm">
             Test Results
           </button>
         </div>
 
         {/* Medication Header */}
-        <div className="flex justify-between items-center mb-4">
+        <div className="mb-4 flex items-center justify-between">
           <p className="font-medium text-sm">Current Medications</p>
-          <Button variant="outline" className="text-sm flex items-center gap-1">
-            <PlusCircle className="w-4 h-4" />
+          <Button className="flex items-center gap-1 text-sm" variant="outline">
+            <PlusCircle className="h-4 w-4" />
             Add Medication
           </Button>
         </div>
@@ -121,37 +122,37 @@ const HealthRecordsCard = () => {
         <div className="space-y-3">
           {[
             {
-              name: "Lisinopril",
-              dose: "10mg, Once daily",
-              start: "15 Mar, 2025",
-              end: "Ongoing",
+              name: 'Lisinopril',
+              dose: '10mg, Once daily',
+              start: '15 Mar, 2025',
+              end: 'Ongoing',
             },
             {
-              name: "Metformin",
-              dose: "500mg, Twice daily",
-              start: "2023-02-10",
-              end: "Ongoing",
+              name: 'Metformin',
+              dose: '500mg, Twice daily',
+              start: '2023-02-10',
+              end: 'Ongoing',
             },
             {
-              name: "Aspirin",
-              dose: "81mg, Once daily",
-              start: "15 Mar, 2025",
-              end: "Ongoing",
+              name: 'Aspirin',
+              dose: '81mg, Once daily',
+              start: '15 Mar, 2025',
+              end: 'Ongoing',
             },
           ].map((med, idx) => (
             <div
+              className="justify- flex h-20 flex-row items-center justify-between rounded-md border p-3"
               key={idx}
-              className="border p-3 rounded-md flex flex-row items-center justify- h-20 justify-between"
             >
               <div>
                 <p className="font-semibold text-sm">{med.name}</p>
-                <p className="text-sm text-muted-foreground">{med.dose}</p>
+                <p className="text-muted-foreground text-sm">{med.dose}</p>
               </div>
               <div className="flex flex-col items-end">
-                <p className="text-xs text-muted-foreground mt-1">
+                <p className="mt-1 text-muted-foreground text-xs">
                   Started: {med.start}
                 </p>
-                <p className="text-xs text-muted-foreground">End: {med.end}</p>
+                <p className="text-muted-foreground text-xs">End: {med.end}</p>
               </div>
             </div>
           ))}
@@ -159,8 +160,8 @@ const HealthRecordsCard = () => {
       </CardContent>
 
       <CardFooter className="pt-4">
-        <div className="flex items-center text-sm text-red-600 gap-2">
-          <AlertTriangle className="w-4 h-4" />
+        <div className="flex items-center gap-2 text-red-600 text-sm">
+          <AlertTriangle className="h-4 w-4" />
           Potential interaction with Warfarin
         </div>
       </CardFooter>
@@ -168,31 +169,30 @@ const HealthRecordsCard = () => {
   );
 };
 
-
 const DdiRiskSummary = () => {
   return (
-    <Card className="w-full mt-6">
+    <Card className="mt-6 w-full">
       <CardHeader>
-        <h2 className="text-lg font-semibold">DDI Risk Summary</h2>
-        <p className="text-sm text-muted-foreground">
+        <h2 className="font-semibold text-lg">DDI Risk Summary</h2>
+        <p className="text-muted-foreground text-sm">
           AI-generated drug interaction analysis and recommendations
         </p>
       </CardHeader>
 
       <CardContent className="space-y-6">
         {/* High Risk Interaction */}
-        <div className="border rounded-md p-4 ">
-          <div className="flex items-center gap-2 font-medium mb-2">
-            <AlertTriangle className="w-4 h-4 text-red-500" />
+        <div className="rounded-md border p-4 ">
+          <div className="mb-2 flex items-center gap-2 font-medium">
+            <AlertTriangle className="h-4 w-4 text-red-500" />
             High Risk Interaction Detected
           </div>
-          <p className="text-sm text-black mb-3">
+          <p className="mb-3 text-black text-sm">
             The combination of Aspirin and Warfarin significantly increases the
             risk of bleeding. Both medications affect blood clotting through
             different mechanisms, and their combined effect can be dangerous.
           </p>
-          <p className="text-sm font-medium mb-1">Recommendations:</p>
-          <ul className="list-disc pl-5 text-sm text-muted-foreground space-y-1">
+          <p className="mb-1 font-medium text-sm">Recommendations:</p>
+          <ul className="list-disc space-y-1 pl-5 text-muted-foreground text-sm">
             <li>
               Consider alternative to Aspirin such as Acetaminophen for pain
               relief
@@ -212,19 +212,19 @@ const DdiRiskSummary = () => {
         </div>
 
         {/* Moderate Risk Interaction */}
-        <div className="border rounded-md p-4 ">
-          <div className="flex items-center gap-2 font-medium mb-2">
-            <AlertTriangle className="w-4 h-4 text-yellow-500" />
+        <div className="rounded-md border p-4 ">
+          <div className="mb-2 flex items-center gap-2 font-medium">
+            <AlertTriangle className="h-4 w-4 text-yellow-500" />
             Moderate Risk Interaction
           </div>
-          <p className="text-sm text-black mb-3">
+          <p className="mb-3 text-black text-sm">
             Lisinopril (ACE inhibitor) and Metformin (antidiabetic) may
             interact. ACE inhibitors can potentially enhance the blood
             glucose-lowering effect of Metformin, increasing the risk of
             hypoglycemia.
           </p>
-          <p className="text-sm font-medium mb-1">Recommendations:</p>
-          <ul className="list-disc pl-5 text-sm text-muted-foreground space-y-1">
+          <p className="mb-1 font-medium text-sm">Recommendations:</p>
+          <ul className="list-disc space-y-1 pl-5 text-muted-foreground text-sm">
             <li>Monitor blood glucose levels more frequently</li>
             <li>Adjust Metformin dosage if necessary</li>
             <li>Educate patient about hypoglycemia symptoms and management</li>
@@ -234,5 +234,3 @@ const DdiRiskSummary = () => {
     </Card>
   );
 };
-
-
