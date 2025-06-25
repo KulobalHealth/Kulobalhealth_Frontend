@@ -1,33 +1,34 @@
-"use client";
+'use client';
 
-import { useState } from "react";
 import {
   type ColumnDef,
   type ColumnFiltersState,
-  type SortingState,
-  type VisibilityState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  type SortingState,
   useReactTable,
-} from "@tanstack/react-table";
-import { ChevronDown, ChevronUp, ChevronsUpDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
+  type VisibilityState,
+} from '@tanstack/react-table';
+import { ChevronDown, ChevronsUpDown, ChevronUp } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
 import {
   Table,
   TableBody,
@@ -35,10 +36,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import type { Patient } from "@/lib/data";
-import { calculateAge } from "@/lib/utils";
-import Link from "next/link";
+} from '@/components/ui/table';
+import type { Patient } from '@/lib/data';
+import { calculateAge } from '@/lib/utils';
 
 export function PatientTable({ data }: { data: Patient[] }) {
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -50,18 +50,18 @@ export function PatientTable({ data }: { data: Patient[] }) {
 
   const columns: ColumnDef<Patient>[] = [
     {
-      accessorKey: "id",
+      accessorKey: 'id',
       header: ({ column }) => {
         return (
           <Button
-            variant="ghost"
             className="p-0 font-semibold text-xs"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+            variant="ghost"
           >
             PATIENT ID
-            {column.getIsSorted() === "asc" ? (
+            {column.getIsSorted() === 'asc' ? (
               <ChevronUp className="ml-1 h-3 w-3" />
-            ) : column.getIsSorted() === "desc" ? (
+            ) : column.getIsSorted() === 'desc' ? (
               <ChevronDown className="ml-1 h-3 w-3" />
             ) : (
               <ChevronsUpDown className="ml-1 h-3 w-3 opacity-50" />
@@ -70,22 +70,22 @@ export function PatientTable({ data }: { data: Patient[] }) {
         );
       },
       cell: ({ row }) => (
-        <div className="font-medium">{row.getValue("id")}</div>
+        <div className="font-medium">{row.getValue('id')}</div>
       ),
     },
     {
-      accessorKey: "name",
+      accessorKey: 'name',
       header: ({ column }) => {
         return (
           <Button
-            variant="ghost"
             className="p-0 font-semibold text-xs"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+            variant="ghost"
           >
             PATIENT NAME
-            {column.getIsSorted() === "asc" ? (
+            {column.getIsSorted() === 'asc' ? (
               <ChevronUp className="ml-1 h-3 w-3" />
-            ) : column.getIsSorted() === "desc" ? (
+            ) : column.getIsSorted() === 'desc' ? (
               <ChevronDown className="ml-1 h-3 w-3" />
             ) : (
               <ChevronsUpDown className="ml-1 h-3 w-3 opacity-50" />
@@ -94,22 +94,22 @@ export function PatientTable({ data }: { data: Patient[] }) {
         );
       },
       cell: ({ row }) => (
-        <div className="font-medium">{row.getValue("name")}</div>
+        <div className="font-medium">{row.getValue('name')}</div>
       ),
     },
     {
-      accessorKey: "telephone",
+      accessorKey: 'telephone',
       header: ({ column }) => {
         return (
           <Button
-            variant="ghost"
             className="p-0 font-semibold text-xs"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+            variant="ghost"
           >
             TELEPHONE
-            {column.getIsSorted() === "asc" ? (
+            {column.getIsSorted() === 'asc' ? (
               <ChevronUp className="ml-1 h-3 w-3" />
-            ) : column.getIsSorted() === "desc" ? (
+            ) : column.getIsSorted() === 'desc' ? (
               <ChevronDown className="ml-1 h-3 w-3" />
             ) : (
               <ChevronsUpDown className="ml-1 h-3 w-3 opacity-50" />
@@ -117,21 +117,21 @@ export function PatientTable({ data }: { data: Patient[] }) {
           </Button>
         );
       },
-      cell: ({ row }) => <div>{row.getValue("telephone")}</div>,
+      cell: ({ row }) => <div>{row.getValue('telephone')}</div>,
     },
     {
-      accessorKey: "dateOfBirth",
+      accessorKey: 'dateOfBirth',
       header: ({ column }) => {
         return (
           <Button
-            variant="ghost"
             className="p-0 font-semibold text-xs"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+            variant="ghost"
           >
             DATE OF BIRTH
-            {column.getIsSorted() === "asc" ? (
+            {column.getIsSorted() === 'asc' ? (
               <ChevronUp className="ml-1 h-3 w-3" />
-            ) : column.getIsSorted() === "desc" ? (
+            ) : column.getIsSorted() === 'desc' ? (
               <ChevronDown className="ml-1 h-3 w-3" />
             ) : (
               <ChevronsUpDown className="ml-1 h-3 w-3 opacity-50" />
@@ -139,21 +139,21 @@ export function PatientTable({ data }: { data: Patient[] }) {
           </Button>
         );
       },
-      cell: ({ row }) => <div>{row.getValue("dateOfBirth")}</div>,
+      cell: ({ row }) => <div>{row.getValue('dateOfBirth')}</div>,
     },
     {
-      accessorKey: "age",
+      accessorKey: 'age',
       header: ({ column }) => {
         return (
           <Button
-            variant="ghost"
             className="p-0 font-semibold text-xs"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+            variant="ghost"
           >
             AGE
-            {column.getIsSorted() === "asc" ? (
+            {column.getIsSorted() === 'asc' ? (
               <ChevronUp className="ml-1 h-3 w-3" />
-            ) : column.getIsSorted() === "desc" ? (
+            ) : column.getIsSorted() === 'desc' ? (
               <ChevronDown className="ml-1 h-3 w-3" />
             ) : (
               <ChevronsUpDown className="ml-1 h-3 w-3 opacity-50" />
@@ -164,7 +164,7 @@ export function PatientTable({ data }: { data: Patient[] }) {
       cell: ({ row }) => {
         const dob = row.original.dateOfBirth;
         return (
-          <div className="text-blue-600 font-medium">{calculateAge(dob)}</div>
+          <div className="font-medium text-blue-600">{calculateAge(dob)}</div>
         );
       },
       sortingFn: (rowA, rowB) => {
@@ -174,18 +174,18 @@ export function PatientTable({ data }: { data: Patient[] }) {
       },
     },
     {
-      accessorKey: "gender",
+      accessorKey: 'gender',
       header: ({ column }) => {
         return (
           <Button
-            variant="ghost"
             className="p-0 font-semibold text-xs"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+            variant="ghost"
           >
             GENDER
-            {column.getIsSorted() === "asc" ? (
+            {column.getIsSorted() === 'asc' ? (
               <ChevronUp className="ml-1 h-3 w-3" />
-            ) : column.getIsSorted() === "desc" ? (
+            ) : column.getIsSorted() === 'desc' ? (
               <ChevronDown className="ml-1 h-3 w-3" />
             ) : (
               <ChevronsUpDown className="ml-1 h-3 w-3 opacity-50" />
@@ -194,22 +194,22 @@ export function PatientTable({ data }: { data: Patient[] }) {
         );
       },
       cell: ({ row }) => (
-        <div className="text-emerald-600">{row.getValue("gender")}</div>
+        <div className="text-emerald-600">{row.getValue('gender')}</div>
       ),
     },
     {
-      accessorKey: "location",
+      accessorKey: 'location',
       header: ({ column }) => {
         return (
           <Button
-            variant="ghost"
             className="p-0 font-semibold text-xs"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+            variant="ghost"
           >
             LOCATION
-            {column.getIsSorted() === "asc" ? (
+            {column.getIsSorted() === 'asc' ? (
               <ChevronUp className="ml-1 h-3 w-3" />
-            ) : column.getIsSorted() === "desc" ? (
+            ) : column.getIsSorted() === 'desc' ? (
               <ChevronDown className="ml-1 h-3 w-3" />
             ) : (
               <ChevronsUpDown className="ml-1 h-3 w-3 opacity-50" />
@@ -217,18 +217,18 @@ export function PatientTable({ data }: { data: Patient[] }) {
           </Button>
         );
       },
-      cell: ({ row }) => <div>{row.getValue("location")}</div>,
+      cell: ({ row }) => <div>{row.getValue('location')}</div>,
     },
     {
-      id: "profile",
-      header: "PROFILE",
+      id: 'profile',
+      header: 'PROFILE',
       enableSorting: false,
       cell: ({ row }) => (
         <Link
-          href={`/patients/${row.original.id}`}
           className="flex items-center justify-center"
+          href={`/patients/${row.original.id}`}
         >
-          <Button variant="outline" size="sm" className="w-full">
+          <Button className="w-full" size="sm" variant="outline">
             view profile
           </Button>
         </Link>
@@ -268,7 +268,7 @@ export function PatientTable({ data }: { data: Patient[] }) {
         <div className="flex flex-1 items-center space-x-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="ml-auto">
+              <Button className="ml-auto" variant="outline">
                 Columns
               </Button>
             </DropdownMenuTrigger>
@@ -279,18 +279,18 @@ export function PatientTable({ data }: { data: Patient[] }) {
                 .map((column) => {
                   return (
                     <DropdownMenuCheckboxItem
-                      key={column.id}
-                      className="capitalize"
                       checked={column.getIsVisible()}
+                      className="capitalize"
+                      key={column.id}
                       onCheckedChange={(value) =>
                         column.toggleVisibility(!!value)
                       }
                     >
-                      {column.id === "id"
-                        ? "Patient ID"
-                        : column.id === "name"
-                        ? "Patient Name"
-                        : column.id}
+                      {column.id === 'id'
+                        ? 'Patient ID'
+                        : column.id === 'name'
+                          ? 'Patient Name'
+                          : column.id}
                     </DropdownMenuCheckboxItem>
                   );
                 })}
@@ -320,9 +320,9 @@ export function PatientTable({ data }: { data: Patient[] }) {
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
                   className="hover:bg-muted/50"
+                  data-state={row.getIsSelected() && 'selected'}
+                  key={row.id}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -337,8 +337,8 @@ export function PatientTable({ data }: { data: Patient[] }) {
             ) : (
               <TableRow>
                 <TableCell
-                  colSpan={columns.length}
                   className="h-24 text-center"
+                  colSpan={columns.length}
                 >
                   No patients found.
                 </TableCell>
@@ -349,7 +349,7 @@ export function PatientTable({ data }: { data: Patient[] }) {
       </div>
       <div className="flex items-center justify-between space-x-2 py-4">
         <div className="flex items-center space-x-2">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Showing
             <span className="px-1 font-medium">
               {table.getState().pagination.pageIndex *
@@ -371,8 +371,8 @@ export function PatientTable({ data }: { data: Patient[] }) {
             entries
           </p>
           <Select
-            value={table.getState().pagination.pageSize.toString()}
             onValueChange={handlePageSizeChange}
+            value={table.getState().pagination.pageSize.toString()}
           >
             <SelectTrigger className="h-8 w-[70px]">
               <SelectValue placeholder={table.getState().pagination.pageSize} />
@@ -388,38 +388,38 @@ export function PatientTable({ data }: { data: Patient[] }) {
         </div>
         <div className="flex items-center space-x-2">
           <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.setPageIndex(0)}
             disabled={!table.getCanPreviousPage()}
+            onClick={() => table.setPageIndex(0)}
+            size="sm"
+            variant="outline"
           >
             First
           </Button>
           <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
+            onClick={() => table.previousPage()}
+            size="sm"
+            variant="outline"
           >
             Previous
           </Button>
-          <div className="flex items-center justify-center text-sm font-medium">
-            Page {table.getState().pagination.pageIndex + 1} of{" "}
+          <div className="flex items-center justify-center font-medium text-sm">
+            Page {table.getState().pagination.pageIndex + 1} of{' '}
             {table.getPageCount()}
           </div>
           <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
+            onClick={() => table.nextPage()}
+            size="sm"
+            variant="outline"
           >
             Next
           </Button>
           <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
             disabled={!table.getCanNextPage()}
+            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+            size="sm"
+            variant="outline"
           >
             Last
           </Button>

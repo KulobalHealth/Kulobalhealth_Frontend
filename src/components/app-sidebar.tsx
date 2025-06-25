@@ -1,5 +1,19 @@
-"use client";
+'use client';
 
+import clsx from 'clsx';
+import {
+  BriefcaseMedicalIcon,
+  CircleUserRound,
+  FileText,
+  Home,
+  LucidePersonStanding,
+  ScrollText,
+  ShoppingBasket,
+  Tag,
+} from 'lucide-react';
+import Link from 'next/link';
+
+import { usePathname } from 'next/navigation';
 import {
   Sidebar,
   SidebarContent,
@@ -8,67 +22,53 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import {
-  CircleUserRound,
-  Home,
-  FileText,
-  Tag,
-  ShoppingBasket,
-  ScrollText,
-  BriefcaseMedicalIcon,
-  LucidePersonStanding,
-} from "lucide-react";
-import Link from "next/link";
-
-import { usePathname } from "next/navigation";
-import clsx from "clsx";
+} from '@/components/ui/sidebar';
 
 const items = [
   {
-    title: "Dashboard",
-    url: "/dashboard",
+    title: 'Dashboard',
+    url: '/dashboard',
     icon: Home,
   },
   {
-    title: "Patients",
-    url: "/patients",
-    icon:LucidePersonStanding
+    title: 'Patients',
+    url: '/patients',
+    icon: LucidePersonStanding,
   },
- 
+
   {
-    title: "Prescriptions",
-    url: "/prescriptions",
+    title: 'Prescriptions',
+    url: '/prescriptions',
     icon: ScrollText,
   },
   {
-    title: "Rapid Test",
-    url: "/rapid-tests",
+    title: 'Rapid Test',
+    url: '/rapid-tests',
     icon: BriefcaseMedicalIcon,
   },
   {
-    title: "DDI",
-    url: "/ddi",
+    title: 'DDI',
+    url: '/ddi',
     icon: FileText,
   },
   {
-    title: "My Account",
-    url: "/account",
+    title: 'My Account',
+    url: '/account',
     icon: CircleUserRound,
   },
   {
-    title: "Orders",
-    url: "/orders",
+    title: 'Orders',
+    url: '/orders',
     icon: ShoppingBasket,
   },
   {
-    title: "Payments",
-    url: "/payments",
-    icon:ScrollText,
+    title: 'Payments',
+    url: '/payments',
+    icon: ScrollText,
   },
   {
-    title: "Subscriptions",
-    url: "/subscriptions",
+    title: 'Subscriptions',
+    url: '/subscriptions',
     icon: Tag,
   },
 ];
@@ -77,8 +77,12 @@ export function AppSidebar() {
   const pathname = usePathname();
 
   return (
-    <Sidebar variant="inset" collapsible="icon" className="mt-20 h-[500px] relative border rounded-lg bg-background">
-      <SidebarContent className="bg-background" >
+    <Sidebar
+      className="relative mt-20 h-[500px] rounded-lg border bg-background"
+      collapsible="icon"
+      variant="inset"
+    >
+      <SidebarContent className="bg-background">
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -87,22 +91,21 @@ export function AppSidebar() {
                   <SidebarMenuButton
                     asChild
                     className={clsx(
-                      "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground hover:bg-emerald-200 hover:text-white",
-                      "transition-colors duration-200",
-                      pathname === item.url && "bg-emerald-600 text-white "
+                      'flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground hover:bg-emerald-200 hover:text-white',
+                      'transition-colors duration-200',
+                      pathname === item.url && 'bg-emerald-600 text-white '
                     )}
                   >
-
                     <Link
-                      href={item.url}
                       className="flex items-center justify-between"
+                      href={item.url}
                     >
                       <span className="flex items-center gap-10">
                         <div className="flex items-center">
                           <item.icon
                             className={clsx(
-                              "w-4 h-4 mr-2",
-                              pathname === item.url && "text-current"
+                              'mr-2 h-4 w-4',
+                              pathname === item.url && 'text-current'
                             )}
                           />
                           {item.title}
