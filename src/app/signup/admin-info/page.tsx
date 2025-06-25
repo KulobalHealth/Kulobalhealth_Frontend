@@ -1,36 +1,37 @@
-"use client"
-import { Button } from '@/components/ui/button'
-import TextInput from '@/components/ui/text-input'
-import React, { useState } from 'react'
-import Image from "next/image"
-import groupImg from "@/assets/images/groupImg.png"
-import Logo from '@/components/ui/logo'
-import Link from 'next/link'
-import PasswordInput from '@/components/ui/password-input'
-import { useUserStore } from "@/store/user-store"
-import Loader from '@/components/loader'
-import { useRouter } from 'next/navigation'
+'use client';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import type React from 'react';
+import { useState } from 'react';
+import groupImg from '@/assets/images/groupImg.png';
+import Loader from '@/components/loader';
+import { Button } from '@/components/ui/button';
+import Logo from '@/components/ui/logo';
+import PasswordInput from '@/components/ui/password-input';
+import TextInput from '@/components/ui/text-input';
+import { useUserStore } from '@/store/user-store';
 
 export default function AdminInfo() {
-  const router =  useRouter();
+  const router = useRouter();
 
   const updateUserData = useUserStore((state) => state.updateUserData);
   const createUser = useUserStore((state) => state.createUser);
   const loading = useUserStore((state) => state.isloading);
 
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [adminData, setAdminData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
     // pharmacyLicenseNumber: "",
-    password: "",
+    password: '',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    if (name === "confirmPassword") {
+    if (name === 'confirmPassword') {
       setConfirmPassword(value);
     } else {
       setAdminData((prev) => ({
@@ -42,7 +43,7 @@ export default function AdminInfo() {
 
   const handlePassword = () => {
     if (adminData.password !== confirmPassword) {
-      console.log("Passwords do not match");
+      console.log('Passwords do not match');
       return false;
     }
     return true;
@@ -52,11 +53,11 @@ export default function AdminInfo() {
     e.preventDefault();
     if (!handlePassword()) return;
 
-    console.log("adminData", adminData);
-    
+    console.log('adminData', adminData);
+
     updateUserData({
       firstName: adminData.firstName,
-      lastName: adminData.firstName.split(' ')[1] || '',  
+      lastName: adminData.firstName.split(' ')[1] || '',
       email: adminData.email,
       phoneNumber: adminData.phoneNumber,
       password: adminData.password,
@@ -67,19 +68,28 @@ export default function AdminInfo() {
 
   return (
     <div className="flex flex-row justify-between overflow-hidden">
-      <div className='flex flex-col justify-center items-center w-full lg:w-1/2 h-full bg-white p-9'>
+      <div className="flex h-full w-full flex-col items-center justify-center bg-white p-9 lg:w-1/2">
         <Logo />
-        <h1 className='text-3xl font-bold text-center mt-4'>Create An Account </h1>
-        <p className='text-sm text-gray-500 mt-1'>Provide your details below to continue</p>
+        <h1 className="mt-4 text-center font-bold text-3xl">
+          Create An Account{' '}
+        </h1>
+        <p className="mt-1 text-gray-500 text-sm">
+          Provide your details below to continue
+        </p>
 
-        <form className='w-full max-w-sm mt-6 space-y-4' onSubmit={handleSubmit}>
-          <div className='w-full max-w-sm text-emerald-600 font-bold mt-4 text-sm'>Pharmacy Info <span className='float-right'>2/2</span></div>
+        <form
+          className="mt-6 w-full max-w-sm space-y-4"
+          onSubmit={handleSubmit}
+        >
+          <div className="mt-4 w-full max-w-sm font-bold text-emerald-600 text-sm">
+            Pharmacy Info <span className="float-right">2/2</span>
+          </div>
 
           <TextInput
             label="Enter your full name"
-            placeholder='Admin Full Name'
             name="firstName"
             onChange={handleChange}
+            placeholder="Admin Full Name"
             value={adminData.firstName}
           />
           {/* <TextInput
@@ -91,16 +101,16 @@ export default function AdminInfo() {
           /> */}
           <TextInput
             label="Email"
-            placeholder='Enter email'
             name="email"
             onChange={handleChange}
+            placeholder="Enter email"
             value={adminData.email}
           />
           <TextInput
             label="Phone Number"
-            placeholder='eg. 05534567890'
             name="phoneNumber"
             onChange={handleChange}
+            placeholder="eg. 05534567890"
             value={adminData.phoneNumber}
           />
           {/* <TextInput
@@ -112,38 +122,38 @@ export default function AdminInfo() {
           /> */}
           <PasswordInput
             label="Create password"
-            placeholder='Create password'
             name="password"
             onChange={handleChange}
+            placeholder="Create password"
             value={adminData.password}
           />
           <PasswordInput
             label="Confirm your password"
-            placeholder='Confirm password'
             name="confirmPassword"
             onChange={handleChange}
+            placeholder="Confirm password"
             value={confirmPassword}
           />
 
-          <div className='flex items-center gap-5 w-full'>
-            <Button variant="outline" className='w-1/2'>
+          <div className="flex w-full items-center gap-5">
+            <Button className="w-1/2" variant="outline">
               <Link href="/login">Back</Link>
             </Button>
-            <Button variant="default" className='w-1/2' size="lg" type="submit" >
-              {loading ? <Loader /> : "Confirm"}
+            <Button className="w-1/2" size="lg" type="submit" variant="default">
+              {loading ? <Loader /> : 'Confirm'}
             </Button>
           </div>
         </form>
       </div>
 
-      <div className='index-0 fixed right-0 w-1/2 h-full'>
+      <div className="index-0 fixed right-0 h-full w-1/2">
         <Image
-          src={groupImg}
           alt="login"
+          className="hidden h-full w-full object-cover lg:block"
+          src={groupImg}
           width={800}
-          className="hidden lg:block h-full w-full object-cover"
         />
       </div>
     </div>
-  )
+  );
 }

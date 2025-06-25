@@ -3,7 +3,7 @@ export interface User {
   name: string;
   email: string;
   avatar: string;
-  role: "pharmacist" | "hospitalAdmin";
+  role: 'pharmacist' | 'hospitalAdmin';
 }
 
 export interface Product {
@@ -35,12 +35,12 @@ export interface OrderItem {
 export interface Order {
   id: string;
   items: OrderItem[];
-  status: "processing" | "shipped" | "delivered" | "cancelled";
+  status: 'processing' | 'shipped' | 'delivered' | 'cancelled';
   total: number;
   createdAt: string;
   deliveredAt?: string;
-  paymentMethod: "mobile-money" | "card";
-  paymentType: "full" | "half" | "credit";
+  paymentMethod: 'mobile-money' | 'card';
+  paymentType: 'full' | 'half' | 'credit';
   paymentDetails: {
     network?: string;
     accountNumber?: string;
@@ -61,8 +61,8 @@ export interface Order {
   }>;
 }
 
-export type PaymentStatus = "delivered" | "processing" | "shipped";
-export type PaymentType = "Full Payment" | "Credit" | "Partial";
+export type PaymentStatus = 'delivered' | 'processing' | 'shipped';
+export type PaymentType = 'Full Payment' | 'Credit' | 'Partial';
 
 export interface Payment {
   id: string;

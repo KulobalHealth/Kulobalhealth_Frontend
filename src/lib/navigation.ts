@@ -1,54 +1,54 @@
 import {
+  Bookmark,
+  CreditCard,
   LayoutGrid,
-  Users,
+  Package,
   //   Vial,
   PenSquare,
   UserCircle,
-  Package,
-  CreditCard,
-  Bookmark,
-} from "lucide-react";
+  Users,
+} from 'lucide-react';
 
 export const sidebarNavItems = [
   {
-    title: "Dashboard",
+    title: 'Dashboard',
     icon: LayoutGrid,
-    href: "/marketplace/dashboard",
+    href: '/marketplace/dashboard',
   },
   {
-    title: "Patients",
+    title: 'Patients',
     icon: Users,
-    href: "/marketplace/patients",
+    href: '/marketplace/patients',
   },
   {
-    title: "Rapid Test",
+    title: 'Rapid Test',
     // icon: Vial,
     icon: Users,
-    href: "/marketplace/rapid-test",
+    href: '/marketplace/rapid-test',
   },
   {
-    title: "DDI",
+    title: 'DDI',
     icon: PenSquare,
-    href: "/marketplace/ddi",
+    href: '/marketplace/ddi',
   },
   {
-    title: "My Account",
+    title: 'My Account',
     icon: UserCircle,
-    href: "/marketplace/account",
+    href: '/marketplace/account',
   },
   {
-    title: "Orders",
+    title: 'Orders',
     icon: Package,
-    href: "/marketplace/orders",
+    href: '/marketplace/orders',
   },
   {
-    title: "Payments",
+    title: 'Payments',
     icon: CreditCard,
-    href: "/marketplace/payments",
+    href: '/marketplace/payments',
   },
   {
-    title: "Subscriptions",
+    title: 'Subscriptions',
     icon: Bookmark,
-    href: "/marketplace/subscriptions",
+    href: '/marketplace/subscriptions',
   },
 ];
