@@ -1,22 +1,22 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import TextInput from "@/components/ui/text-input";
-import Image from "next/image";
-import groupImg from "@/assets/images/groupImg.png";
-import PasswordInput from "@/components/ui/password-input";
-import Logo from "@/components/ui/logo";
-import Link from "next/link";
-import { useUserStore } from "@/store/user-store";
-import Loader from "@/components/loader";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+'use client';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import groupImg from '@/assets/images/groupImg.png';
+import Loader from '@/components/loader';
+import { Button } from '@/components/ui/button';
+import Logo from '@/components/ui/logo';
+import PasswordInput from '@/components/ui/password-input';
+import TextInput from '@/components/ui/text-input';
+import { useUserStore } from '@/store/user-store';
 
 export default function Login() {
   const router = useRouter();
   const { loginUser, isloading } = useUserStore();
   const [loginData, setLoginData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
@@ -26,51 +26,50 @@ export default function Login() {
       password: loginData.password,
     })
       .then(() => {
-        router.push("/dashboard");
+        router.push('/dashboard');
       })
       .catch((err) => {
-        console.error("Login failed:", err);
+        console.error('Login failed:', err);
       });
   };
 
   return (
-    <div className="flex flex-row justify-between h-screen overflow-hidden">
-      <div className="flex flex-col justify-center items-center w-full lg:w-1/2 h-full bg-white p-4">
+    <div className="flex h-screen flex-row justify-between overflow-hidden">
+      <div className="flex h-full w-full flex-col items-center justify-center bg-white p-4 lg:w-1/2">
         <Logo />
 
-        <h1 className="text-3xl font-bold text-center mt-4">Welcome back</h1>
-        <p className="text-sm text-gray-500 mt-1">
+        <h1 className="mt-4 text-center font-bold text-3xl">Welcome back</h1>
+        <p className="mt-1 text-gray-500 text-sm">
           Please enter your details to log in.
         </p>
 
-        <form onSubmit={handleLogin} className="w-full max-w-sm mt-6 space-y-4">
+        <form className="mt-6 w-full max-w-sm space-y-4" onSubmit={handleLogin}>
           <div className="space-y-1">
             <TextInput
-              placeholder="Enter email/phone"
               label="Email/ Phone Number"
               onChange={(e) =>
                 setLoginData({ ...loginData, email: e.target.value })
               }
+              placeholder="Enter email/phone"
               value={loginData.email}
-              
             />
           </div>
 
           <div className="space-y-1">
             <PasswordInput
-              placeholder="Enter your password"
               label="Password"
               onChange={(e) =>
                 setLoginData({ ...loginData, password: e.target.value })
               }
+              placeholder="Enter your password"
               value={loginData.password}
             />
           </div>
 
           <div className="text-right">
             <Link
+              className="font-bold text-emerald-700 text-sm hover:underline"
               href="/login/forgot-password"
-              className="text-sm text-emerald-700 font-bold hover:underline"
             >
               Forgot password
             </Link>
@@ -78,32 +77,32 @@ export default function Login() {
 
           <Button
             className="w-full"
-            variant="default"
-            type="submit"
             disabled={isloading}
+            type="submit"
+            variant="default"
           >
-            {isloading ? <Loader /> : "Login"}
+            {isloading ? <Loader /> : 'Login'}
           </Button>
         </form>
 
-        <p className="text-sm text-gray-500 mt-4">
-          Don&apos;t have an account?{" "}
-          <Link href="/signup" className="text-emerald-700 font-bold underline">
+        <p className="mt-4 text-gray-500 text-sm">
+          Don&apos;t have an account?{' '}
+          <Link className="font-bold text-emerald-700 underline" href="/signup">
             Create an account
           </Link>
         </p>
 
-        <p className="text-xs text-gray-400 mt-6">
+        <p className="mt-6 text-gray-400 text-xs">
           Copyright © 2025 Data Leap Technologies LLC
         </p>
       </div>
 
-      <div className="hidden lg:flex lg:w-1/2 h-full">
+      <div className="hidden h-full lg:flex lg:w-1/2">
         <Image
-          src={groupImg}
           alt="login"
+          className="hidden h-full w-full object-cover lg:block"
+          src={groupImg}
           width={800}
-          className="hidden lg:block h-full w-full object-cover"
         />
       </div>
     </div>

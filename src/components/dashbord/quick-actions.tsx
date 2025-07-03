@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export function QuickActions({
   color,
@@ -12,13 +12,13 @@ export function QuickActions({
 }) {
   return (
     <Button
-      className={`${color}  text-white px-6 py-6 rounded-xl w-full justify-between hover:${color} h-18`}
+      className={`${color} w-full justify-between rounded-xl px-6 py-6 text-white hover:${color} h-18`}
     >
       <div className="flex items-center gap-2 text-lg">
         {icon}
         <span>{text}</span>
       </div>
-      <ChevronRight className="w-4 h-4" />
+      <ChevronRight className="h-4 w-4" />
     </Button>
   );
 }

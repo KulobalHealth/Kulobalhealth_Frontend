@@ -1,28 +1,28 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import Image from "next/image";
-import { useState, useEffect } from "react";
-import { Bell, Moon, ShoppingCart, CircleUserRound} from "lucide-react";
-import { useMarketplaceStore } from "@/lib/store";
+import { Bell, CircleUserRound, Moon, ShoppingCart } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
+import { useMarketplaceStore } from '@/lib/store';
 
 const navigationLinks = {
   primary: [
-    { name: "Home", href: "/" },
-    { name: "Marketplace", href: "/marketplace" },
-    { name: "Detection", href: "/detection" },
+    { name: 'Home', href: '/' },
+    { name: 'Marketplace', href: '/marketplace' },
+    { name: 'Detection', href: '/detection' },
   ],
   company: [
-    { name: "About", href: "/about" },
-    { name: "Team", href: "/team" },
-    { name: "Contact", href: "/contact" },
+    { name: 'About', href: '/about' },
+    { name: 'Team', href: '/team' },
+    { name: 'Contact', href: '/contact' },
   ],
 };
 
@@ -36,46 +36,50 @@ export function DashboardNavbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <nav className={"fixed top-0 left-0 right-0 z-50 bg-white shadow max-w-full rounded-sm"}>
-      <div className="flex items-center justify-between px-6 py-4 mx-auto w-[85%]">
+    <nav
+      className={
+        'fixed top-0 right-0 left-0 z-50 max-w-full rounded-sm bg-white shadow'
+      }
+    >
+      <div className="mx-auto flex w-[85%] items-center justify-between px-6 py-4">
         <div className="flex items-center ">
-          <Link href="/" className="text-2xl font-bold text-emerald-500">
+          <Link className="font-bold text-2xl text-emerald-500" href="/">
             <Image
-              src="/logo.webp"
               alt="KulobalHealth"
-              width={180}
-              height={180}
               className="transition-transform duration-300 hover:brightness-110"
+              height={180}
+              src="/logo.webp"
+              width={180}
             />
           </Link>
         </div>
 
-        <div className="items-center hidden space-x-8 md:flex">
+        <div className="hidden items-center space-x-8 md:flex">
           {navigationLinks.primary.map((item) => (
             <Link
-              key={item.name}
-              href={item.href}
               className="transition-colors duration-300 hover:text-emerald-500"
+              href={item.href}
+              key={item.name}
             >
               {item.name}
             </Link>
           ))}
-          <div className="relative group">
+          <div className="group relative">
             <button className="transition-colors duration-300 hover:text-emerald-500">
               Company
             </button>
-            <div className="absolute hidden group-hover:block pt-2 w-48">
-              <div className="bg-white shadow-lg rounded-md py-2">
+            <div className="absolute hidden w-48 pt-2 group-hover:block">
+              <div className="rounded-md bg-white py-2 shadow-lg">
                 {navigationLinks.company.map((item) => (
                   <Link
-                    key={item.name}
+                    className="block px-4 py-2 transition-colors duration-300 hover:bg-emerald-50"
                     href={item.href}
-                    className="block px-4 py-2 hover:bg-emerald-50 transition-colors duration-300"
+                    key={item.name}
                   >
                     {item.name}
                   </Link>
@@ -87,7 +91,7 @@ export function DashboardNavbar() {
         <div className="flex items-center space-x-4">
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center space-x-2">
-              {" "}
+              {' '}
               <CircleUserRound /> Account
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -108,9 +112,9 @@ export function DashboardNavbar() {
           </DropdownMenu>
           <div className="relative">
             <Link href="/marketplace/cart">
-              <ShoppingCart className="cursor-pointer hover:text-emerald-500 transition-colors" />
+              <ShoppingCart className="cursor-pointer transition-colors hover:text-emerald-500" />
               {cart.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="-top-2 -right-2 absolute flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-white text-xs">
                   {cart.length}
                 </span>
               )}
@@ -121,9 +125,9 @@ export function DashboardNavbar() {
         </div>
 
         <button className="p-2 md:hidden" onClick={() => setIsOpen(!isOpen)}>
-          <div className="w-6 h-0.5 bg-gray-600 mb-1"></div>
-          <div className="w-6 h-0.5 bg-gray-600 mb-1"></div>
-          <div className="w-6 h-0.5 bg-gray-600"></div>
+          <div className="mb-1 h-0.5 w-6 bg-gray-600" />
+          <div className="mb-1 h-0.5 w-6 bg-gray-600" />
+          <div className="h-0.5 w-6 bg-gray-600" />
         </button>
       </div>
     </nav>

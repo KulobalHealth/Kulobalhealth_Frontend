@@ -1,38 +1,38 @@
-"use client";
+'use client';
 
-import { useState } from "react";
 import {
   Download,
-  Upload,
   MoreHorizontal,
   Search,
   SlidersHorizontal,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+  Upload,
+} from 'lucide-react';
+import { useState } from 'react';
+import { PatientTable } from '@/components/patient-table';
+import { StatCard } from '@/components/stats-card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { PatientTable } from "@/components/patient-table";
-import { StatCard } from "@/components/stats-card";
-import { Badge } from "@/components/ui/badge";
-import type { Patient } from "@/lib/data";
-import { patients } from "@/lib/data";
+} from '@/components/ui/dropdown-menu';
+import { Input } from '@/components/ui/input';
+import type { Patient } from '@/lib/data';
+import { patients } from '@/lib/data';
 
 export function Patients() {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   //eslint-disable-next-line
   const [data, setData] = useState<Patient[]>(patients);
 
   const totalPatients = data.length;
   const activePatients = data.filter(
-    (patient) => patient.status === "active"
+    (patient) => patient.status === 'active'
   ).length;
   const inactivePatients = data.filter(
-    (patient) => patient.status === "inactive"
+    (patient) => patient.status === 'inactive'
   ).length;
   const refillPatients = data.filter((patient) => patient.needsRefill).length;
 
@@ -45,25 +45,25 @@ export function Patients() {
 
   const handleAddPatient = () => {
     // This would open a modal or navigate to add patient form
-    alert("Add patient functionality would go here");
+    alert('Add patient functionality would go here');
   };
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Patient Care</h1>
+        <h1 className="font-bold text-2xl">Patient Care</h1>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="gap-2">
+          <Button className="gap-2" size="sm" variant="outline">
             <Upload className="h-4 w-4" />
             Import customers
           </Button>
-          <Button variant="outline" size="sm" className="gap-2">
+          <Button className="gap-2" size="sm" variant="outline">
             <Download className="h-4 w-4" />
             Export
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="gap-2">
+              <Button className="gap-2" size="sm" variant="outline">
                 More options
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
@@ -74,9 +74,9 @@ export function Patients() {
             </DropdownMenuContent>
           </DropdownMenu>
           <Button
-            size="sm"
             className="bg-emerald-500 hover:bg-emerald-600"
             onClick={handleAddPatient}
+            size="sm"
           >
             Add Patient
           </Button>
@@ -85,36 +85,36 @@ export function Patients() {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
         <StatCard
+          status="current"
+          statusColor="text-emerald-500"
           title="TOTAL PATIENT"
           value={totalPatients}
-          status="current"
-          statusColor="text-emerald-500"
         />
         <StatCard
+          status="current"
+          statusColor="text-emerald-500"
           title="ACTIVE PATIENT"
           value={activePatients}
-          status="current"
-          statusColor="text-emerald-500"
         />
         <StatCard
-          title="INACTIVE PATIENT"
-          value={inactivePatients}
           status="current"
           statusColor="text-rose-500"
+          title="INACTIVE PATIENT"
+          value={inactivePatients}
         />
         <div className="rounded-lg border bg-emerald-500 p-4 text-white">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium uppercase text-white">
+              <p className="font-medium text-sm text-white uppercase">
                 REFILL PATIENTS
               </p>
-              <h2 className="text-4xl font-bold text-white">
+              <h2 className="font-bold text-4xl text-white">
                 {refillPatients}
               </h2>
             </div>
             <Badge
+              className="border-white bg-white text-emerald-500"
               variant="outline"
-              className="bg-white text-emerald-500 border-white"
             >
               Active
             </Badge>
@@ -124,16 +124,16 @@ export function Patients() {
 
       <div className="flex items-center justify-between">
         <div className="relative w-full max-w-sm">
-          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute top-2.5 left-2.5 h-4 w-4 text-muted-foreground" />
           <Input
-            type="search"
-            placeholder="Search patient"
             className="pl-8"
-            value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search patient"
+            type="search"
+            value={searchQuery}
           />
         </div>
-        <Button variant="outline" size="sm" className="gap-2">
+        <Button className="gap-2" size="sm" variant="outline">
           <SlidersHorizontal className="h-4 w-4" />
           filter By
         </Button>

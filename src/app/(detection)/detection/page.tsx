@@ -1,12 +1,12 @@
-import HeroSection from "@/components/detection/hero";
-import WhyWeBuiltSection from "@/components/detection/mission";
-import WhatItDoesSection from "@/components/detection/features";
-import HowItWorksSection from "@/components/detection/integration";
-import IntegrationSteps from "@/components/detection/integration-steps";
-import AfricanRealitiesSection from "@/components/detection/solutions";
-import ResultsSection from "@/components/detection/results";
-import GetStartedSection from "@/components/detection/cta";
-import DetectionFooter from "@/components/detection/footer";
+import GetStartedSection from '@/components/detection/cta';
+import WhatItDoesSection from '@/components/detection/features';
+import DetectionFooter from '@/components/detection/footer';
+import HeroSection from '@/components/detection/hero';
+import HowItWorksSection from '@/components/detection/integration';
+import IntegrationSteps from '@/components/detection/integration-steps';
+import WhyWeBuiltSection from '@/components/detection/mission';
+import ResultsSection from '@/components/detection/results';
+import AfricanRealitiesSection from '@/components/detection/solutions';
 
 export default function DetectionPage() {
   return (

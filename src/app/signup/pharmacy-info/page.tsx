@@ -1,43 +1,39 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import TextInput from "@/components/ui/text-input";
-import  { useState } from "react";
-import Image from "next/image";
-import groupImg from "@/assets/images/groupImg.png";
-import Logo from "@/components/ui/logo";
-import Link from "next/link";
-import PasswordInput from "@/components/ui/password-input";
-import { useUserStore } from "@/store/user-store"
-import Loader from "@/components/loader";
-import { useRouter } from "next/navigation";
+'use client';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import groupImg from '@/assets/images/groupImg.png';
+import Loader from '@/components/loader';
+import { Button } from '@/components/ui/button';
+import Logo from '@/components/ui/logo';
+import PasswordInput from '@/components/ui/password-input';
+import TextInput from '@/components/ui/text-input';
+import { useUserStore } from '@/store/user-store';
 
 export default function PharmacyInfo() {
   const router = useRouter();
-  const {  updateUserData,isloading ,createUser} = useUserStore();
+  const { updateUserData, isloading, createUser } = useUserStore();
   const [PharmacyData, setPharmacyData] = useState({
-    firstName: "",
-    lastName: "",
+    firstName: '',
+    lastName: '',
     // pharmacyLicenseNumber: "",
-    email: "",
-    phoneNumber: "",
-    password: "",
-
-
-  })
-  const [confirmedPassword, setConfirmedPassword] = useState("");
-
+    email: '',
+    phoneNumber: '',
+    password: '',
+  });
+  const [confirmedPassword, setConfirmedPassword] = useState('');
 
   const PasswordChecker = (password: string, confirmedPassword: string) => {
     if (password !== confirmedPassword) {
-      alert("Passwords do not match");
-      return
+      alert('Passwords do not match');
+      return;
     }
     if (password.length < 8) {
-      alert("Password must be at least 8 characters long");
-      return 
+      alert('Password must be at least 8 characters long');
+      return;
     }
-  
-  }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -45,50 +41,51 @@ export default function PharmacyInfo() {
       ...prev,
       [name]: value,
     }));
-  };  
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     PasswordChecker(PharmacyData.password, confirmedPassword);
-    console.log("Updating user data with:", PharmacyData);
+    console.log('Updating user data with:', PharmacyData);
     updateUserData({
       firstName: PharmacyData.firstName,
-      lastName:PharmacyData.firstName,
+      lastName: PharmacyData.firstName.split(' ')[1] || '',
       email: PharmacyData.email,
       phoneNumber: PharmacyData.phoneNumber,
       password: PharmacyData.password,
     });
-    createUser().then(() => {
-      console.log("User created successfully");
-      router.push(`/signup/verify-otp?email=${PharmacyData.email}`);
-    }).catch((error) => {
-      console.error("Error creating user:", error);
-    });
-
+    createUser()
+      .then(() => {
+        console.log('User created successfully');
+        router.push(`/signup/verify-otp?email=${PharmacyData.email}`);
+      })
+      .catch((error) => {
+        console.error('Error creating user:', error);
+      });
   };
   return (
-    <div className="flex flex-row  justify-between   overflow-hidden">
-      <div className="flex flex-col justify-center items-center w-full lg:w-1/2 h-full bg-white  p-9">
+    <div className="flex flex-row justify-between overflow-hidden">
+      <div className="flex h-full w-full flex-col items-center justify-center bg-white p-9 lg:w-1/2">
         <Logo />
 
-        <h1 className="text-3xl font-bold text-center mt-4">
-          Create An Account{" "}
+        <h1 className="mt-4 text-center font-bold text-3xl">
+          Create An Account{' '}
         </h1>
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="mt-1 text-gray-500 text-sm">
           Provide your details below to continue
         </p>
 
-        <form className="w-full max-w-sm mt-6 space-y-4">
+        <form className="mt-6 w-full max-w-sm space-y-4">
           {/* Step indicator */}
-          <div className="w-full max-w-sm text-emerald-600 font-bold mt-4 text-sm">
+          <div className="mt-4 w-full max-w-sm font-bold text-emerald-600 text-sm">
             Hospital Admin Info <span className="float-right">2/2</span>
           </div>
           <TextInput
-            placeholder="Pharmacy Name"
             label="Enter your pharmacy name"
             name="firstName"
-            value={PharmacyData.firstName}
             onChange={handleChange}
+            placeholder="Pharmacy Name"
+            value={PharmacyData.firstName}
           />
           {/* <TextInput
             placeholder="Pharmacy License Number"
@@ -98,44 +95,48 @@ export default function PharmacyInfo() {
             onChange={handleChange}
           /> */}
           <TextInput
-            placeholder="Enter email"
             label="Email"
             name="email"
-            value={PharmacyData.email}
             onChange={handleChange}
+            placeholder="Enter email"
+            value={PharmacyData.email}
           />
 
           <TextInput
-            placeholder="Phone Number"
             label="eg. 05534567890"
             name="phoneNumber"
-            value={PharmacyData.phoneNumber}
             onChange={handleChange}
+            placeholder="Phone Number"
+            value={PharmacyData.phoneNumber}
           />
-         
+
           <PasswordInput
-            placeholder="Create password"
             label="Create password"
             name="password"
-            value={PharmacyData.password}
             onChange={handleChange}
-
+            placeholder="Create password"
+            value={PharmacyData.password}
           />
           <PasswordInput
-            placeholder="Confirm password"
             label="Confirm your password"
             name="confirmedPassword"
-            value={confirmedPassword}
             onChange={(e) => setConfirmedPassword(e.target.value)}
+            placeholder="Confirm password"
+            value={confirmedPassword}
           />
 
-          <div className="flex items-center gap-5 w-full">
-            <Button variant="outline" className="w-1/2">
+          <div className="flex w-full items-center gap-5">
+            <Button className="w-1/2" variant="outline">
               <Link href="/login">Back</Link>
             </Button>
-            <Button variant="default" className="w-1/2  " size={"lg"} onClick={handleSubmit}>
-              <Link href="/signup/verify-otp" className="text-white">
-               { isloading ? <Loader/> : "Confirm"}
+            <Button
+              className="w-1/2 "
+              onClick={handleSubmit}
+              size={'lg'}
+              variant="default"
+            >
+              <Link className="text-white" href="/signup/verify-otp">
+                {isloading ? <Loader /> : 'Confirm'}
               </Link>
             </Button>
           </div>
@@ -144,10 +145,10 @@ export default function PharmacyInfo() {
 
       <div className="index-0 fixed right-0">
         <Image
-          src={groupImg}
           alt="login"
+          className="hidden h-full w-full object-cover lg:block"
+          src={groupImg}
           width={800}
-          className="hidden lg:block h-full w-full object-cover"
         />
       </div>
     </div>

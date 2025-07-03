@@ -1,17 +1,17 @@
-import { useState } from "react";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-} from "@/components/ui/select";
+import { useState } from 'react';
 import {
   Command,
-  CommandInput,
   CommandEmpty,
+  CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
+} from '@/components/ui/command';
+import {
+  Select,
+  SelectContent,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 interface SelectProps {
   data?: [];
@@ -20,23 +20,23 @@ interface SelectProps {
 
 const SelectComponent = ({ placeholder }: SelectProps) => {
   const names = [
-    "Isaac Desi Amare",
-    "Mary",
-    "Nasir Obel",
-    "Martha",
-    "Isaac",
-    "James",
-    "John",
-    "Philip",
-    "George",
+    'Isaac Desi Amare',
+    'Mary',
+    'Nasir Obel',
+    'Martha',
+    'Isaac',
+    'James',
+    'John',
+    'Philip',
+    'George',
   ];
 
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState('');
 
   return (
-    <label className="text-sm block space-y-1">
+    <label className="block space-y-1 text-sm">
       {placeholder}
-      <Select value={selected} onValueChange={setSelected}>
+      <Select onValueChange={setSelected} value={selected}>
         <SelectTrigger>
           <SelectValue placeholder="Select patient" />
         </SelectTrigger>
@@ -48,8 +48,8 @@ const SelectComponent = ({ placeholder }: SelectProps) => {
               {names.map((name) => (
                 <CommandItem
                   key={name}
-                  value={name}
                   onSelect={() => setSelected(name)}
+                  value={name}
                 >
                   {name}
                 </CommandItem>

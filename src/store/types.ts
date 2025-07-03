@@ -9,9 +9,5 @@ export interface User {
   email: string;
   phoneNumber: string;
   password: string;
-  type:string
-  
-  
-
-
+  type: string;
 }

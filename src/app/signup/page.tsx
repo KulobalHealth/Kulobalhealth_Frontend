@@ -1,32 +1,32 @@
-"use client"
-import Image from "next/image"
-import type React from "react"
-import img from "@/assets/images/groupImg.png"
-import Logo from "@/components/ui/logo"
-import Link from "next/link"
-import BusinessRegistrationForm from "@/components/auth/business-registration-form"
+'use client';
+import Image from 'next/image';
+import Link from 'next/link';
+import type React from 'react';
 // import { useUserStore } from "@/store/user-store";
-import { useState } from "react"
+import { useState } from 'react';
+import img from '@/assets/images/groupImg.png';
+import BusinessRegistrationForm from '@/components/auth/business-registration-form';
+import Logo from '@/components/ui/logo';
 // import { useRouter } from "next/navigation"
 
 export default function BusinessRegistration() {
   // const router = useRouter()
   // const { registerBusiness, isloading } = useUserStore();
   const [formData, setFormData] = useState({
-    businessName: "",
-    ownerName: "",
-    location: "",
-    email: "",
-    telephone: "",
-    role: "",
-  })
+    businessName: '',
+    ownerName: '',
+    location: '',
+    email: '',
+    telephone: '',
+    role: '',
+  });
 
   // Mock loading state since the store is commented out
-  const isloading = false
+  const isloading = false;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault() // Prevent form reload
-    console.log("Business registration data:", formData)
+    e.preventDefault(); // Prevent form reload
+    console.log('Business registration data:', formData);
     // registerBusiness(formData)
     //   .then(() => {
     //     router.push("/dashboard");
@@ -34,42 +34,48 @@ export default function BusinessRegistration() {
     //   .catch((err) => {
     //     console.error("Registration failed:", err);
     //   });
-  }
+  };
 
   return (
-    <div className="flex flex-row justify-between h-screen overflow-hidden">
-      <div className="flex flex-col justify-center items-center w-full lg:w-1/2 h-full bg-white p-4">
+    <div className="flex h-screen flex-row justify-between overflow-hidden">
+      <div className="flex h-full w-full flex-col items-center justify-center bg-white p-4 lg:w-1/2">
         <Logo />
 
-        <h1 className="text-3xl font-bold text-center mt-4">Register Your Business</h1>
-        <p className="text-sm text-gray-500 mt-1">Please enter your business details to get started.</p>
+        <h1 className="mt-4 text-center font-bold text-3xl">
+          Register Your Business
+        </h1>
+        <p className="mt-1 text-gray-500 text-sm">
+          Please enter your business details to get started.
+        </p>
 
         <BusinessRegistrationForm
           formData={formData}
-          setFormData={setFormData}
           handleSubmit={handleSubmit}
           isloading={isloading}
+          setFormData={setFormData}
         />
 
-        <p className="text-sm text-gray-500 mt-4">
-          Already have an account?{" "}
-          <Link href="/login" className="text-emerald-700 font-bold underline">
+        <p className="mt-4 text-gray-500 text-sm">
+          Already have an account?{' '}
+          <Link className="font-bold text-emerald-700 underline" href="/login">
             Sign in here
           </Link>
         </p>
 
-        <p className="text-xs text-gray-400 mt-6">Copyright © 2025 Data Leap Technologies LLC</p>
+        <p className="mt-6 text-gray-400 text-xs">
+          Copyright © 2025 Data Leap Technologies LLC
+        </p>
       </div>
 
-      <div className="hidden lg:flex lg:w-1/2 h-full">
+      <div className="hidden h-full lg:flex lg:w-1/2">
         <Image
-          src={img}
           alt="business registration"
-          width={800}
+          className="hidden h-full w-full object-cover lg:block"
           height={800}
-          className="hidden lg:block h-full w-full object-cover"
+          src={img}
+          width={800}
         />
       </div>
     </div>
-  )
+  );
 }

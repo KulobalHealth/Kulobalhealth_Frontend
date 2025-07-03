@@ -1,7 +1,7 @@
-import { create } from "zustand";
-import { mockAuth } from "./mock-auth";
-import { mockProducts, mockOrders, mockPayments } from "./mock-data";
-import type { User, Product, CartItem, Order, Payment } from "./types";
+import { create } from 'zustand';
+import { mockAuth } from './mock-auth';
+import { mockOrders, mockPayments, mockProducts } from './mock-data';
+import type { CartItem, Order, Payment, Product, User } from './types';
 
 // Mock user is now imported from mock-auth.ts
 const dummyUser = mockAuth.getMockUser();
@@ -50,7 +50,7 @@ interface MarketplaceState {
     branches?: number;
     email: string;
     password: string;
-    role: "pharmacist" | "hospitalAdmin";
+    role: 'pharmacist' | 'hospitalAdmin';
   }) => Promise<boolean>;
   getOrderById: (orderId: string) => Order | undefined;
   getPayments: () => Payment[];
@@ -64,8 +64,8 @@ export const useMarketplaceStore = create<MarketplaceState>((set, get) => ({
   payments: mockPayments,
   user: null,
   isAuthenticated: false,
-  selectedCategory: "All Products",
-  searchQuery: "",
+  selectedCategory: 'All Products',
+  searchQuery: '',
 
   getOrderById: (orderId: string) => {
     return get().orders.find((order) => order.id === orderId);
@@ -109,7 +109,7 @@ export const useMarketplaceStore = create<MarketplaceState>((set, get) => ({
 
     const product = findProduct(get().products, productId);
     if (!product) {
-      console.warn("Product not found");
+      console.warn('Product not found');
       return;
     }
 
@@ -137,7 +137,7 @@ export const useMarketplaceStore = create<MarketplaceState>((set, get) => ({
       }
       return false;
     } catch (error) {
-      console.error("Login failed:", error);
+      console.error('Login failed:', error);
       return false;
     }
   },
@@ -159,7 +159,7 @@ export const useMarketplaceStore = create<MarketplaceState>((set, get) => ({
       });
       return true;
     } catch (error) {
-      console.error("Signup failed:", error);
+      console.error('Signup failed:', error);
       return false;
     }
   },
