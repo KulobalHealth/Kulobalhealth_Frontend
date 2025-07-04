@@ -1,33 +1,15 @@
-<<<<<<< HEAD
 "use client";
 
-import Marketplace from "@/components/marketplace/products";
-
-
-
-export default function MarketplacePage() {
-  
-  return (
-    <div className="">
-
-    <Marketplace/>
-
-    </div>
-  );
-}
-=======
-'use client';
-
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import ProductGrid from '@/components/marketplace/product-grid';
-import { useMarketplaceStore } from '@/lib/store';
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import ProductGrid from "@/components/marketplace/product-grid";
+import { useMarketplaceStore } from "@/lib/store";
 
 const categories = [
-  'All Products',
-  'Rapid Test Kits',
-  'Vital Monitoring Devices',
-  'Medical Materials',
-  'Assistive technologies',
+  "All Products",
+  "Rapid Test Kits",
+  "Vital Monitoring Devices",
+  "Medical Materials",
+  "Assistive technologies",
 ];
 
 export default function MarketplacePage() {
@@ -42,8 +24,8 @@ export default function MarketplacePage() {
             <button
               className={`${
                 category === selectedCategory
-                  ? 'bg-primary-600 text-white'
-                  : 'border border-gray-200 bg-white dark:border-none dark:bg-[#2e2e2e]'
+                  ? "bg-primary-600 text-white"
+                  : "border border-gray-200 bg-white dark:border-none dark:bg-[#2e2e2e]"
               } whitespace-nowrap rounded-md px-4 py-1.5 text-sm`}
               key={category}
               onClick={() => setSelectedCategory(category)}
@@ -84,4 +66,3 @@ export default function MarketplacePage() {
     </div>
   );
 }
->>>>>>> 2e204526af3930f4a2c1eb8432192121dad78a50

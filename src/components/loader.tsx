@@ -1,15 +1,4 @@
-<<<<<<< HEAD
-import { Loader2 } from 'lucide-react'
-
-export default function Loader() {
-    return (
-        <div className="flex justify-center items-center">
-            <Loader2 className="h-6 w-6 animate-spin text-white" />
-        </div>
-    );
-}
-=======
-import { Loader2 } from 'lucide-react';
+import { Loader2 } from "lucide-react";
 
 export default function Loader() {
   return (
@@ -18,4 +7,3 @@ export default function Loader() {
     </div>
   );
 }
->>>>>>> 2e204526af3930f4a2c1eb8432192121dad78a50

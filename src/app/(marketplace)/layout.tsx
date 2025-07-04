@@ -1,38 +1,12 @@
-<<<<<<< HEAD
 "use client";
 
-
-import { FloatingBottomNavbar } from "@/components/floating-navbar";
+import { Search } from "lucide-react";
+import { usePathname } from "next/navigation";
 import Footer from "@/components/footer";
-
-export default function MarketplaceLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-
-
-  return (
-    <div className="min-h-screen flex flex-col py-8">
-        <main className=" flex-1 min-h-screen my-8">
-          {children}
-          </main>
-         <FloatingBottomNavbar />
-
-      <Footer />
-    </div>
-  );
-}
-=======
-'use client';
-
-import { Search } from 'lucide-react';
-import { usePathname } from 'next/navigation';
-import Footer from '@/components/footer';
-import Filters from '@/components/marketplace/filters';
-import { Navbar } from '@/components/navbar';
-import { Icons } from '@/components/ui/icons';
-import { useMarketplaceStore } from '@/lib/store';
+import Filters from "@/components/marketplace/filters";
+import { Navbar } from "@/components/navbar";
+import { Icons } from "@/components/ui/icons";
+import { useMarketplaceStore } from "@/lib/store";
 
 export default function MarketplaceLayout({
   children,
@@ -41,7 +15,7 @@ export default function MarketplaceLayout({
 }) {
   const pathname = usePathname();
   const { searchQuery, setSearchQuery } = useMarketplaceStore();
-  const isProductDetail = pathname.includes('/marketplace/');
+  const isProductDetail = pathname.includes("/marketplace/");
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -110,4 +84,3 @@ export default function MarketplaceLayout({
     </div>
   );
 }
->>>>>>> 2e204526af3930f4a2c1eb8432192121dad78a50

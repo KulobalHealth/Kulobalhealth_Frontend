@@ -1,39 +1,4 @@
-<<<<<<< HEAD
-"use client"
-import PatientRegistration from "@/components/dashbord/add-patients"
-import type React from "react"
-
-import { useState } from "react"
-import TableHeaderComponent from "@/components/dashbord/table-header"
-import PatientTable from "@/components/dashbord/patients"
-
-
-export default function Patients() {
-  const [searchTerm, setSearchTerm] = useState("")
-
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value)
-  }
-
-  return (
-    <div className="w-full min-h-screen dark:bg-transparent py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="space-y-6">
-          <TableHeaderComponent
-            handleSearch={handleSearch}
-            title="Patient Management"
-            text="Manage your patients effectively and track their medical records mb-10"
-            component={<PatientRegistration />}
-          />
-
-          <PatientTable searchTerm={searchTerm} />
-        </div>
-      </div>
-    </div>
-  )
-}
-=======
-'use client';
+"use client";
 import {
   ChevronLeft,
   ChevronRight,
@@ -41,16 +6,16 @@ import {
   Eye,
   Plus,
   UserRound,
-} from 'lucide-react';
-import { useState } from 'react';
-import PatientRegistration from '@/components/dashbord/add-patients';
-import TableHeaderComponent from '@/components/dashbord/table-header';
-import { Button } from '@/components/ui/button';
+} from "lucide-react";
+import { useState } from "react";
+import PatientRegistration from "@/components/dashbord/add-patients";
+import TableHeaderComponent from "@/components/dashbord/table-header";
+import { Button } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
+} from "@/components/ui/popover";
 import {
   Table,
   TableBody,
@@ -58,18 +23,18 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from "@/components/ui/table";
 
 const patientsData = [
   {
     id: 1,
-    name: 'Olivia Rhye',
-    dob: '9 Mar 2000',
-    gender: 'Male',
-    contact: '0540777343',
-    condition: 'Asthma',
-    lastVisit: '7 May, 2025',
-    avatar: '/avatars/olivia.png',
+    name: "Olivia Rhye",
+    dob: "9 Mar 2000",
+    gender: "Male",
+    contact: "0540777343",
+    condition: "Asthma",
+    lastVisit: "7 May, 2025",
+    avatar: "/avatars/olivia.png",
   },
 ];
 
@@ -77,7 +42,7 @@ const ITEMS_PER_PAGE = 10;
 
 export default function Patients() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value.toLowerCase());
@@ -185,7 +150,7 @@ export default function Patients() {
               key={page}
               onClick={() => goToPage(page)}
               size="sm"
-              variant={page === currentPage ? 'default' : 'outline'}
+              variant={page === currentPage ? "default" : "outline"}
             >
               {page}
             </Button>
@@ -204,4 +169,3 @@ export default function Patients() {
     </div>
   );
 }
->>>>>>> 2e204526af3930f4a2c1eb8432192121dad78a50

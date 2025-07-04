@@ -1,32 +1,17 @@
-<<<<<<< HEAD
-import NewPrescription from "@/components/dashbord/add-prescription";
-
-import React from "react";
-
-const AddPrescription = () => {
-  return (
-    <div className="w-full  max-w-7xl  mx-auto  px-10 min-h-screen">
-       <NewPrescription />
-    </div>
-  );
-};
-
-export default AddPrescription;
-=======
-'use client';
-import { ArrowLeftIcon } from 'lucide-react';
-import DateSelectorComponent from '@/components/dashbord/date-selector';
-import SelectComponent from '@/components/dashbord/select-component';
-import { Button } from '@/components/ui/button';
+"use client";
+import { ArrowLeftIcon } from "lucide-react";
+import DateSelectorComponent from "@/components/dashbord/date-selector";
+import SelectComponent from "@/components/dashbord/select-component";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function NewPrescription() {
   return (
@@ -65,7 +50,7 @@ export default function NewPrescription() {
         </CardContent>
         <CardFooter className="mt-4 flex flex-row justify-end gap-1 border-t-2 p-6">
           <Button className=" bg-gray-300" variant="outline">
-            Cancel{' '}
+            Cancel{" "}
           </Button>
           <Button
             className="hover:bg-emerald-600 hover:text-white"
@@ -78,4 +63,3 @@ export default function NewPrescription() {
     </>
   );
 }
->>>>>>> 2e204526af3930f4a2c1eb8432192121dad78a50

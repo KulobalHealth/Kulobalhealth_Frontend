@@ -1,18 +1,4 @@
-<<<<<<< HEAD
-import Prescriptions from "@/components/dashbord/prescription";
-import React from "react";
-
-const PrescriptionsPage = () => {
-  return (
-    <div className="w-full  max-w-7xl  mx-auto  px-10 min-h-screen">
-    <Prescriptions/>
-    </div>
-  );
-};
-
-export default PrescriptionsPage;
-=======
-'use client';
+"use client";
 import {
   ChevronLeft,
   ChevronRight,
@@ -21,18 +7,18 @@ import {
   Package,
   Plus,
   UserRound,
-} from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import type React from 'react';
-import { useState } from 'react';
-import { AppBadge } from '@/components/dashbord/badge';
-import TableHeaderComponent from '@/components/dashbord/table-header';
-import { Button } from '@/components/ui/button';
+} from "lucide-react";
+import { useRouter } from "next/navigation";
+import type React from "react";
+import { useState } from "react";
+import { AppBadge } from "@/components/dashbord/badge";
+import TableHeaderComponent from "@/components/dashbord/table-header";
+import { Button } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
+} from "@/components/ui/popover";
 import {
   Table,
   TableBody,
@@ -40,108 +26,108 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from "@/components/ui/table";
 
 const prescriptionData = [
   {
     id: 1,
-    patientName: 'Kelvin Lee',
-    medication: 'Paracetamol',
-    dosage: '500mg',
-    frequency: 'Twice a day',
-    startDate: '11th Jan 2023',
-    endDate: '11th Feb 2023',
-    status: 'Active',
+    patientName: "Kelvin Lee",
+    medication: "Paracetamol",
+    dosage: "500mg",
+    frequency: "Twice a day",
+    startDate: "11th Jan 2023",
+    endDate: "11th Feb 2023",
+    status: "Active",
   },
   {
     id: 2,
-    patientName: 'Sophia Walker',
-    medication: 'Amoxicillin',
-    dosage: '250mg',
-    frequency: 'Three times a day',
-    startDate: '5th Feb 2023',
-    endDate: '15th Feb 2023',
-    status: 'Completed',
+    patientName: "Sophia Walker",
+    medication: "Amoxicillin",
+    dosage: "250mg",
+    frequency: "Three times a day",
+    startDate: "5th Feb 2023",
+    endDate: "15th Feb 2023",
+    status: "Completed",
   },
   {
     id: 3,
-    patientName: 'James Smith',
-    medication: 'Ibuprofen',
-    dosage: '400mg',
-    frequency: 'Once a day',
-    startDate: '10th Mar 2023',
-    endDate: '20th Mar 2023',
-    status: 'Active',
+    patientName: "James Smith",
+    medication: "Ibuprofen",
+    dosage: "400mg",
+    frequency: "Once a day",
+    startDate: "10th Mar 2023",
+    endDate: "20th Mar 2023",
+    status: "Active",
   },
   {
     id: 4,
-    patientName: 'Linda Johnson',
-    medication: 'Metformin',
-    dosage: '850mg',
-    frequency: 'Twice a day',
-    startDate: '1st Apr 2023',
-    endDate: '1st Jul 2023',
-    status: 'Ongoing',
+    patientName: "Linda Johnson",
+    medication: "Metformin",
+    dosage: "850mg",
+    frequency: "Twice a day",
+    startDate: "1st Apr 2023",
+    endDate: "1st Jul 2023",
+    status: "Ongoing",
   },
   {
     id: 5,
-    patientName: 'Michael Brown',
-    medication: 'Atorvastatin',
-    dosage: '10mg',
-    frequency: 'Once a day',
-    startDate: '15th May 2023',
-    endDate: '15th Nov 2023',
-    status: 'Active',
+    patientName: "Michael Brown",
+    medication: "Atorvastatin",
+    dosage: "10mg",
+    frequency: "Once a day",
+    startDate: "15th May 2023",
+    endDate: "15th Nov 2023",
+    status: "Active",
   },
   {
     id: 6,
-    patientName: 'Emily Davis',
-    medication: 'Lisinopril',
-    dosage: '20mg',
-    frequency: 'Once a day',
-    startDate: '20th Jun 2023',
-    endDate: '20th Dec 2023',
-    status: 'Ongoing',
+    patientName: "Emily Davis",
+    medication: "Lisinopril",
+    dosage: "20mg",
+    frequency: "Once a day",
+    startDate: "20th Jun 2023",
+    endDate: "20th Dec 2023",
+    status: "Ongoing",
   },
   {
     id: 7,
-    patientName: 'Daniel Martinez',
-    medication: 'Azithromycin',
-    dosage: '500mg',
-    frequency: 'Once daily for 3 days',
-    startDate: '25th Jul 2023',
-    endDate: '28th Jul 2023',
-    status: 'Completed',
+    patientName: "Daniel Martinez",
+    medication: "Azithromycin",
+    dosage: "500mg",
+    frequency: "Once daily for 3 days",
+    startDate: "25th Jul 2023",
+    endDate: "28th Jul 2023",
+    status: "Completed",
   },
   {
     id: 8,
-    patientName: 'Ava Wilson',
-    medication: 'Prednisone',
-    dosage: '10mg',
-    frequency: 'Once a day',
-    startDate: '1st Aug 2023',
-    endDate: '31st Aug 2023',
-    status: 'Completed',
+    patientName: "Ava Wilson",
+    medication: "Prednisone",
+    dosage: "10mg",
+    frequency: "Once a day",
+    startDate: "1st Aug 2023",
+    endDate: "31st Aug 2023",
+    status: "Completed",
   },
   {
     id: 9,
-    patientName: 'Ethan Thomas',
-    medication: 'Losartan',
-    dosage: '50mg',
-    frequency: 'Once a day',
-    startDate: '10th Sep 2023',
-    endDate: '10th Mar 2024',
-    status: 'Active',
+    patientName: "Ethan Thomas",
+    medication: "Losartan",
+    dosage: "50mg",
+    frequency: "Once a day",
+    startDate: "10th Sep 2023",
+    endDate: "10th Mar 2024",
+    status: "Active",
   },
   {
     id: 10,
-    patientName: 'Mia Garcia',
-    medication: 'Omeprazole',
-    dosage: '20mg',
-    frequency: 'Once before meals',
-    startDate: '5th Oct 2023',
-    endDate: '5th Nov 2023',
-    status: 'Completed',
+    patientName: "Mia Garcia",
+    medication: "Omeprazole",
+    dosage: "20mg",
+    frequency: "Once before meals",
+    startDate: "5th Oct 2023",
+    endDate: "5th Nov 2023",
+    status: "Completed",
   },
 ];
 
@@ -150,7 +136,7 @@ const ITEMS_PER_PAGE = 10;
 export default function Prescriotions() {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value.toLowerCase());
@@ -181,7 +167,7 @@ export default function Prescriotions() {
       <TableHeaderComponent
         component={
           <Button
-            onClick={() => router.push('/prescriptions/new-prescription')}
+            onClick={() => router.push("/prescriptions/new-prescription")}
             size="sm"
             variant="outline"
           >
@@ -267,7 +253,7 @@ export default function Prescriotions() {
               key={page}
               onClick={() => goToPage(page)}
               size="sm"
-              variant={page === currentPage ? 'default' : 'outline'}
+              variant={page === currentPage ? "default" : "outline"}
             >
               {page}
             </Button>
@@ -286,4 +272,3 @@ export default function Prescriotions() {
     </div>
   );
 }
->>>>>>> 2e204526af3930f4a2c1eb8432192121dad78a50

@@ -1,49 +1,4 @@
-<<<<<<< HEAD
-"use client"
-import { useState } from "react"
-import type React from "react"
-
-import { Button } from "@/components/ui/button"
-import { User } from "lucide-react"
-import { useRouter } from "next/navigation"
-import TableHeaderComponent from "@/components/dashbord/table-header"
-import RapidTestTable from "@/components/dashbord/rapid-test-table"
-
-export default function RapidTests() {
-  const router = useRouter()
-  const [searchTerm, setSearchTerm] = useState("")
-
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value)
-  }
-
-  return (
-    <div className="w-full min-h-screen  dark:bg-background py-6">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="space-y-6">
-          <TableHeaderComponent
-            handleSearch={handleSearch}
-            title="Rapid Test Management"
-            text="Manage and track rapid test results efficiently"
-            component={
-              <Button
-                className="bg-green-600 hover:bg-green-700 text-white w-[200px] hidden"
-                onClick={() => router.push("/rapid-tests/add-new-test")}
-              >
-                <User className="h-4 w-4 mr-2" />
-                Add New Test
-              </Button>
-            }
-          />
-
-          <RapidTestTable searchTerm={searchTerm} />
-        </div>
-      </div>
-    </div>
-  )
-}
-=======
-'use client';
+"use client";
 import {
   ChevronLeft,
   ChevronRight,
@@ -52,17 +7,17 @@ import {
   Plus,
   User,
   UserRound,
-} from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { AppBadge } from '@/components/dashbord/badge';
-import TableHeaderComponent from '@/components/dashbord/table-header';
-import { Button } from '@/components/ui/button';
+} from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { AppBadge } from "@/components/dashbord/badge";
+import TableHeaderComponent from "@/components/dashbord/table-header";
+import { Button } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
+} from "@/components/ui/popover";
 import {
   Table,
   TableBody,
@@ -70,44 +25,44 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from "@/components/ui/table";
 
 const patientsData = [
   {
     id: 1,
-    name: 'John Doe',
-    testType: 'Blood Test',
-    results: '145mg/dL',
-    status: 'Normal',
-    date: '7th March 2023',
-    conductedBy: 'Dr. Smith',
+    name: "John Doe",
+    testType: "Blood Test",
+    results: "145mg/dL",
+    status: "Normal",
+    date: "7th March 2023",
+    conductedBy: "Dr. Smith",
   },
   {
     id: 1,
-    name: 'John Doe',
-    testType: 'Blood Test',
-    results: '145mg/dL',
-    status: 'Elevated',
-    date: '7th March 2023',
-    conductedBy: 'Dr. Smith',
+    name: "John Doe",
+    testType: "Blood Test",
+    results: "145mg/dL",
+    status: "Elevated",
+    date: "7th March 2023",
+    conductedBy: "Dr. Smith",
   },
   {
     id: 1,
-    name: 'John Doe',
-    testType: 'Blood Test',
-    results: '145mg/dL',
-    status: 'High',
-    date: '7th March 2023',
-    conductedBy: 'Dr. Smith',
+    name: "John Doe",
+    testType: "Blood Test",
+    results: "145mg/dL",
+    status: "High",
+    date: "7th March 2023",
+    conductedBy: "Dr. Smith",
   },
   {
     id: 1,
-    name: 'John Doe',
-    testType: 'Blood Test',
-    results: '145mg/dL',
-    status: 'BorderLine High',
-    date: '7th March 2023',
-    conductedBy: 'Dr. Smith',
+    name: "John Doe",
+    testType: "Blood Test",
+    results: "145mg/dL",
+    status: "BorderLine High",
+    date: "7th March 2023",
+    conductedBy: "Dr. Smith",
   },
 ];
 
@@ -116,7 +71,7 @@ const ITEMS_PER_PAGE = 10;
 export default function RapidTests() {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value.toLowerCase());
@@ -148,7 +103,7 @@ export default function RapidTests() {
         component={
           <Button
             className="w-[200px] bg-emerald-600 text-white"
-            onClick={() => router.push('/rapid-tests/add-new-test')}
+            onClick={() => router.push("/rapid-tests/add-new-test")}
           >
             <User height={24} width={24} />
             Add Patient
@@ -232,7 +187,7 @@ export default function RapidTests() {
               key={page}
               onClick={() => goToPage(page)}
               size="sm"
-              variant={page === currentPage ? 'default' : 'outline'}
+              variant={page === currentPage ? "default" : "outline"}
             >
               {page}
             </Button>
@@ -251,4 +206,3 @@ export default function RapidTests() {
     </div>
   );
 }
->>>>>>> 2e204526af3930f4a2c1eb8432192121dad78a50
