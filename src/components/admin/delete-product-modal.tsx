@@ -1,18 +1,17 @@
-'use client';
+"use client";
 
-import { X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
+} from "@/components/ui/dialog";
 
 interface DeleteProductModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
+  readonly isOpen: boolean;
+  readonly onClose: () => void;
+  readonly onConfirm: () => void;
 }
 
 export function DeleteProductModal({
@@ -23,11 +22,8 @@ export function DeleteProductModal({
   return (
     <Dialog onOpenChange={onClose} open={isOpen}>
       <DialogContent className="sm:max-w-md">
-        <DialogHeader className="flex flex-row items-center justify-between">
+        <DialogHeader>
           <DialogTitle>Delete Product Stock</DialogTitle>
-          <Button onClick={onClose} size="sm" variant="ghost">
-            <X className="h-4 w-4" />
-          </Button>
         </DialogHeader>
 
         <div className="py-4">

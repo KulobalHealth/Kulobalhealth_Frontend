@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Box,
@@ -10,9 +10,9 @@ import {
   Truck,
   UserCog,
   Users,
-} from 'lucide-react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+} from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Sidebar,
   SidebarContent,
@@ -22,52 +22,52 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '@/components/ui/sidebar';
+} from "@/components/ui/sidebar";
 
 const items = [
   {
-    title: 'Dashboard',
-    url: '/admin/dashboard',
+    title: "Dashboard",
+    url: "/admin/dashboard",
     icon: LayoutDashboard,
   },
   {
-    title: 'Patients Care',
-    url: '/admin/patients-care',
+    title: "Patients Care",
+    url: "/admin/patients-care",
     icon: Users,
   },
   {
-    title: 'Pharmacies',
-    url: '/admin/pharmacies',
+    title: "Pharmacies",
+    url: "/admin/pharmacies",
     icon: ShoppingBag,
   },
   {
-    title: 'DDI Integrations',
-    url: '/admin/ddi-integrations',
+    title: "DDI Integrations",
+    url: "/admin/ddi-integrations",
     icon: Link2,
   },
   {
-    title: 'Orders',
-    url: '/admin/orders',
+    title: "Orders",
+    url: "/admin/orders",
     icon: Package,
   },
   {
-    title: 'Suppliers',
-    url: '/admin/suppliers',
+    title: "Suppliers",
+    url: "/admin/suppliers",
     icon: Truck,
   },
   {
-    title: 'Products',
-    url: '/admin/products',
+    title: "Products",
+    url: "/admin/products",
     icon: Box,
   },
   {
-    title: 'Analytics & Reports',
-    url: '/admin/analytics-reports',
+    title: "Analytics & Reports",
+    url: "/admin/analytics",
     icon: FileBarChart2,
   },
   {
-    title: 'Account & Settings',
-    url: '/admin/account-settings',
+    title: "Account & Settings",
+    url: "/admin/account-settings",
     icon: UserCog,
   },
 ];
@@ -87,8 +87,8 @@ export function AppSidebar() {
                     <Link
                       className={
                         pathname === item.url
-                          ? 'bg-primary-600 text-white'
-                          : 'text-black dark:text-white'
+                          ? "bg-primary-600 text-white"
+                          : "text-black dark:text-white"
                       }
                       href={item.url}
                       prefetch

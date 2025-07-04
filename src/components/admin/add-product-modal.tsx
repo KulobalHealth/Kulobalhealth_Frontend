@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { ArrowLeft, Upload, X } from 'lucide-react';
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { ArrowLeft, Upload } from "lucide-react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
-import { Textarea } from '@/components/ui/textarea';
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
 
 interface AddProductModalProps {
   isOpen: boolean;
@@ -21,16 +21,16 @@ interface AddProductModalProps {
 
 export function AddProductModal({ isOpen, onClose }: AddProductModalProps) {
   const [formData, setFormData] = useState({
-    productName: '',
-    price: '',
-    quantity: '',
-    brand: '',
-    description: '',
+    productName: "",
+    price: "",
+    quantity: "",
+    brand: "",
+    description: "",
     visibility: true,
   });
 
   const handleSave = () => {
-    console.log('Adding new product:', formData);
+    console.log("Adding new product:", formData);
     onClose();
   };
 
@@ -50,19 +50,14 @@ export function AddProductModal({ isOpen, onClose }: AddProductModalProps) {
               </p>
             </div>
           </div>
-          <Button onClick={onClose} size="sm" variant="ghost">
-            <X className="h-4 w-4" />
-          </Button>
         </DialogHeader>
 
         <div className="space-y-6 py-4">
-          {/* Product Stock Information */}
           <div>
             <h3 className="mb-4 font-medium text-primary-600">
               Product Stock Information
             </h3>
 
-            {/* Product Images */}
             <div className="mb-6">
               <Label className="mb-3 block font-medium text-sm">
                 Product Images
@@ -83,7 +78,6 @@ export function AddProductModal({ isOpen, onClose }: AddProductModalProps) {
               </div>
             </div>
 
-            {/* Form Fields */}
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="product-name">Product Name*</Label>
@@ -131,7 +125,6 @@ export function AddProductModal({ isOpen, onClose }: AddProductModalProps) {
               </div>
             </div>
 
-            {/* Product Description */}
             <div className="mt-4 space-y-2">
               <Label htmlFor="description">Product Description</Label>
               <Textarea
@@ -146,7 +139,6 @@ export function AddProductModal({ isOpen, onClose }: AddProductModalProps) {
             </div>
           </div>
 
-          {/* Visibility */}
           <div>
             <h3 className="mb-2 font-medium">Visibility</h3>
             <p className="mb-3 text-gray-600 text-sm">

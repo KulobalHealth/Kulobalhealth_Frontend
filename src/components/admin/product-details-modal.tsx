@@ -1,20 +1,21 @@
-'use client';
+"use client";
 
-import { X } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Label } from '@/components/ui/label';
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+
+import type { Product } from "@/store/products";
 
 interface ProductDetailsModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  product: any;
+  readonly isOpen: boolean;
+  readonly onClose: () => void;
+  readonly product: Product | null;
 }
 
 export function ProductDetailsModal({
@@ -27,11 +28,8 @@ export function ProductDetailsModal({
   return (
     <Dialog onOpenChange={onClose} open={isOpen}>
       <DialogContent className="sm:max-w-2xl">
-        <DialogHeader className="flex flex-row items-center justify-between">
+        <DialogHeader>
           <DialogTitle>Product Stock Details</DialogTitle>
-          <Button onClick={onClose} size="sm" variant="ghost">
-            <X className="h-4 w-4" />
-          </Button>
         </DialogHeader>
 
         <div className="space-y-6 py-4">

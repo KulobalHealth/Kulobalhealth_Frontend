@@ -1,25 +1,25 @@
-'use client';
+"use client";
 
-import { Calendar } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Calendar } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import type { DDIIntegrator } from '@/store/ddi-integrators';
+} from "@/components/ui/select";
+import type { DDIIntegrator } from "@/store/ddi-integrators";
 
 interface EditIntegratorModalProps {
   readonly isOpen: boolean;
@@ -35,15 +35,15 @@ export function EditIntegratorModal({
   onSave,
 }: EditIntegratorModalProps) {
   const [formData, setFormData] = useState({
-    productName: '',
-    companyName: '',
-    softwareType: '',
-    apiKey: '',
-    email: '',
-    phoneNumber: '',
-    description: '',
-    contactPerson: '',
-    website: '',
+    productName: "",
+    companyName: "",
+    softwareType: "",
+    apiKey: "",
+    email: "",
+    phoneNumber: "",
+    description: "",
+    contactPerson: "",
+    website: "",
   });
 
   useEffect(() => {
@@ -55,9 +55,9 @@ export function EditIntegratorModal({
         apiKey: integrator.apiKey,
         email: integrator.email,
         phoneNumber: integrator.phoneNumber,
-        description: integrator.description ?? '',
-        contactPerson: integrator.contactPerson ?? '',
-        website: integrator.website ?? '',
+        description: integrator.description ?? "",
+        contactPerson: integrator.contactPerson ?? "",
+        website: integrator.website ?? "",
       });
     }
   }, [integrator]);
@@ -69,9 +69,9 @@ export function EditIntegratorModal({
       productName: formData.productName,
       company: formData.companyName,
       softwareType: formData.softwareType as
-        | 'Web System'
-        | 'Mobile App'
-        | 'Desktop App',
+        | "Web System"
+        | "Mobile App"
+        | "Desktop App",
       apiKey: formData.apiKey,
       email: formData.email,
       phoneNumber: formData.phoneNumber,
@@ -93,7 +93,6 @@ export function EditIntegratorModal({
           <DialogTitle>Edit DDI Integration Details</DialogTitle>
         </DialogHeader>
         <div className="space-y-6 py-4">
-          {/* Integration Status */}
           <div className="flex items-center justify-between rounded-lg bg-gray-50 p-3">
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4 text-gray-600" />
@@ -110,7 +109,6 @@ export function EditIntegratorModal({
             </div>
           </div>
 
-          {/* Company Information */}
           <div>
             <h3 className="mb-4 font-medium">Company Information</h3>
             <div className="grid grid-cols-2 gap-4">
@@ -165,7 +163,6 @@ export function EditIntegratorModal({
             </div>
           </div>
 
-          {/* Contact Information */}
           <div>
             <h3 className="mb-4 font-medium">Contact Information</h3>
             <div className="grid grid-cols-2 gap-4">
@@ -210,12 +207,7 @@ export function EditIntegratorModal({
           <Button onClick={onClose} variant="outline">
             Cancel
           </Button>
-          <Button
-            className="bg-green-500 hover:bg-green-600"
-            onClick={handleSave}
-          >
-            Save Changes
-          </Button>
+          <Button onClick={handleSave}>Save Changes</Button>
         </div>
       </DialogContent>
     </Dialog>
