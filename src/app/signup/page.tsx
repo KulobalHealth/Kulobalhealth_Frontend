@@ -4,10 +4,17 @@ import type React from "react"
 import img from "@/assets/images/groupImg.png"
 import Link from "next/link"
 import BusinessRegistrationForm from "@/components/auth/business-registration-form"
-
+import SignupSkeleton from "@/components/auth/signup-skeleton"
+import { useAuthStore } from "@/lib/mock-auth/auth"
 
 export default function BusinessRegistration() {
+  const { isLoading } = useAuthStore()
  
+  // Show skeleton while loading
+  if (isLoading) {
+    return <SignupSkeleton />
+  }
+
   return (
     <div className="flex flex-row justify-between h-screen overflow-hidden">
       <div className="flex flex-col justify-center items-center w-full lg:w-1/2 h-full bg-white p-4">
@@ -16,7 +23,10 @@ export default function BusinessRegistration() {
         <p className="text-sm text-gray-500 mt-1">Please enter your business details to get started.</p>
 
         <BusinessRegistrationForm
-        
+          onSuccess={() => {
+            // Redirect to dashboard after successful registration
+            window.location.href = "/dashboard"
+          }}
         />
 
         <p className="text-sm text-gray-500 mt-4">

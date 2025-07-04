@@ -10,6 +10,7 @@ import PasswordInput from "@/components/ui/password-input"
 import Link from "next/link"
 
 import Loader from "@/components/loader"
+import LoginSkeleton from "@/components/auth/login-skeleton"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import toast from "react-hot-toast"
@@ -22,10 +23,12 @@ export default function Login() {
     email: "",
     password: "",
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault() // Prevent form reload
     clearError()
+    setIsSubmitting(true)
 
     // Show loading toast with green styling
     const loadingToast = toast.loading("Signing you in...", {
@@ -53,11 +56,15 @@ export default function Login() {
             color: "#065f46",
           },
         })
-        router.push("/dashboard")
+        // Use window.location for a full page redirect
+        window.location.href = "/dashboard"
+      } else {
+        setIsSubmitting(false)
       }
     } catch (err) {
       // Dismiss loading toast
       toast.dismiss(loadingToast)
+      setIsSubmitting(false)
 
       // Error toast with red styling but keeping the requested green theme for consistency
       toast.error("Login failed. Please check your credentials.", {
@@ -70,6 +77,11 @@ export default function Login() {
       })
       console.error("Login failed:", err)
     }
+  }
+
+  // Show skeleton while loading or submitting
+  if (isLoading || isSubmitting) {
+    return <LoginSkeleton />
   }
 
   return (
