@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import type React from "react"
 import { AppSidebar } from "@/components/app-sidebar"
 import { Inter } from "next/font/google"
@@ -35,3 +36,42 @@ export default function DashboardLayout({
     </div>
   )
 }
+=======
+import { Inter } from 'next/font/google';
+import type React from 'react';
+import { AppSidebar } from '@/components/app-sidebar';
+import Footer from '@/components/dashbord/footer';
+import { DashboardNavbar } from '@/components/dashbord/navbar';
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
+
+const inter = Inter({ subsets: ['latin'] });
+
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <div
+      className=" min-h-screen w-full bg-white "
+      style={{ fontFamily: inter.style.fontFamily }}
+    >
+      <DashboardNavbar />
+
+      <SidebarProvider>
+        <SidebarInset>
+          <main className="b flex min-h-screen items-center justify-center">
+            <div className=" flex h-full w-[85%] p-4 md:py-24">
+              <AppSidebar />
+
+              {children}
+            </div>
+          </main>
+        </SidebarInset>
+      </SidebarProvider>
+
+      <Footer />
+    </div>
+  );
+}
+>>>>>>> 2e204526af3930f4a2c1eb8432192121dad78a50

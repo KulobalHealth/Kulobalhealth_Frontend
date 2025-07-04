@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import type React from "react"
 
 interface QuickActionsProps {
@@ -25,3 +26,29 @@ export function QuickActions({
     </button>
   )
 }
+=======
+import { ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+export function QuickActions({
+  color,
+  text,
+  icon,
+}: {
+  color?: string;
+  text: string;
+  icon?: React.ReactNode;
+}) {
+  return (
+    <Button
+      className={`${color} w-full justify-between rounded-xl px-6 py-6 text-white hover:${color} h-18`}
+    >
+      <div className="flex items-center gap-2 text-lg">
+        {icon}
+        <span>{text}</span>
+      </div>
+      <ChevronRight className="h-4 w-4" />
+    </Button>
+  );
+}
+>>>>>>> 2e204526af3930f4a2c1eb8432192121dad78a50
