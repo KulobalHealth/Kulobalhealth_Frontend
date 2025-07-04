@@ -15,7 +15,7 @@ import { mockProducts, Product } from "@/store/products";
 
 export default function ProductsManagement() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [hasProducts, setHasProducts] = useState(false); // Toggle this to show empty/populated state
+  const [hasProducts, setHasProducts] = useState(false); 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -96,7 +96,7 @@ export default function ProductsManagement() {
           <EmptyState onAddProduct={handleAddProduct} />
         )}
 
-        {/* Toggle button for demo purposes */}
+
         <div className="fixed right-4 bottom-4">
           <Button
             className="bg-white shadow-lg"
