@@ -1,6 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button"
-import type React from "react"
+import toast from "react-hot-toast"
 
 import TextInput from "@/components/ui/text-input"
 import Loader from "@/components/loader"
@@ -8,6 +8,8 @@ import { useState } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
+import { useAuthStore } from "@/lib/mock-auth/auth"
+
 
 // Complete schema for all form fields
 const formSchema = z.object({
@@ -16,7 +18,8 @@ const formSchema = z.object({
   location: z.string().min(1, "Location is required"),
   email: z.string().email("Please enter a valid email address"),
   telephone: z.string().min(1, "Telephone number is required"),
-  role: z.enum(["pharmacy", "otc", "supplier"], {
+  password: z.string().min(6, "Password must be at least 6 characters"),
+  role: z.enum(["pharmacy", "supplier","otc"], {
     required_error: "Please select a role",
   }),
 })
@@ -24,34 +27,11 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>
 
 interface BusinessRegistrationFormProps {
-  formData: {
-    businessName: string
-    ownerName: string
-    location: string
-    email: string
-    telephone: string
-    role: string
-  }
-  setFormData: React.Dispatch<
-    React.SetStateAction<{
-      businessName: string
-      ownerName: string
-      location: string
-      email: string
-      telephone: string
-      role: string
-    }>
-  >
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
-  isloading: boolean
+  onSuccess?: () => void
 }
 
-export default function BusinessRegistrationForm({
-  formData,
-  setFormData,
-  handleSubmit,
-  isloading,
-}: BusinessRegistrationFormProps) {
+export default function BusinessRegistrationForm({ onSuccess }: BusinessRegistrationFormProps) {
+  const { register, isLoading, error, clearError } = useAuthStore()
   const [currentStep, setCurrentStep] = useState(1)
 
   const {
@@ -59,77 +39,64 @@ export default function BusinessRegistrationForm({
     handleSubmit: hookFormSubmit,
     formState: { errors },
     trigger,
-    getValues,
+    reset,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      businessName: formData?.businessName || "",
-      ownerName: formData?.ownerName || "",
-      location: formData?.location || "",
-      email: formData?.email || "",
-      telephone: formData?.telephone || "",
-      role: (formData?.role as "pharmacy" | "otc" | "supplier") || undefined,
+      businessName: "",
+      ownerName: "",
+      location: "",
+      email: "",
+      telephone: "",
+      password: "",
+      role: undefined,
     },
     mode: "onChange",
   })
 
-  // Sync form values with parent state whenever form values change
-  const syncFormData = () => {
-    const currentValues = getValues()
-    setFormData({
-      businessName: currentValues.businessName || "",
-      ownerName: currentValues.ownerName || "",
-      location: currentValues.location || "",
-      email: currentValues.email || "",
-      telephone: currentValues.telephone || "",
-      role: currentValues.role || "",
-    })
-  }
-
   const handleNext = async () => {
-    syncFormData()
     const isValid = await trigger(["businessName", "ownerName", "location"])
     if (isValid) {
       setCurrentStep(2)
+      toast.success("Step 1 completed! Please fill in your contact details.", {
+        icon: "✅",
+      })
+    } else {
+      toast.error("Please fill in all required fields correctly.", {
+        icon: "❌",
+      })
     }
   }
 
   const handleBack = () => {
-    syncFormData()
     setCurrentStep(1)
   }
 
-  const onSubmit = (data: FormData) => {
-    // Update parent state with final form data
-    setFormData({
+  const onSubmit = async (data: FormData) => {
+    clearError()
+
+    // Show loading toast
+    const loadingToast = toast.loading("Creating your account...", {
+      icon: "⏳",
+    })
+
+    const result = await register({
       businessName: data.businessName,
       ownerName: data.ownerName,
       location: data.location,
       email: data.email,
       telephone: data.telephone,
+      password: data.password,
       role: data.role,
     })
 
-    // Create a synthetic form event for compatibility
-    const syntheticEvent = {
-      preventDefault: () => {},
-      currentTarget: {} as HTMLFormElement,
-      target: {} as HTMLFormElement,
-      bubbles: false,
-      cancelable: false,
-      defaultPrevented: false,
-      eventPhase: 0,
-      isTrusted: false,
-      nativeEvent: {} as Event,
-      timeStamp: Date.now(),
-      type: "submit",
-      persist: () => {},
-      isDefaultPrevented: () => false,
-      isPropagationStopped: () => false,
-      stopPropagation: () => {},
-    } as React.FormEvent<HTMLFormElement>
+    // Dismiss loading toast
+    toast.dismiss(loadingToast)
 
-    handleSubmit(syntheticEvent)
+    if (result.success) {
+      reset()
+      onSuccess?.()
+    }
   }
 
   if (currentStep === 1) {
@@ -151,7 +118,6 @@ export default function BusinessRegistrationForm({
                   value={field.value}
                   onChange={(e) => {
                     field.onChange(e.target.value)
-                    syncFormData()
                   }}
                 />
               )}
@@ -170,7 +136,6 @@ export default function BusinessRegistrationForm({
                   value={field.value}
                   onChange={(e) => {
                     field.onChange(e.target.value)
-                    syncFormData()
                   }}
                 />
               )}
@@ -189,7 +154,6 @@ export default function BusinessRegistrationForm({
                   value={field.value}
                   onChange={(e) => {
                     field.onChange(e.target.value)
-                    syncFormData()
                   }}
                 />
               )}
@@ -207,6 +171,11 @@ export default function BusinessRegistrationForm({
 
   return (
     <>
+      {error && (
+        <div className="w-full max-w-sm bg-red-50 border border-red-200 text-red-600 px-3 py-2 rounded-md text-sm mb-4">
+          {error}
+        </div>
+      )}
       <div className="w-full max-w-sm text-emerald-600 font-bold mt-4 text-sm">
         Contact & Role <span className="float-right">2/2</span>
       </div>
@@ -223,7 +192,6 @@ export default function BusinessRegistrationForm({
                 value={field.value}
                 onChange={(e) => {
                   field.onChange(e.target.value)
-                  syncFormData()
                 }}
               />
             )}
@@ -242,12 +210,27 @@ export default function BusinessRegistrationForm({
                 value={field.value}
                 onChange={(e) => {
                   field.onChange(e.target.value)
-                  syncFormData()
                 }}
               />
             )}
           />
           {errors.telephone && <p className="text-red-500 text-xs mt-1">{errors.telephone.message}</p>}
+        </div>
+
+        <div className="space-y-1">
+          <Controller
+            name="password"
+            control={control}
+            render={({ field }) => (
+              <TextInput
+                placeholder="Enter password"
+                label="Password"
+                value={field.value}
+                onChange={(e) => field.onChange(e.target.value)}
+              />
+            )}
+          />
+          {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
         </div>
 
         <div className="space-y-1">
@@ -263,39 +246,30 @@ export default function BusinessRegistrationForm({
                       type="radio"
                       value="pharmacy"
                       checked={field.value === "pharmacy"}
-                      onChange={(e) => {
-                        field.onChange(e.target.value)
-                        syncFormData()
-                      }}
+                      onChange={(e) => field.onChange(e.target.value)}
                       className="accent-emerald-600 w-4 h-4"
                     />
-                    <span>Pharmacy</span>
-                  </label>
-                  <label className="flex items-center gap-3 text-sm cursor-pointer">
-                    <input
-                      type="radio"
-                      value="otc"
-                      checked={field.value === "otc"}
-                      onChange={(e) => {
-                        field.onChange(e.target.value)
-                        syncFormData()
-                      }}
-                      className="accent-emerald-600 w-4 h-4"
-                    />
-                    <span>OTC</span>
+                    <span>PHARMACY</span>
                   </label>
                   <label className="flex items-center gap-3 text-sm cursor-pointer">
                     <input
                       type="radio"
                       value="supplier"
                       checked={field.value === "supplier"}
-                      onChange={(e) => {
-                        field.onChange(e.target.value)
-                        syncFormData()
-                      }}
+                      onChange={(e) => field.onChange(e.target.value)}
                       className="accent-emerald-600 w-4 h-4"
                     />
-                    <span>Supplier</span>
+                    <span>SUPPLIER</span>
+                  </label>
+                  <label className="flex items-center gap-3 text-sm cursor-pointer">
+                    <input
+                      type="radio"
+                      value="otc"
+                      checked={field.value === "otc"}
+                      onChange={(e) => field.onChange(e.target.value)}
+                      className="accent-emerald-600 w-4 h-4"
+                    />
+                    <span>OTC</span>
                   </label>
                 </div>
               </div>
@@ -308,8 +282,8 @@ export default function BusinessRegistrationForm({
           <Button type="button" variant="outline" className="flex-1" onClick={handleBack}>
             Back
           </Button>
-          <Button className="flex-1" variant="default" type="submit" disabled={isloading}>
-            {isloading ? <Loader /> : "Register Business"}
+          <Button className="flex-1" variant="default" type="submit" disabled={isLoading}>
+            {isLoading ? <Loader /> : "Register Business"}
           </Button>
         </div>
       </form>

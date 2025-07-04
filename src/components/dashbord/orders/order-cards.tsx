@@ -17,31 +17,33 @@ export default function OrderCard({ order, onViewDetails }: OrderCardProps) {
     switch (status) {
       case "processing":
         return {
-          color: "bg-blue-50 text-blue-700 border-blue-200",
+          color: "bg-blue-50 text-blue-700  dark:bg-blue-950/50 dark:text-blue-300 ",
           dotColor: "bg-blue-500",
           icon: <Clock className="w-3 h-3" />,
         }
       case "shipped":
         return {
-          color: "bg-orange-50 text-orange-700 border-orange-200",
+          color:
+            "bg-orange-50 text-orange-700  dark:bg-orange-950/60 dark:text-orange-300 dark:",
           dotColor: "bg-orange-500",
           icon: <Truck className="w-3 h-3" />,
         }
       case "delivered":
         return {
-          color: "bg-green-50 text-green-700 border-green-200",
+          color:
+            "bg-green-50 text-green-700  dark:bg-green-950/50 dark:text-green-300 ",
           dotColor: "bg-green-500",
           icon: <CheckCircle className="w-3 h-3" />,
         }
       case "cancelled":
         return {
-          color: "bg-red-50 text-red-700 border-red-200",
+          color: "bg-red-50 text-red-700 dark:bg-red-950/50 dark:text-red-300 ",
           dotColor: "bg-red-500",
           icon: <XCircle className="w-3 h-3" />,
         }
       default:
         return {
-          color: "bg-gray-50 text-gray-700 border-gray-200",
+          color: "bg-gray-50 text-gray-700 dark:bg-gray-900 dark:text-gray-300 ",
           dotColor: "bg-gray-500",
           icon: <Clock className="w-3 h-3" />,
         }
@@ -51,7 +53,7 @@ export default function OrderCard({ order, onViewDetails }: OrderCardProps) {
   const statusConfig = getStatusConfig(order.status)
 
   return (
-    <Card className="bg-white shadow-none overflow-hidden  w-full  mb-4">
+    <Card className="bg-white dark:bg-background shadow-none overflow-hidden w-full mb-4 ">
       <CardContent className="p-0">
         <div className="flex h-[200px]">
           {/* Product Image - Takes 1/3 */}
@@ -69,9 +71,12 @@ export default function OrderCard({ order, onViewDetails }: OrderCardProps) {
           <div className="w-2/3 p-8 flex items-center justify-between">
             <div className="flex-grow">
               <div className="space-y-2">
-                <h3 className="text-xl font-semibold text-gray-900 leading-tight">{order.productName}</h3>
-                <p className="text-base text-gray-600">
-                  Order No.&nbsp;&nbsp;<span className="font-medium text-gray-800">{order.orderNumber}</span>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 leading-tight">
+                  {order.productName}
+                </h3>
+                <p className="text-base text-gray-600 dark:text-gray-400">
+                  Order No.&nbsp;&nbsp;
+                  <span className="font-medium text-gray-800 dark:text-gray-200">{order.orderNumber}</span>
                 </p>
               </div>
 
@@ -82,7 +87,7 @@ export default function OrderCard({ order, onViewDetails }: OrderCardProps) {
                   {statusConfig.icon}
                   <span className="ml-2">{order.status.charAt(0).toUpperCase() + order.status.slice(1)}</span>
                 </Badge>
-                <div className="text-base text-gray-600 font-medium">{order.dateOrdered}</div>
+                <div className="text-base text-gray-600 dark:text-gray-400 font-medium">{order.dateOrdered}</div>
               </div>
             </div>
 
@@ -91,7 +96,7 @@ export default function OrderCard({ order, onViewDetails }: OrderCardProps) {
               <Button
                 variant="outline"
                 onClick={() => onViewDetails(order)}
-                className="border-green-600 text-green-600 hover:bg-green-50 flex items-center gap-2 px-6 py-3 text-base font-medium transition-colors duration-200"
+                className="border-green-600 dark:border-green-500 text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 flex items-center gap-2 px-6 py-3 text-base font-medium transition-colors duration-200"
               >
                 View details
                 <ChevronRight className="w-5 h-5" />

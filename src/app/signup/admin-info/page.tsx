@@ -17,6 +17,7 @@ export default function AdminInfo() {
   const updateUserData = useUserStore((state) => state.updateUserData);
   const createUser = useUserStore((state) => state.createUser);
   const loading = useUserStore((state) => state.isloading);
+  
 
   const [confirmPassword, setConfirmPassword] = useState("");
   const [adminData, setAdminData] = useState({

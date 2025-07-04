@@ -20,6 +20,8 @@ export default function CartPage() {
     return sum + (item.product?.price ?? 0) * item.quantity;
   }, 0);
 
+  alert(cartItems)
+
   const tax = subtotal * 0.03;
   const total = subtotal + tax;
 

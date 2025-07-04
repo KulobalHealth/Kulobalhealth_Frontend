@@ -42,11 +42,11 @@ export default function Component() {
 
   return (
     <div className="w-full mx-auto p-6 bg-background min-h-screen">
-      <h1 className="text-2xl font-semibold text-gray-900 mb-6">Orders & Purchase History</h1>
+      <h1 className="text-2xl font-semibold text-gray-900 mb-6 dark:text-white ">Orders & Purchase History</h1>
 
       {/* Navigation Tabs */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center space-x-2">
+      <div className="flex items-center justify-between mb-6 dark:text-white">
+        <div className="flex items-center space-x-2 dark:text-white">
           {tabs.map((tab) => (
             <Button
               key={tab.key}
@@ -54,7 +54,7 @@ export default function Component() {
               className={`rounded-full ${
                 activeTab === tab.key
                   ? "bg-green-600 hover:bg-green-700 text-white"
-                  : "text-gray-600 hover:text-gray-900"
+                  : "text-gray-600 hover:text-gray-900 dark:text-white"
               }`}
               onClick={() => setActiveTab(tab.key)}
             >
@@ -63,7 +63,7 @@ export default function Component() {
           ))}
         </div>
 
-        <Button variant="outline" className="flex items-center gap-2 text-gray-600">
+        <Button variant="outline" className="flex items-center gap-2 text-gray-600 dark:text-white dark:border-0">
           Filter by:
            <Filter className="w-4 h-4" />
         </Button>

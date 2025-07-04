@@ -9,15 +9,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { MailIcon, ArrowLeft } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useUserStore } from "@/store/user-store";
-import Loader from "@/components/loader";
+
 import { Suspense } from "react";
 
 function OTPVerificationComponent() {
   const [value, setValue] = React.useState("");
   const searchParams = useSearchParams();
   const email = searchParams.get("email");
-  const { VerificationEmail, isloading } = useUserStore();
+  // const { VerificationEmail, isloading } = useUserStore();
   const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -27,7 +26,7 @@ function OTPVerificationComponent() {
       return;
     }
 
-    VerificationEmail(email, value);
+    // VerificationEmail(email, value);
     router.push("/login");
 
     console.log("OTP submitted:", value);
@@ -67,7 +66,7 @@ function OTPVerificationComponent() {
         className="mt-8 w-full max-w-sm py-6 text-lg bg-emerald-600 hover:bg-emerald-700"
         onClick={handleSubmit}
       >
-        {isloading ? <Loader /> : "Verify OTP"}
+        {/* {isloading ? <Loader /> : "Verify OTP"} */}
       </Button>
       {/* Resend Code */}
       <p className="text-base text-gray-600 mt-6">
