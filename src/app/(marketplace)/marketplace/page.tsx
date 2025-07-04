@@ -1,3 +1,21 @@
+<<<<<<< HEAD
+"use client";
+
+import Marketplace from "@/components/marketplace/products";
+
+
+
+export default function MarketplacePage() {
+  
+  return (
+    <div className="">
+
+    <Marketplace/>
+
+    </div>
+  );
+}
+=======
 'use client';
 
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -66,3 +84,4 @@ export default function MarketplacePage() {
     </div>
   );
 }
+>>>>>>> 2e204526af3930f4a2c1eb8432192121dad78a50

@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+import Prescriptions from "@/components/dashbord/prescription";
+import React from "react";
+
+const PrescriptionsPage = () => {
+  return (
+    <div className="w-full  max-w-7xl  mx-auto  px-10 min-h-screen">
+    <Prescriptions/>
+    </div>
+  );
+};
+
+export default PrescriptionsPage;
+=======
 'use client';
 import {
   ChevronLeft,
@@ -272,3 +286,4 @@ export default function Prescriotions() {
     </div>
   );
 }
+>>>>>>> 2e204526af3930f4a2c1eb8432192121dad78a50
