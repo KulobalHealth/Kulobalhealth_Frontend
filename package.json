@@ -28,6 +28,7 @@
     "@radix-ui/react-tooltip": "^1.1.8",
     "@tanstack/react-table": "^8.21.2",
     "axios": "^1.9.0",
+    "bcryptjs": "^3.0.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -45,6 +46,7 @@
     "sonner": "^2.0.5",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
+    "uuid": "^11.1.0",
     "zod": "^3.25.64",
     "zustand": "^5.0.4"
   },
