@@ -1,13 +1,13 @@
-import { Eye, MoreHorizontal } from 'lucide-react';
-import { toast } from 'sonner';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Eye, MoreHorizontal } from "lucide-react";
+import { toast } from "sonner";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from "@/components/ui/dropdown-menu";
 import {
   Table,
   TableBody,
@@ -15,9 +15,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import type { DDIIntegrator } from '@/store/ddi-integrators';
-import { TablePagination } from './table-pagination';
+} from "@/components/ui/table";
+import type { DDIIntegrator } from "@/store/ddi-integrators";
+import { TablePagination } from "./table-pagination";
 
 interface DDIIntegratorsTableProps {
   readonly integrators: DDIIntegrator[];
@@ -25,7 +25,7 @@ interface DDIIntegratorsTableProps {
   readonly totalPages: number;
   readonly onIntegratorView: (integratorId: string) => void;
   readonly onIntegratorEdit: (integrator: DDIIntegrator) => void;
-  readonly onStatusChange: (id: string, status: 'Active' | 'Suspended') => void;
+  readonly onStatusChange: (id: string, status: "Active" | "Suspended") => void;
   readonly onDelete: (id: string) => void;
   readonly onPageChange: (page: number) => void;
 }
@@ -42,7 +42,7 @@ export function DDIIntegratorsTable({
 }: DDIIntegratorsTableProps) {
   const handleStatusChange = (
     integrator: DDIIntegrator,
-    newStatus: 'Active' | 'Suspended'
+    newStatus: "Active" | "Suspended"
   ) => {
     onStatusChange(integrator.id, newStatus);
     toast.success(`${integrator.company} has been ${newStatus.toLowerCase()}`, {
@@ -53,25 +53,25 @@ export function DDIIntegratorsTable({
   const handleDelete = (integrator: DDIIntegrator) => {
     onDelete(integrator.id);
     toast.success(`${integrator.company} has been deleted`, {
-      description: 'Integration has been permanently removed',
+      description: "Integration has been permanently removed",
     });
   };
 
   const getSoftwareTypeBadgeClass = (type: string) => {
     switch (type) {
-      case 'Mobile App':
-        return 'bg-gray-800 text-white border-gray-800';
-      case 'Desktop App':
-        return 'bg-gray-600 text-white border-gray-600';
+      case "Mobile App":
+        return "bg-gray-800 text-white border-gray-800";
+      case "Desktop App":
+        return "bg-gray-600 text-white border-gray-600";
       default:
-        return 'bg-gray-100 text-gray-700 border-gray-300';
+        return "bg-gray-100 text-gray-700 border-gray-300";
     }
   };
 
   const getStatusBadgeClass = (status: string) => {
-    return status === 'Active'
-      ? 'bg-green-100 text-green-700 hover:bg-green-100'
-      : 'bg-red-100 text-red-700 hover:bg-red-100';
+    return status === "Active"
+      ? "bg-green-100 text-green-700 hover:bg-green-100"
+      : "bg-red-100 text-red-700 hover:bg-red-100";
   };
 
   return (
@@ -122,7 +122,7 @@ export function DDIIntegratorsTable({
                 <Badge
                   className={getStatusBadgeClass(integrator.status)}
                   variant={
-                    integrator.status === 'Active' ? 'default' : 'destructive'
+                    integrator.status === "Active" ? "default" : "destructive"
                   }
                 >
                   {integrator.status}
@@ -150,11 +150,11 @@ export function DDIIntegratorsTable({
                       >
                         Edit Details
                       </DropdownMenuItem>
-                      {integrator.status === 'Active' ? (
+                      {integrator.status === "Active" ? (
                         <DropdownMenuItem
                           className="text-orange-600"
                           onClick={() =>
-                            handleStatusChange(integrator, 'Suspended')
+                            handleStatusChange(integrator, "Suspended")
                           }
                         >
                           Suspend
@@ -163,7 +163,7 @@ export function DDIIntegratorsTable({
                         <DropdownMenuItem
                           className="text-green-600"
                           onClick={() =>
-                            handleStatusChange(integrator, 'Active')
+                            handleStatusChange(integrator, "Active")
                           }
                         >
                           Activate
@@ -184,7 +184,6 @@ export function DDIIntegratorsTable({
         </TableBody>
       </Table>
 
-      {/* Pagination */}
       <TablePagination
         currentPage={currentPage}
         onPageChange={onPageChange}

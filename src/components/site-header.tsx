@@ -32,12 +32,11 @@ export function SiteHeader() {
         </div>
 
         <div className="flex items-center space-x-4">
-          {/* Bell notifications */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button className="relative" size="icon" variant="ghost">
                 <Bell className="h-5 w-5" />
-                {/* Notification badge */}
+
                 <span className="-top-1 -right-1 absolute flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-white text-xs">
                   3
                 </span>
@@ -80,10 +79,8 @@ export function SiteHeader() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Mode toggle */}
           <ModeToggle />
 
-          {/* User dropdown */}
           <User
             user={{
               name: "Admin User",
