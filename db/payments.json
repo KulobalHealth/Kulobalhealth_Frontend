@@ -1,0 +1,304 @@
+[
+  {
+    "id": "pay_1750271628253_4q9v17",
+    "userId": "b1f75683-4335-4127-9570-cf091f4d86e8",
+    "transactionId": "MM_mc2ajbod_HYX58M",
+    "amount": 58.75,
+    "currency": "GHS",
+    "paymentType": "mobile_money",
+    "paymentMethod": {
+      "type": "mobile_money",
+      "network": "mtn",
+      "phoneNumber": "+233 77 361 2578",
+      "accountName": "John Doe",
+      "networkDisplayName": "MTN Mobile Money"
+    },
+    "status": "completed",
+    "description": "Medicine purchase - Full Payment: Malaria Test Kit (x1)",
+    "createdAt": "2025-06-18T18:33:48.254Z",
+    "updatedAt": "2025-06-18T18:33:48.254Z",
+    "metadata": {
+      "orderId": "ORD_1750271627733",
+      "paymentType": "full-payment",
+      "paymentMethod": "pay-on-delivery",
+      "pharmacyName": "Poku Pharma",
+      "shippingDetails": {
+        "pharmacyName": "Poku Pharma",
+        "phoneNumber": "030000000",
+        "pharmacyEmail": "pokupharma@gmail.com",
+        "pharmacyLocation": "Adenta",
+        "streetAddress": "Snnit Road",
+        "gpsAddress": ""
+      },
+      "items": [
+        {
+          "id": "1",
+          "name": "Malaria Test Kit",
+          "quantity": 1,
+          "price": 50
+        }
+      ],
+      "itemsSummary": "Malaria Test Kit (x1)"
+    }
+  },
+  {
+    "id": "pay_1750271685577_gxpmjv",
+    "userId": "b1f75683-4335-4127-9570-cf091f4d86e8",
+    "transactionId": "MM_mc2akjwp_CO8M5J",
+    "amount": 88.125,
+    "currency": "GHS",
+    "paymentType": "mobile_money",
+    "paymentMethod": {
+      "type": "mobile_money",
+      "network": "telecel",
+      "phoneNumber": "+233 99 898 5249",
+      "accountName": "John Doe",
+      "networkDisplayName": "Telecel Cash"
+    },
+    "status": "completed",
+    "description": "Medicine purchase - Full Payment: COVID-19 Test Kit (x1)",
+    "createdAt": "2025-06-18T18:34:45.577Z",
+    "updatedAt": "2025-06-18T18:34:45.577Z",
+    "metadata": {
+      "orderId": "ORD_1750271684988",
+      "paymentType": "full-payment",
+      "paymentMethod": "pay-on-delivery",
+      "pharmacyName": "Poku Pharma",
+      "shippingDetails": {
+        "pharmacyName": "Poku Pharma",
+        "phoneNumber": "030000000",
+        "pharmacyEmail": "pokupharma@gmail.com",
+        "pharmacyLocation": "Adenta",
+        "streetAddress": "Snnit Road",
+        "gpsAddress": ""
+      },
+      "items": [
+        {
+          "id": "2",
+          "name": "COVID-19 Test Kit",
+          "quantity": 1,
+          "price": 75
+        }
+      ],
+      "itemsSummary": "COVID-19 Test Kit (x1)"
+    }
+  },
+  {
+    "id": "pay_1750274004473_mduiqu",
+    "userId": "b1f75683-4335-4127-9570-cf091f4d86e8",
+    "transactionId": "MM_mc2by96i_0CLFYX",
+    "amount": 88.125,
+    "currency": "GHS",
+    "paymentType": "cash on delivery",
+    "paymentMethod": {
+      "type": "mobile_money",
+      "network": "vodafone",
+      "phoneNumber": "+233 80 420 6482",
+      "accountName": "John Doe",
+      "networkDisplayName": "Vodafone Cash"
+    },
+    "status": "completed",
+    "description": "COVID-19 Test Kit (x1)",
+    "createdAt": "2025-06-18T19:13:24.474Z",
+    "updatedAt": "2025-06-18T19:13:24.474Z",
+    "metadata": {
+      "orderId": "ORD_1750274003805",
+      "paymentType": "full-payment",
+      "paymentMethod": "cash-on-delivery",
+      "pharmacyName": "Poku Pharma",
+      "shippingDetails": {
+        "pharmacyName": "Poku Pharma",
+        "phoneNumber": "030000000",
+        "pharmacyEmail": "pokupharma@gmail.com",
+        "pharmacyLocation": "Adenta",
+        "streetAddress": "Snnit Road",
+        "gpsAddress": ""
+      },
+      "items": [
+        {
+          "id": "2",
+          "name": "COVID-19 Test Kit",
+          "quantity": 1,
+          "price": 75
+        }
+      ],
+      "itemsSummary": "COVID-19 Test Kit (x1)"
+    }
+  },
+  {
+    "id": "pay_1750274161310_0ya531",
+    "userId": "b1f75683-4335-4127-9570-cf091f4d86e8",
+    "transactionId": "MM_mc2c1m72_GXCU5R",
+    "amount": 29.375,
+    "currency": "GHS",
+    "paymentType": "cash on delivery",
+    "paymentMethod": {
+      "type": "mobile_money",
+      "network": "mtn",
+      "phoneNumber": "+233 57 188 6925",
+      "accountName": "John Doe",
+      "networkDisplayName": "MTN Mobile Money"
+    },
+    "status": "completed",
+    "description": "Surgical Gloves (x1)",
+    "createdAt": "2025-06-18T19:16:01.310Z",
+    "updatedAt": "2025-06-18T19:16:01.310Z",
+    "metadata": {
+      "orderId": "ORD_1750274160486",
+      "paymentType": "credit",
+      "paymentMethod": "cash-on-delivery",
+      "pharmacyName": "Poku Pharma",
+      "shippingDetails": {
+        "pharmacyName": "Poku Pharma",
+        "phoneNumber": "030000000",
+        "pharmacyEmail": "pokupharma@gmail.com",
+        "pharmacyLocation": "Adenta",
+        "streetAddress": "Snnit Road",
+        "gpsAddress": ""
+      },
+      "items": [
+        {
+          "id": "5",
+          "name": "Surgical Gloves",
+          "quantity": 1,
+          "price": 25
+        }
+      ],
+      "itemsSummary": "Surgical Gloves (x1)"
+    }
+  },
+  {
+    "id": "pay_1750413516098_lh1sfz",
+    "userId": "b1f75683-4335-4127-9570-cf091f4d86e8",
+    "transactionId": "MM_mc4n0h1e_0B9SOD",
+    "amount": 88.125,
+    "currency": "GHS",
+    "paymentType": "mobile_money",
+    "paymentMethod": {
+      "type": "mobile_money",
+      "network": "vodafone",
+      "phoneNumber": "+233 83 370 4178",
+      "accountName": "John Doe",
+      "networkDisplayName": "Vodafone Cash"
+    },
+    "status": "completed",
+    "description": "COVID-19 Test Kit (x1)",
+    "createdAt": "2025-06-20T09:58:36.099Z",
+    "updatedAt": "2025-06-20T09:58:36.099Z",
+    "metadata": {
+      "orderId": "ORD_1750413515473",
+      "paymentType": "full-payment",
+      "paymentMethod": "pay-online",
+      "paymentOption": "MoMo",
+      "pharmacyName": "Poku Pharma",
+      "shippingDetails": {
+        "pharmacyName": "Poku Pharma",
+        "phoneNumber": "030000000",
+        "pharmacyEmail": "pokupharma@gmail.com",
+        "pharmacyLocation": "Adenta",
+        "streetAddress": "",
+        "gpsAddress": ""
+      },
+      "items": [
+        {
+          "id": "2",
+          "name": "COVID-19 Test Kit",
+          "quantity": 1,
+          "price": 75
+        }
+      ],
+      "itemsSummary": "COVID-19 Test Kit (x1)",
+      "network": "mtn",
+      "phoneNumber": "0552977393"
+    }
+  },
+  {
+    "id": "pay_1750798710777_6odydd",
+    "userId": "b1f75683-4335-4127-9570-cf091f4d86e8",
+    "transactionId": "MM_mcb0cj5l_6OLWH8",
+    "amount": 29.375,
+    "currency": "GHS",
+    "paymentType": "mobile_money",
+    "paymentMethod": {
+      "type": "mobile_money",
+      "network": "mtn",
+      "phoneNumber": "+233 44 113 6332",
+      "accountName": "John Doe",
+      "networkDisplayName": "MTN Mobile Money"
+    },
+    "status": "completed",
+    "description": "Malaria Test Kit (x1) - half-installment",
+    "createdAt": "2025-06-24T20:58:30.778Z",
+    "updatedAt": "2025-06-24T20:58:30.778Z",
+    "metadata": {
+      "orderId": "ORD_1750798709976",
+      "paymentType": "installment-payment",
+      "paymentMethod": "pay-online",
+      "paymentOption": "MoMo",
+      "pharmacyName": "Poku Pharma",
+      "shippingDetails": {
+        "pharmacyName": "Poku Pharma",
+        "phoneNumber": "030000000",
+        "pharmacyEmail": "pokupharma@gmail.com",
+        "pharmacyLocation": "Adenta",
+        "streetAddress": "Adenta",
+        "gpsAddress": ""
+      },
+      "items": [
+        {
+          "id": "1",
+          "name": "Malaria Test Kit",
+          "quantity": 1,
+          "price": 50
+        }
+      ],
+      "itemsSummary": "Malaria Test Kit (x1)",
+      "installmentPercentage": 50,
+      "remainingBalance": 29.375,
+      "network": "mtn",
+      "phoneNumber": "0244000000"
+    }
+  },
+  {
+    "id": "pay_1750798788342_3vyghz",
+    "userId": "b1f75683-4335-4127-9570-cf091f4d86e8",
+    "transactionId": "MM_mcb0e706_9E9IYS",
+    "amount": 88.125,
+    "currency": "GHS",
+    "paymentType": "cash on delivery",
+    "paymentMethod": {
+      "type": "mobile_money",
+      "network": "mtn",
+      "phoneNumber": "+233 38 599 9847",
+      "accountName": "John Doe",
+      "networkDisplayName": "MTN Mobile Money"
+    },
+    "status": "completed",
+    "description": "COVID-19 Test Kit (x1)",
+    "createdAt": "2025-06-24T20:59:48.342Z",
+    "updatedAt": "2025-06-24T20:59:48.342Z",
+    "metadata": {
+      "orderId": "ORD_1750798787270",
+      "paymentType": "full-payment",
+      "paymentMethod": "cash-on-delivery",
+      "pharmacyName": "Poku Pharma",
+      "shippingDetails": {
+        "pharmacyName": "Poku Pharma",
+        "phoneNumber": "030000000",
+        "pharmacyEmail": "pokupharma@gmail.com",
+        "pharmacyLocation": "Adenta",
+        "streetAddress": "Adenta",
+        "gpsAddress": ""
+      },
+      "items": [
+        {
+          "id": "2",
+          "name": "COVID-19 Test Kit",
+          "quantity": 1,
+          "price": 75
+        }
+      ],
+      "itemsSummary": "COVID-19 Test Kit (x1)"
+    }
+  }
+]
