@@ -2,7 +2,7 @@ import { Lightbulb, Target, Zap } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import nurseImg from "@/../public/nurse.webp";
-import patientSafetyImg from "@/../public/patientSafety.webp";
+import patientSafetyImg from "@/../public/landing-page-images/MockUp4.webp";
 import { Button } from "@/components/ui/button";
 import { challenges, values, whyChooseUs } from "./data";
 

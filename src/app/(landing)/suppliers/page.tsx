@@ -2,7 +2,7 @@ import { Check } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import homeImg from "@/../public/appDashboard.webp";
-import nurseImg from "@/../public/nurse.webp";
+import nurseImg from "@/../public/landing-page-images/MockUp3.webp";
 import { Button } from "@/components/ui/button";
 import { benefits, features, steps, testimonials } from "./data";
 

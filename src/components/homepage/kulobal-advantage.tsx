@@ -1,7 +1,7 @@
 import { Check } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import AiImg from "@/../public/pharmacist-working.webp";
+import AiImg from "@/../public/landing-page-images/MockUp7.webp";
 import { Button } from "@/components/ui/button";
 import { advantages } from "./data";
 
@@ -14,7 +14,7 @@ export default function KulobalAdvantage() {
             <div className="p-0 lg:p-11">
               <figure
                 className="relative rounded-lg"
-                style={{ width: "100%", height: "0", paddingBottom: "95.25%" }}
+                style={{ width: "100%", height: "0", paddingBottom: "90.25%" }}
               >
                 {" "}
                 <Image

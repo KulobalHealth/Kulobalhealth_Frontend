@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import stockImg from "@/../public/community1.webp";
+import stockImg from "@/../public/landing-page-images/MockUp2.webp";
 import { Button } from "../ui/button";
 
 const steps = [
@@ -45,7 +45,6 @@ export default function HowItWorks() {
                   alt="How It Works Process"
                   className="rounded-[7px]"
                   fill
-                  objectFit="cover"
                   src={stockImg}
                 />
               </figure>

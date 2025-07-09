@@ -1,7 +1,7 @@
 import { Check } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import devicesImg from "@/../public/grow-supply.webp";
+import devicesImg from "@/../public/landing-page-images/MockUp4.webp";
 import { Button } from "@/components/ui/button";
 import { benefits } from "./data";
 

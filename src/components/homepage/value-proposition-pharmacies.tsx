@@ -1,7 +1,7 @@
 import { Check } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import pharmaImg from "@/../public/pharmacyPage.webp";
+import pharmaImg from "@/../public/landing-page-images/MockUp1.webp";
 import { Button } from "@/components/ui/button";
 import { pharmacyBenefits } from "./data";
 
@@ -52,9 +52,8 @@ export default function ValuePropositionPharmacies() {
                 {" "}
                 <Image
                   alt="Pharmacy Marketplace"
-                  className="rounded-[7px]"
+                  className="rounded-[7px] object-cover"
                   fill
-                  objectFit="cover"
                   src={pharmaImg}
                 />
               </figure>

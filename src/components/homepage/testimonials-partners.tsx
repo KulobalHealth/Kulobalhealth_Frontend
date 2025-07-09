@@ -1,7 +1,7 @@
 import { Check, Quote } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import groupImg from "@/../public/community2.webp";
+import groupImg from "@/../public/landing-page-images/MockUp3.webp";
 import { Button } from "@/components/ui/button";
 import { testimonialPoints } from "./data";
 

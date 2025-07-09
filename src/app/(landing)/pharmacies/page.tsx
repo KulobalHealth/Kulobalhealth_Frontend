@@ -2,7 +2,7 @@ import { Check, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import allKitsImg from "@/../public/allKits.webp";
-import pharmaImg from "@/../public/pharmacyPage.webp";
+import pharmaImg from "@/../public/landing-page-images/MockUp1.webp";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/ui/icons";
 import { benefits, categories, steps, testimonials } from "./data";
