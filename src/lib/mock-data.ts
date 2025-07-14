@@ -293,7 +293,7 @@ export const mockProducts: Product[] = [
     description:
       "Revolutionary smart glasses designed for visually impaired individuals. Features voice navigation, object recognition, and real-time audio feedback to enhance independence and mobility.",
     brand: "Dot Inc.",
-    category: "Assistive Technology",
+    category: "Assistive technologies",
     price: 3500.0,
     images: [dotGlasses],
     inStock: true,
@@ -308,7 +308,7 @@ export const mockProducts: Product[] = [
     description:
       "Complete assistive technology kit including Dot smart glasses, charging station, protective case, user manual, and training materials. Perfect starter package for visually impaired users.",
     brand: "Dot Inc.",
-    category: "Assistive Technology",
+    category: "Assistive technologies",
     price: 4200.0,
     images: [dotGlassesKit],
     inStock: true,

@@ -9,7 +9,7 @@ const categories = [
   "Rapid Test Kits",
   "Vital Monitoring Devices",
   "Medical Materials",
-  "Assistive technologies",
+  "Assistive technologies",
 ];
 
 export default function MarketplacePage() {
