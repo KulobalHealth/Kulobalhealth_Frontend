@@ -33,8 +33,8 @@ const firstAid1 = "/product-images/firstAid.avif";
 const firstAid2 = "/product-images/firstAid2.png";
 const firstAid3 = "/product-images/firstAid3.png";
 
-const dotGlasses = "/product-images/dog-glasses.png";
-const dotGlassesKit = "/product-images/dog-glasses-kit.png";
+const dotGlasses = "/product-images/dot-glasses.png";
+const dotGlassesKit = "/product-images/dot-glasses-kit.png";
 
 export const mockProducts: Product[] = [
   {
