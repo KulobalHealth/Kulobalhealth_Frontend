@@ -33,6 +33,9 @@ const firstAid1 = "/product-images/firstAid.avif";
 const firstAid2 = "/product-images/firstAid2.png";
 const firstAid3 = "/product-images/firstAid3.png";
 
+const dotGlasses = "/product-images/dog-glasses.png";
+const dotGlassesKit = "/product-images/dog-glasses-kit.png";
+
 export const mockProducts: Product[] = [
   {
     id: "1",
@@ -283,6 +286,36 @@ export const mockProducts: Product[] = [
     unit: "Travel Kit",
     stockQuantity: 45,
     imageUrl: firstAid3,
+  },
+  {
+    id: "18",
+    name: "Dot Glasses - Smart Assistive Eyewear",
+    description:
+      "Revolutionary smart glasses designed for visually impaired individuals. Features voice navigation, object recognition, and real-time audio feedback to enhance independence and mobility.",
+    brand: "Dot Inc.",
+    category: "Assistive Technology",
+    price: 3500.0,
+    images: [dotGlasses],
+    inStock: true,
+    normalRange: "N/A",
+    unit: "Device",
+    stockQuantity: 5,
+    imageUrl: dotGlasses,
+  },
+  {
+    id: "19",
+    name: "Dot Glasses Complete Kit",
+    description:
+      "Complete assistive technology kit including Dot smart glasses, charging station, protective case, user manual, and training materials. Perfect starter package for visually impaired users.",
+    brand: "Dot Inc.",
+    category: "Assistive Technology",
+    price: 4200.0,
+    images: [dotGlassesKit],
+    inStock: true,
+    normalRange: "N/A",
+    unit: "Complete Kit",
+    stockQuantity: 3,
+    imageUrl: dotGlassesKit,
   },
 ];
 
