@@ -1,32 +1,37 @@
 import type { Order, Payment, Product } from "./types";
 
-const agaroGlucose1 = "/agaro-glucose-monitoring.jpg";
-const careTouchGlucose1 = "/caretouch-glucose-monitoring.jpeg";
-const careTouchGlucose2 = "/caretouch-glucose-monitoring-2.jpg";
-const easyHomeGlucose = "/easy-home-glucose-monitoring.webp";
-const omronBloodPressure = "/omron-blood-pressure-monitor.jpg";
-const omronBloodPressure2 = "/omron-blood-pressure-monitor-2.jpg";
-const omronBloodPressure3 = "/omron-blood-pressure-monitor-3.webp";
-const omronBloodPressure4 = "/omron-blood-pressure-monitor-4.jpg";
-const pangaBloodPressure = "/panga-blood-pressure-monitor.webp";
-const pangaBloodPressure2 = "/panga-blood-pressure-monitor-2.webp";
-const pangaBloodPressure3 = "/panga-blood-pressure-monitor-3.webp";
+const agaroGlucose1 = "/product-images/agaro-glucose-monitoring.jpg";
+const careTouchGlucose1 = "/product-images/caretouch-glucose-monitoring.jpeg";
+const careTouchGlucose2 = "/product-images/caretouch-glucose-monitoring-2.jpg";
+const easyHomeGlucose = "/product-images/easy-home-glucose-monitoring.webp";
+const omronBloodPressure = "/product-images/omron-blood-pressure-monitor.jpg";
+const omronBloodPressure2 =
+  "/product-images/omron-blood-pressure-monitor-2.jpg";
+const omronBloodPressure3 =
+  "/product-images/omron-blood-pressure-monitor-3.webp";
+const omronBloodPressure4 =
+  "/product-images/omron-blood-pressure-monitor-4.jpg";
+const pangaBloodPressure = "/product-images/panga-blood-pressure-monitor.webp";
+const pangaBloodPressure2 =
+  "/product-images/panga-blood-pressure-monitor-2.webp";
+const pangaBloodPressure3 =
+  "/product-images/panga-blood-pressure-monitor-3.webp";
 
-const vagKit = "/VagKit.png";
-const hivKit = "/hiv.png";
-const hepBKit = "/HepB.png";
-const gonnorheaKit = "/Gonnorhea.png";
-const malariaKit = "/Malaria2.png";
-const typhoidKit = "/Typhoid.png";
-const drugAbuseKit = "/DrugAbuse.png";
-const pregnacy = "/Pregenacy.png";
-const ovulationKit = "/Ovulation.png";
-const hivTest = "/hiv.png";
-const syphilisTest = "/syphilis.png";
+const vagKit = "/product-images/VagKit.png";
+const hivKit = "/product-images/hiv.png";
+const hepBKit = "/product-images/HepB.png";
+const gonnorheaKit = "/product-images/Gonnorhea.png";
+const malariaKit = "/product-images/Malaria2.png";
+const typhoidKit = "/product-images/Typhoid.png";
+const drugAbuseKit = "/product-images/DrugAbuse.png";
+const pregnacy = "/product-images/Pregenacy.png";
+const ovulationKit = "/product-images/Ovulation.png";
+const hivTest = "/product-images/hiv.png";
+const syphilisTest = "/product-images/syphilis.png";
 
-const firstAid1 = "/firstAid.avif";
-const firstAid2 = "/firstAid2.png";
-const firstAid3 = "/firstAid3.png";
+const firstAid1 = "/product-images/firstAid.avif";
+const firstAid2 = "/product-images/firstAid2.png";
+const firstAid3 = "/product-images/firstAid3.png";
 
 export const mockProducts: Product[] = [
   {

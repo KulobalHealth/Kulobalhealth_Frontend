@@ -3,14 +3,11 @@ import { mockAuth } from "./mock-auth";
 import { mockOrders, mockPayments, mockProducts } from "./mock-data";
 import type { CartItem, Order, Payment, Product, User } from "./types";
 
-// Mock user is now imported from mock-auth.ts
 const dummyUser = mockAuth.getMockUser();
 
-// Helper function to find product by ID
 const findProduct = (products: Product[], id: string) =>
   products.find((p) => p.id === id);
 
-// Helper function to update cart item quantity
 const updateCartItemQuantity = (
   cart: CartItem[],
   productId: string,
@@ -57,7 +54,6 @@ interface MarketplaceState {
 }
 
 export const useMarketplaceStore = create<MarketplaceState>((set, get) => ({
-  // Initial state with mock data
   products: mockProducts,
   cart: [],
   orders: mockOrders,
@@ -113,7 +109,7 @@ export const useMarketplaceStore = create<MarketplaceState>((set, get) => ({
       return;
     }
 
-    // Cap the quantity at available stock
+    // cap the quantity at available stock
     const validQuantity = Math.min(quantity, product.stockQuantity);
     set({
       cart: updateCartItemQuantity(get().cart, productId, validQuantity),
@@ -148,7 +144,7 @@ export const useMarketplaceStore = create<MarketplaceState>((set, get) => ({
 
   signup: async (userData) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       set({
         user: {
           ...dummyUser,
