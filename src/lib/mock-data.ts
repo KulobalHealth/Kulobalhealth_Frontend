@@ -36,6 +36,10 @@ const firstAid3 = "/product-images/firstAid3.png";
 const dotGlasses = "/product-images/dot-glasses.png";
 const dotGlassesKit = "/product-images/dot-glasses-kit.png";
 
+const framesAndLenses = "/product-images/frames-and-lenses.png";
+const distanceAndVisionTester = "/product-images/distance-vision-tester.png";
+const eyeAccssories = "/product-images/accessories.png";
+
 export const mockProducts: Product[] = [
   {
     id: "1",
@@ -316,6 +320,51 @@ export const mockProducts: Product[] = [
     unit: "Complete Kit",
     stockQuantity: 3,
     imageUrl: dotGlassesKit,
+  },
+  {
+    id: "20",
+    name: "Prescription Frames and Lenses",
+    description:
+      "High-quality prescription eyewear frames with customizable lenses. Available in various styles and materials to suit different vision correction needs and personal preferences.",
+    brand: "VisionCare",
+    category: "Assistive technologies",
+    price: 850.0,
+    images: [framesAndLenses],
+    inStock: true,
+    normalRange: "N/A",
+    unit: "Pair",
+    stockQuantity: 15,
+    imageUrl: framesAndLenses,
+  },
+  {
+    id: "21",
+    name: "Distance and Vision Tester",
+    description:
+      "Professional eye examination device for testing visual acuity, distance vision, and detecting vision problems. Essential tool for eye care professionals and clinics.",
+    brand: "OptiTest",
+    category: "Assistive technologies",
+    price: 2800.0,
+    images: [distanceAndVisionTester],
+    inStock: true,
+    normalRange: "20/20 Vision",
+    unit: "Device",
+    stockQuantity: 4,
+    imageUrl: distanceAndVisionTester,
+  },
+  {
+    id: "22",
+    name: "Eye Care Accessories Kit",
+    description:
+      "Complete set of eye care accessories including lens cleaning solutions, microfiber cloths, protective cases, and maintenance tools for optimal eye health and eyewear care.",
+    brand: "EyeCare Pro",
+    category: "Assistive technologies",
+    price: 120.0,
+    images: [eyeAccssories],
+    inStock: true,
+    normalRange: "N/A",
+    unit: "Kit",
+    stockQuantity: 25,
+    imageUrl: eyeAccssories,
   },
 ];
 
