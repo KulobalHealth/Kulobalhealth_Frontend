@@ -38,7 +38,7 @@ const dotGlassesKit = "/product-images/dot-glasses-kit.png";
 
 const framesAndLenses = "/product-images/frames-and-lenses.png";
 const distanceAndVisionTester = "/product-images/distance-vision-tester.png";
-const eyeAccssories = "/product-images/accessories.png";
+const eyeAccssories = "/product-images/accessories.jpg";
 
 export const mockProducts: Product[] = [
   {
