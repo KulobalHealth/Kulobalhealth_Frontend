@@ -253,6 +253,21 @@ export const products: Product[] = [
     unit: "kits",
     inStock: true,
   },
+  {
+    id: "17",
+    name: "Advanced Malaria Test Kit",
+    brand: "Abbott",
+    price: 50.0,
+    description: "Rapid malaria diagnostic test kit for accurate detection",
+    images: [
+      "/product-images/Malaria2.png",
+      "/product-images/med.png",
+    ],
+    category: "Test Kit",
+    stockQuantity: 2,
+    unit: "boxes",
+    inStock: true,
+  },
 ]
 
 export const categories = [
