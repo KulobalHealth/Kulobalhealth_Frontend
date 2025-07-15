@@ -1,8 +1,7 @@
-
 import OrdersHistory from '@/components/dashbord/orders/orders-history';
 import React from 'react'
 
-export const Orders= () => {
+export default function Orders() {
   return (
     <div className='w-full flex items-center justify-center px-24 bg-background min-h-screen '>
      <OrdersHistory />
@@ -10,5 +9,3 @@ export const Orders= () => {
     </div>
   )
 }
-
-export default Orders;

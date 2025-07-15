@@ -12,12 +12,10 @@ import Link from "next/link"
 import Loader from "@/components/loader"
 import LoginSkeleton from "@/components/auth/login-skeleton"
 import { useState } from "react"
-import { useRouter } from "next/navigation"
 import toast from "react-hot-toast"
 import { useAuthStore } from "@/lib/mock-auth/auth"
 
 export default function Login() {
-  const router = useRouter()
   const { login, isLoading, clearError } = useAuthStore()
   const [loginData, setLoginData] = useState({
     email: "",
@@ -61,7 +59,7 @@ export default function Login() {
       } else {
         setIsSubmitting(false)
       }
-    } catch (err) {
+    } catch (err: unknown) {
       // Dismiss loading toast
       toast.dismiss(loadingToast)
       setIsSubmitting(false)

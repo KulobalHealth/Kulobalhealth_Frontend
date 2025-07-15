@@ -29,8 +29,8 @@ export default function NewRapidTests(){
                         <Input placeholder="10mg" />
                     </label>
                     <SelectComponent placeholder="Frequency" />
-                    <DateSelectorComponent placeholder="Start date" />
-                    <DateSelectorComponent placeholder="End date (optional)" />
+                    <DateSelectorComponent />
+                    <DateSelectorComponent />
                 </CardContent>
                 <CardContent>
                     <label htmlFor="" className=" text-sm">
