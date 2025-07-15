@@ -1,0 +1,30 @@
+[
+  {
+    "id": "b1f75683-4335-4127-9570-cf091f4d86e8",
+    "businessName": "Poku Pharma",
+    "ownerName": "Kwame Poku",
+    "location": "Adenta",
+    "email": "pokupharma@gmail.com",
+    "telephone": "030000000",
+    "avatar": "/placeholder.svg?height=40&width=40",
+    "role": "pharmacy",
+    "createdAt": "2025-06-18T11:42:26.775Z",
+    "pharmacyName": "",
+    "phoneNumber": "",
+    "pharmacyEmail": "",
+    "pharmacyLocation": "",
+    "streetAddress": "",
+    "gpsAddress": ""
+  },
+  {
+    "id": "b1bfaf6b-0e60-4330-bb4e-a3631143af0d",
+    "businessName": "Klad Pharmacy Ltd",
+    "ownerName": "Opppong Rose",
+    "location": "Adenta",
+    "email": "kladpharmacy@gmail.com",
+    "telephone": "0256780758",
+    "avatar": "/placeholder.svg?height=40&width=40",
+    "role": "pharmacy",
+    "createdAt": "2025-06-24T20:50:04.501Z"
+  }
+]
