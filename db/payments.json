@@ -300,5 +300,183 @@
       ],
       "itemsSummary": "COVID-19 Test Kit (x1)"
     }
+  },
+  {
+    "id": "pay_1754430667716_4huibs",
+    "userId": "b1f75683-4335-4127-9570-cf091f4d86e8",
+    "transactionId": "MM_mdz2pz2c_0D0C27",
+    "amount": 21.15,
+    "currency": "GHS",
+    "paymentType": "cash on delivery",
+    "paymentMethod": {
+      "type": "mobile_money",
+      "network": "mtn",
+      "phoneNumber": "+233 79 457 3632",
+      "accountName": "John Doe",
+      "networkDisplayName": "MTN Mobile Money"
+    },
+    "status": "completed",
+    "description": "Pregnancy Test Kit (x1)",
+    "createdAt": "2025-08-05T21:51:07.716Z",
+    "updatedAt": "2025-08-05T21:51:07.716Z",
+    "metadata": {
+      "orderId": "ORD_1754430667162",
+      "paymentType": "full-payment",
+      "paymentMethod": "cash-on-delivery",
+      "pharmacyName": "Poku Pharma",
+      "shippingDetails": {
+        "pharmacyName": "Poku Pharma",
+        "phoneNumber": "030000000",
+        "pharmacyEmail": "pokupharma@gmail.com",
+        "pharmacyLocation": "Adenta",
+        "streetAddress": "Leonard Street, Teiman - Burger Town",
+        "gpsAddress": ""
+      },
+      "items": [
+        {
+          "id": "11",
+          "name": "Pregnancy Test Kit",
+          "quantity": 1,
+          "price": 18
+        }
+      ],
+      "itemsSummary": "Pregnancy Test Kit (x1)"
+    }
+  },
+  {
+    "id": "pay_1754430739136_3ebs4t",
+    "userId": "b1f75683-4335-4127-9570-cf091f4d86e8",
+    "transactionId": "MM_mdz2ri68_SIO976",
+    "amount": 44.0625,
+    "currency": "GHS",
+    "paymentType": "mobile_money",
+    "paymentMethod": {
+      "type": "mobile_money",
+      "network": "vodafone",
+      "phoneNumber": "+233 42 793 6381",
+      "accountName": "John Doe",
+      "networkDisplayName": "Vodafone Cash"
+    },
+    "status": "completed",
+    "description": "HIV Test Kit (x1) - half-installment",
+    "createdAt": "2025-08-05T21:52:19.136Z",
+    "updatedAt": "2025-08-05T21:52:19.136Z",
+    "metadata": {
+      "orderId": "ORD_1754430738402",
+      "paymentType": "installment-payment",
+      "paymentMethod": "pay-online",
+      "paymentOption": "MoMo",
+      "pharmacyName": "Poku Pharma",
+      "shippingDetails": {
+        "pharmacyName": "Poku Pharma",
+        "phoneNumber": "030000000",
+        "pharmacyEmail": "pokupharma@gmail.com",
+        "pharmacyLocation": "Adenta",
+        "streetAddress": "Afro city Street, Teiman-Afro City",
+        "gpsAddress": ""
+      },
+      "items": [
+        {
+          "id": "2",
+          "name": "HIV Test Kit",
+          "quantity": 1,
+          "price": 75
+        }
+      ],
+      "itemsSummary": "HIV Test Kit (x1)",
+      "installmentPercentage": 50,
+      "remainingBalance": 44.0625,
+      "network": "mtn",
+      "phoneNumber": "0552977393"
+    }
+  },
+  {
+    "id": "pay_1754430770035_s3w1or",
+    "userId": "b1f75683-4335-4127-9570-cf091f4d86e8",
+    "transactionId": "MM_mdz2s60j_DROMSO",
+    "amount": 88.125,
+    "currency": "GHS",
+    "paymentType": "credit",
+    "paymentMethod": {
+      "type": "mobile_money",
+      "network": "telecel",
+      "phoneNumber": "+233 74 141 8161",
+      "accountName": "John Doe",
+      "networkDisplayName": "Telecel Cash"
+    },
+    "status": "completed",
+    "description": "HIV Test Kit (x1)",
+    "createdAt": "2025-08-05T21:52:50.035Z",
+    "updatedAt": "2025-08-05T21:52:50.035Z",
+    "metadata": {
+      "orderId": "ORD_1754430769549",
+      "paymentType": "credit",
+      "paymentMethod": "credit",
+      "pharmacyName": "Poku Pharma",
+      "shippingDetails": {
+        "pharmacyName": "Poku Pharma",
+        "phoneNumber": "030000000",
+        "pharmacyEmail": "pokupharma@gmail.com",
+        "pharmacyLocation": "Adenta",
+        "streetAddress": "",
+        "gpsAddress": ""
+      },
+      "items": [
+        {
+          "id": "2",
+          "name": "HIV Test Kit",
+          "quantity": 1,
+          "price": 75
+        }
+      ],
+      "itemsSummary": "HIV Test Kit (x1)"
+    }
+  },
+  {
+    "id": "pay_1754430834831_9sdy90",
+    "userId": "b1f75683-4335-4127-9570-cf091f4d86e8",
+    "transactionId": "MM_mdz2tk0f_X1IH99",
+    "amount": 126.9,
+    "currency": "GHS",
+    "paymentType": "mobile_money",
+    "paymentMethod": {
+      "type": "mobile_money",
+      "network": "vodafone",
+      "phoneNumber": "+233 79 693 2394",
+      "accountName": "John Doe",
+      "networkDisplayName": "Vodafone Cash"
+    },
+    "status": "completed",
+    "description": "Panga Blood Pressure Monitor (x1) - half-installment",
+    "createdAt": "2025-08-05T21:53:54.831Z",
+    "updatedAt": "2025-08-05T21:53:54.831Z",
+    "metadata": {
+      "orderId": "ORD_1754430834108",
+      "paymentType": "installment-payment",
+      "paymentMethod": "pay-online",
+      "paymentOption": "MoMo",
+      "pharmacyName": "Poku Pharma",
+      "shippingDetails": {
+        "pharmacyName": "Poku Pharma",
+        "phoneNumber": "030000000",
+        "pharmacyEmail": "pokupharma@gmail.com",
+        "pharmacyLocation": "Adenta",
+        "streetAddress": "Leonard Street, Teiman - Burger Town",
+        "gpsAddress": ""
+      },
+      "items": [
+        {
+          "id": "5",
+          "name": "Panga Blood Pressure Monitor",
+          "quantity": 1,
+          "price": 180
+        }
+      ],
+      "itemsSummary": "Panga Blood Pressure Monitor (x1)",
+      "installmentPercentage": 60,
+      "remainingBalance": 84.6,
+      "network": "mtn",
+      "phoneNumber": "0552977393"
+    }
   }
 ]
