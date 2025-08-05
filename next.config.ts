@@ -12,14 +12,14 @@ const nextConfig: NextConfig = {
   images: {
     domains: ['images.unsplash.com'],
   },
-  async rewrites() {
-    return [
-      {
-        source: '/pharmacy/:path*',
-        destination: apiUrl,
-      },
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: '/pharmacy/:path*',
+  //       destination: apiUrl,
+  //     },
+  //   ];
+  // },
 };
 
 export default nextConfig;
