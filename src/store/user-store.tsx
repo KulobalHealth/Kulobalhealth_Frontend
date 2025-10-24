@@ -2,7 +2,7 @@ import axios from "axios";
 import { create } from "zustand";
 import type { User } from "./types";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/pharmacy`;
 
 if (!API_URL) {
   throw new Error(

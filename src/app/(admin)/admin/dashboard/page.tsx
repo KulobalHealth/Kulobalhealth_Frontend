@@ -1,14 +1,15 @@
-'use client';
+"use client";
 
-import type { DateRange } from 'react-day-picker';
-import { DashboardMetrics } from '@/components/admin/dashboard-metrics';
-import { DateRangeControls } from '@/components/admin/date-range-controls';
-import { PerformingProductsChart } from '@/components/admin/performing-products-chart';
-import { ProductOrdersChart } from '@/components/admin/product-orders-chart';
-import { RecentOrdersTable } from '@/components/admin/recent-orders-table';
-import { useAdminDashboardStore } from '@/store/admin-dashboard';
+import type { DateRange } from "react-day-picker";
+import { DashboardMetrics } from "@/components/admin/dashboard-metrics";
+import { DateRangeControls } from "@/components/admin/date-range-controls";
+import { PerformingProductsChart } from "@/components/admin/performing-products-chart";
+import { ProductOrdersChart } from "@/components/admin/product-orders-chart";
+import { RecentOrdersTable } from "@/components/admin/recent-orders-table";
 
-export default function Component() {
+import { useAdminDashboardStore } from "@/store/admin-dashboard";
+
+export default function Page() {
   const {
     metrics,
     productOrdersData,
@@ -19,7 +20,7 @@ export default function Component() {
   } = useAdminDashboardStore();
 
   const handleCustomDateRangeChange = (dateRange: DateRange | undefined) => {
-    console.log('Custom date range selected:', dateRange);
+    console.log("Custom date range selected:", dateRange);
   };
 
   return (

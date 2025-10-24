@@ -1,9 +1,9 @@
-import { SearchX, ShoppingCart } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { LoadingSpinner } from '@/components/ui/loading-spinner';
+import { AlertCircle, SearchX, ShoppingCart } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 
 interface OrdersCenterStatesProps {
-  readonly state: 'loading' | 'no-results' | 'empty';
+  readonly state: "loading" | "no-results" | "empty" | "error";
   readonly onTryAgain?: () => void;
 }
 
@@ -11,7 +11,7 @@ export function OrdersCenterStates({
   state,
   onTryAgain,
 }: OrdersCenterStatesProps) {
-  if (state === 'loading') {
+  if (state === "loading") {
     return (
       <div className="flex flex-col items-center justify-center py-20">
         <LoadingSpinner />
@@ -20,7 +20,7 @@ export function OrdersCenterStates({
     );
   }
 
-  if (state === 'no-results') {
+  if (state === "no-results") {
     return (
       <div className="flex flex-col items-center justify-center py-20">
         <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
@@ -42,7 +42,28 @@ export function OrdersCenterStates({
     );
   }
 
-  if (state === 'empty') {
+  if (state === "error") {
+    return (
+      <div className="flex flex-col items-center justify-center py-20">
+        <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-red-100">
+          <AlertCircle className="h-8 w-8 text-red-400" />
+        </div>
+        <h3 className="mb-2 font-semibold text-gray-900 text-lg">
+          Failed to load orders
+        </h3>
+        <p className="mb-6 max-w-md text-center text-gray-600">
+          There was an error loading the orders. Please try again.
+        </p>
+        {onTryAgain && (
+          <Button onClick={onTryAgain} variant="outline">
+            Try Again
+          </Button>
+        )}
+      </div>
+    );
+  }
+
+  if (state === "empty") {
     return (
       <div className="flex flex-col items-center justify-center py-20">
         <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">

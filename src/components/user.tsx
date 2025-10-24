@@ -6,6 +6,7 @@ import {
   LogOut,
   ShoppingBasket,
 } from "lucide-react";
+import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -22,11 +23,22 @@ export function User({
   user,
 }: {
   user: {
-    name: string;
+    name?: string;
     email?: string;
     avatar: string;
+    firstName?: string;
+    lastName?: string;
+    staffId?: string;
+    role?: string;
   };
 }) {
+  const displayName = React.useMemo(() => {
+    if (user.firstName && user.lastName) {
+      return `${user.firstName} ${user.lastName}`;
+    }
+    return user.name ?? "";
+  }, [user]);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -35,30 +47,41 @@ export function User({
           size="lg"
         >
           <Avatar className="h-8 w-8 rounded-lg">
-            <AvatarImage alt={user.name} src={user.avatar} />
-            <AvatarFallback className="rounded-lg">TU</AvatarFallback>
-          </Avatar>{" "}
+            {user.avatar ? (
+              <AvatarImage alt={displayName} src={user.avatar} />
+            ) : (
+              <AvatarFallback className="rounded-lg">
+                {user.firstName?.[0] ?? "U"}
+                {user.lastName?.[0] ?? "N"}
+              </AvatarFallback>
+            )}
+          </Avatar>
           <div className="grid flex-1 text-left text-neutral-800 text-sm leading-tight dark:text-white">
-            <span className="truncate">{user.name}</span>
+            <span className="truncate">{displayName}</span>
           </div>
           <ChevronDown className="ml-auto size-4" />
         </MenuButton>
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        // side={isMobile ? "bottom" : "right"}
         className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
         sideOffset={4}
       >
-        {" "}
         <DropdownMenuLabel className="p-0 font-normal text-neutral-800 dark:text-neutral-200">
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
             <Avatar className="h-8 w-8 rounded-lg">
-              <AvatarImage alt={user.name} src={user.avatar} />
+              {user.avatar ? (
+                <AvatarImage alt={displayName} src={user.avatar} />
+              ) : (
+                <AvatarFallback className="rounded-lg">
+                  {user.firstName?.[0] ?? "U"}
+                  {user.lastName?.[0] ?? "N"}
+                </AvatarFallback>
+              )}
               <AvatarFallback className="rounded-lg">DR</AvatarFallback>
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate">{user.name}</span>
+              <span className="truncate">{displayName}</span>
               <span className="truncate text-neutral-600 text-xs dark:text-neutral-400">
                 {user.email}
               </span>

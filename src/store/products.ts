@@ -1,23 +1,24 @@
 import { create } from "zustand";
 
 export interface Product {
-  readonly id: string;
-  readonly name: string;
-  readonly category: string;
-  readonly description: string;
-  readonly price: string;
-  readonly stock: number;
-  readonly totalSold: number;
-  readonly performance: "Excellent" | "Good" | "Best" | "Poor";
-  readonly performanceColor: "success" | "primary" | "warning" | "danger";
-  readonly visibility: boolean;
-  readonly sku: string;
-  readonly supplier: string;
-  readonly createdAt: string;
-  readonly updatedAt: string;
-  readonly status: "Active" | "Inactive" | "Out of Stock";
-  readonly statusColor: "green" | "gray" | "red";
   readonly imageUrl?: string;
+  // Mock-only fields for compatibility
+  readonly name?: string;
+  readonly category?: string;
+  readonly stock?: number;
+  readonly totalSold?: number;
+  readonly performance?: "Excellent" | "Good" | "Best" | "Poor";
+  readonly performanceColor?: "success" | "primary" | "warning" | "danger";
+  readonly visibility?: boolean;
+  readonly productId: string;
+  readonly productName: string;
+  readonly productType: string;
+  readonly productTypeCode: string;
+  readonly price: number;
+  readonly brand: string;
+  readonly manufacturer: string;
+  readonly description: string;
+  readonly photos: string[];
 }
 
 interface ProductsState {
@@ -42,9 +43,7 @@ interface ProductsState {
   readonly addProduct: (
     product: Omit<Product, "id" | "createdAt" | "updatedAt">
   ) => void;
-  readonly updateProduct: (id: string, updates: Partial<Product>) => void;
-  readonly updateProductStatus: (id: string, status: Product["status"]) => void;
-  readonly deleteProduct: (id: string) => void;
+  // API-driven: updateProduct, updateProductStatus, deleteProduct handled via API
   readonly getProductById: (id: string) => Product | undefined;
   readonly getPaginatedProducts: () => Product[];
   readonly setSelectedProduct: (product: Product | null) => void;
@@ -53,156 +52,92 @@ interface ProductsState {
 
 export const mockProducts: Product[] = [
   {
-    id: "PRD001",
-    name: "Paracetamol 500mg Tablets",
-    category: "Pain Relief",
+    productId: "PRD001",
+    productName: "Paracetamol 500mg Tablets",
+    productType: "Pain Relief",
+    productTypeCode: "PAIN_RELIEF",
+    price: 15,
+    brand: "Med Supplies Ltd.",
+    manufacturer: "Med Supplies Ltd.",
     description: "Effective pain relief and fever reducer",
-    price: "₵15.00",
-    stock: 500,
-    totalSold: 1200,
-    performance: "Excellent",
-    performanceColor: "success",
-    visibility: true,
-    sku: "PAR-500-100",
-    supplier: "MedSupply Ghana Ltd",
-    createdAt: "2024-01-15T10:30:00Z",
-    updatedAt: "2024-01-20T14:45:00Z",
-    status: "Active",
-    statusColor: "green",
-    imageUrl: "/products/paracetamol.jpg",
+    photos: ["/products/paracetamol.jpg"],
   },
   {
-    id: "PRD002",
-    name: "Ibuprofen 400mg Capsules",
-    category: "Pain Relief",
+    productId: "PRD002",
+    productName: "Ibuprofen 400mg Capsules",
+    productType: "Pain Relief",
+    productTypeCode: "PAIN_RELIEF",
+    price: 25,
+    brand: "Pharma Distribution Co.",
+    manufacturer: "Pharma Distribution Co.",
     description: "Anti-inflammatory and pain relief medication",
-    price: "₵25.00",
-    stock: 300,
-    totalSold: 800,
-    performance: "Good",
-    performanceColor: "success",
-    visibility: true,
-    sku: "IBU-400-50",
-    supplier: "Pharma Distribution Co.",
-    createdAt: "2024-01-10T08:15:00Z",
-    updatedAt: "2024-01-18T16:20:00Z",
-    status: "Active",
-    statusColor: "green",
-    imageUrl: "/products/ibuprofen.jpg",
+    photos: ["/products/ibuprofen.jpg"],
   },
   {
-    id: "PRD003",
-    name: "Vitamin C 1000mg Tablets",
-    category: "Vitamins",
+    productId: "PRD003",
+    productName: "Vitamin C 1000mg Tablets",
+    productType: "Vitamins",
+    productTypeCode: "VITAMINS",
+    price: 35,
+    brand: "HealthCare Supplies",
+    manufacturer: "HealthCare Supplies",
     description: "Immune system support supplement",
-    price: "₵35.00",
-    stock: 0,
-    totalSold: 450,
-    performance: "Good",
-    performanceColor: "success",
-    visibility: false,
-    sku: "VIT-C-1000-60",
-    supplier: "HealthCare Supplies",
-    createdAt: "2024-01-05T12:00:00Z",
-    updatedAt: "2024-01-19T09:30:00Z",
-    status: "Out of Stock",
-    statusColor: "red",
-    imageUrl: "/products/vitamin-c.jpg",
+    photos: ["/products/vitamin-c.jpg"],
   },
   {
-    id: "PRD004",
-    name: "Amoxicillin 250mg Capsules",
-    category: "Antibiotics",
+    productId: "PRD004",
+    productName: "Amoxicillin 250mg Capsules",
+    productType: "Antibiotics",
+    productTypeCode: "ANTIBIOTICS",
+    price: 45,
+    brand: "Global Med Solutions",
+    manufacturer: "Global Med Solutions",
     description: "Broad-spectrum antibiotic for bacterial infections",
-    price: "₵45.00",
-    stock: 150,
-    totalSold: 600,
-    performance: "Best",
-    performanceColor: "primary",
-    visibility: true,
-    sku: "AMX-250-20",
-    supplier: "Global Med Solutions",
-    createdAt: "2024-01-12T14:20:00Z",
-    updatedAt: "2024-01-21T11:15:00Z",
-    status: "Active",
-    statusColor: "green",
-    imageUrl: "/products/amoxicillin.jpg",
+    photos: ["/products/amoxicillin.jpg"],
   },
   {
-    id: "PRD005",
-    name: "Omeprazole 20mg Tablets",
-    category: "Gastric",
+    productId: "PRD005",
+    productName: "Omeprazole 20mg Tablets",
+    productType: "Gastric",
+    productTypeCode: "GASTRIC",
+    price: 55,
+    brand: "Reliable Pharma Supply",
+    manufacturer: "Reliable Pharma Supply",
     description: "Proton pump inhibitor for acid reflux",
-    price: "₵55.00",
-    stock: 200,
-    totalSold: 350,
-    performance: "Good",
-    performanceColor: "success",
-    visibility: true,
-    sku: "OMP-20-30",
-    supplier: "Reliable Pharma Supply",
-    createdAt: "2024-01-08T09:45:00Z",
-    updatedAt: "2024-01-17T13:25:00Z",
-    status: "Active",
-    statusColor: "green",
-    imageUrl: "/products/omeprazole.jpg",
+    photos: ["/products/omeprazole.jpg"],
   },
   {
-    id: "PRD006",
-    name: "Cetirizine 10mg Tablets",
-    category: "Antihistamines",
+    productId: "PRD006",
+    productName: "Cetirizine 10mg Tablets",
+    productType: "Antihistamines",
+    productTypeCode: "ANTIHISTAMINES",
+    price: 20,
+    brand: "Northern Med Distributors",
+    manufacturer: "Northern Med Distributors",
     description: "Allergy relief medication",
-    price: "₵20.00",
-    stock: 400,
-    totalSold: 900,
-    performance: "Best",
-    performanceColor: "primary",
-    visibility: true,
-    sku: "CET-10-20",
-    supplier: "Northern Med Distributors",
-    createdAt: "2024-01-14T11:30:00Z",
-    updatedAt: "2024-01-22T10:00:00Z",
-    status: "Active",
-    statusColor: "green",
-    imageUrl: "/products/cetirizine.jpg",
+    photos: ["/products/cetirizine.jpg"],
   },
   {
-    id: "PRD007",
-    name: "Metformin 500mg Tablets",
-    category: "Diabetes",
+    productId: "PRD007",
+    productName: "Metformin 500mg Tablets",
+    productType: "Diabetes",
+    productTypeCode: "DIABETES",
+    price: 30,
+    brand: "Coast Medical Supplies",
+    manufacturer: "Coast Medical Supplies",
     description: "Type 2 diabetes management medication",
-    price: "₵30.00",
-    stock: 250,
-    totalSold: 700,
-    performance: "Excellent",
-    performanceColor: "success",
-    visibility: true,
-    sku: "MET-500-100",
-    supplier: "Coast Medical Supplies",
-    createdAt: "2024-01-09T15:10:00Z",
-    updatedAt: "2024-01-16T12:40:00Z",
-    status: "Active",
-    statusColor: "green",
-    imageUrl: "/products/metformin.jpg",
+    photos: ["/products/metformin.jpg"],
   },
   {
-    id: "PRD008",
-    name: "Aspirin 75mg Tablets",
-    category: "Cardiovascular",
+    productId: "PRD008",
+    productName: "Aspirin 75mg Tablets",
+    productType: "Cardiovascular",
+    productTypeCode: "CARDIOVASCULAR",
+    price: 12,
+    brand: "Elite Pharmaceutical Ltd",
+    manufacturer: "Elite Pharmaceutical Ltd",
     description: "Low-dose aspirin for heart health",
-    price: "₵12.00",
-    stock: 600,
-    totalSold: 1100,
-    performance: "Good",
-    performanceColor: "success",
-    visibility: false,
-    sku: "ASP-75-100",
-    supplier: "Elite Pharmaceutical Ltd",
-    createdAt: "2024-01-06T13:25:00Z",
-    updatedAt: "2024-01-15T08:50:00Z",
-    status: "Inactive",
-    statusColor: "gray",
-    imageUrl: "/products/aspirin.jpg",
+    photos: ["/products/aspirin.jpg"],
   },
 ];
 
@@ -239,39 +174,20 @@ export const useProductsStore = create<ProductsState>((set, get) => ({
     set({ isSearching: true });
 
     setTimeout(() => {
-      const {
-        products,
-        searchTerm,
-        categoryFilter,
-        statusFilter,
-        itemsPerPage,
-      } = get();
+      const { products, searchTerm, itemsPerPage } = get();
 
       let filtered = products;
 
-      // Filter by search term
+      // Filter by search term (productName, productType, brand, manufacturer, description)
       if (searchTerm.trim()) {
         const term = searchTerm.toLowerCase();
         filtered = filtered.filter(
           (product) =>
-            product.name.toLowerCase().includes(term) ||
-            product.category.toLowerCase().includes(term) ||
-            product.sku.toLowerCase().includes(term) ||
-            product.supplier.toLowerCase().includes(term)
-        );
-      }
-
-      // Filter by category
-      if (categoryFilter !== "All") {
-        filtered = filtered.filter(
-          (product) => product.category === categoryFilter
-        );
-      }
-
-      // Filter by status
-      if (statusFilter !== "All") {
-        filtered = filtered.filter(
-          (product) => product.status === statusFilter
+            product.productName.toLowerCase().includes(term) ||
+            product.productType.toLowerCase().includes(term) ||
+            product.brand.toLowerCase().includes(term) ||
+            product.manufacturer.toLowerCase().includes(term) ||
+            product.description.toLowerCase().includes(term)
         );
       }
 
@@ -288,8 +204,6 @@ export const useProductsStore = create<ProductsState>((set, get) => ({
     const { products, itemsPerPage } = get();
     set({
       searchTerm: "",
-      categoryFilter: "All",
-      statusFilter: "All",
       filteredProducts: products,
       currentPage: 1,
       totalPages: Math.ceil(products.length / itemsPerPage),
@@ -300,11 +214,7 @@ export const useProductsStore = create<ProductsState>((set, get) => ({
   addProduct: (productData) => {
     const newProduct: Product = {
       ...productData,
-      id: `PRD${String(Date.now()).slice(-3)}`,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      status: "Active",
-      statusColor: "green",
+      productId: `PRD${String(Date.now()).slice(-3)}`,
     };
 
     const { products, itemsPerPage } = get();
@@ -317,50 +227,11 @@ export const useProductsStore = create<ProductsState>((set, get) => ({
     });
   },
 
-  updateProduct: (id, updates) => {
-    const { products, filteredProducts } = get();
-
-    const updateProductInArray = (arr: Product[]) =>
-      arr.map((product) =>
-        product.id === id
-          ? { ...product, ...updates, updatedAt: new Date().toISOString() }
-          : product
-      );
-
-    set({
-      products: updateProductInArray(products),
-      filteredProducts: updateProductInArray(filteredProducts),
-    });
-  },
-
-  updateProductStatus: (id, status) => {
-    const statusColor: Record<Product["status"], Product["statusColor"]> = {
-      Active: "green",
-      Inactive: "gray",
-      "Out of Stock": "red",
-    };
-
-    get().updateProduct(id, { status, statusColor: statusColor[status] });
-  },
-
-  deleteProduct: (id) => {
-    const { products, filteredProducts, itemsPerPage } = get();
-
-    const newProducts = products.filter((product) => product.id !== id);
-    const newFilteredProducts = filteredProducts.filter(
-      (product) => product.id !== id
-    );
-
-    set({
-      products: newProducts,
-      filteredProducts: newFilteredProducts,
-      totalPages: Math.ceil(newFilteredProducts.length / itemsPerPage),
-    });
-  },
+  // Removed local updateProduct, updateProductStatus, and deleteProduct implementations. Use API mutations instead.
 
   getProductById: (id) => {
     const { products } = get();
-    return products.find((product) => product.id === id);
+    return products.find((product) => product.productId === id);
   },
 
   getPaginatedProducts: () => {
@@ -373,11 +244,6 @@ export const useProductsStore = create<ProductsState>((set, get) => ({
   setSelectedProduct: (product) => set({ selectedProduct: product }),
 
   toggleProductVisibility: (id) => {
-    const { products } = get();
-    const product = products.find((p) => p.id === id);
-
-    if (product) {
-      get().updateProduct(id, { visibility: !product.visibility });
-    }
+    // No-op: visibility logic removed, not present in API
   },
 }));

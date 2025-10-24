@@ -14,8 +14,21 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { User } from "@/components/user";
+import { useAdminAuth } from "@/store/admin-auth";
+
+const defaultUser = {
+  name: "",
+  email: "",
+  avatar: "/logo.webp",
+  firstName: "",
+  lastName: "",
+  staffId: "",
+  role: "",
+};
 
 export function SiteHeader() {
+  const { user } = useAdminAuth();
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex h-14 items-center justify-between px-6">
@@ -81,14 +94,7 @@ export function SiteHeader() {
 
           <ModeToggle />
 
-          <User
-            user={{
-              name: "Admin User",
-              email: "admin@kulobalhealth.com",
-              avatar:
-                "https://images.unsplash.com/photo-1675095680984-0b5a8b1e6c4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fG1lbnxlbnwwfHx8fDE2ODQ3MTg3NjE&ixlib=rb-4.0.3&q=80&w=400",
-            }}
-          />
+          <User user={user ?? defaultUser} />
         </div>
       </div>
     </header>

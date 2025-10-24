@@ -2,24 +2,37 @@
 
 import { Plus } from "lucide-react";
 import { useState } from "react";
+import type { AddProductFormData } from "@/components/admin/add-product-modal";
 import { AddProductModal } from "@/components/admin/add-product-modal";
 import { DeleteProductModal } from "@/components/admin/delete-product-modal";
-import { ProductDetailsModal } from "@/components/admin/product-details-modal";
-import { ProductRow } from "@/components/admin/product-row";
-import { EmptyState } from "@/components/admin/empty-state";
 import { MetricsCards } from "@/components/admin/metrics-cards";
+import { ProductDetailsModal } from "@/components/admin/product-details-modal";
 import { SearchAndFilters } from "@/components/admin/search-and-filters";
-import { PaginationControls } from "@/components/admin/pagination-controls";
 import { Button } from "@/components/ui/button";
-import { mockProducts, Product } from "@/store/products";
+import {
+  useAddProduct,
+  useDeleteProduct,
+  useGetAllProducts,
+} from "@/hooks/use-admin-product";
+import {
+  determineProductsRenderState,
+  renderProductsContent,
+} from "@/lib/products-render-utils";
+import type { Product } from "@/store/products";
 
 export default function ProductsManagement() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [hasProducts, setHasProducts] = useState(false); 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+  const { data, isLoading, isError, refetch } = useGetAllProducts();
+  const products = data?.data ?? [];
+  const addProductMutation = useAddProduct();
+  const deleteProductMutation = useDeleteProduct();
+
+  const hasProducts = products.length > 0;
 
   const handleViewDetails = (product: Product) => {
     setSelectedProduct(product);
@@ -32,13 +45,48 @@ export default function ProductsManagement() {
   };
 
   const handleConfirmDelete = () => {
-    console.log("Deleting product:", selectedProduct);
-    setIsDeleteModalOpen(false);
-    setSelectedProduct(null);
+    if (selectedProduct) {
+      deleteProductMutation.mutate(selectedProduct.productId, {
+        onSuccess: () => {
+          setIsDeleteModalOpen(false);
+          setSelectedProduct(null);
+          refetch();
+        },
+        onError: () => {
+          // Error handling could be added here if needed
+        },
+      });
+    }
   };
 
-  const handleAddProduct = () => {
-    setIsAddModalOpen(true);
+  const handleAddProduct = (productData?: AddProductFormData) => {
+    if (!productData) {
+      setIsAddModalOpen(true);
+      return Promise.resolve();
+    }
+
+    const payload = {
+      productName: productData.productName,
+      productTypeCode: productData.productTypeCode || "",
+      price: productData.price,
+      description: productData.description,
+      brand: productData.brand,
+      manufacturer: productData.manufacturer ?? "",
+      photos: productData.photos ?? [],
+    };
+
+    return new Promise<void>((resolve, reject) => {
+      addProductMutation.mutate(payload, {
+        onSuccess: () => {
+          setIsAddModalOpen(false);
+          refetch();
+          resolve();
+        },
+        onError: (err) => {
+          reject(err);
+        },
+      });
+    });
   };
 
   const handleSearchChange = (value: string) => {
@@ -46,7 +94,7 @@ export default function ProductsManagement() {
   };
 
   const handleSearch = () => {
-    console.log("Searching for:", searchTerm);
+    refetch();
   };
 
   return (
@@ -61,7 +109,7 @@ export default function ProductsManagement() {
           </div>
           <Button
             className="bg-primary-500 text-white hover:bg-primary-600"
-            onClick={handleAddProduct}
+            onClick={() => setIsAddModalOpen(true)}
           >
             <Plus className="mr-2 h-4 w-4" />
             Add New Product
@@ -71,45 +119,34 @@ export default function ProductsManagement() {
         <MetricsCards hasProducts={hasProducts} />
 
         <SearchAndFilters
-          searchTerm={searchTerm}
-          onSearchChange={handleSearchChange}
           onSearch={handleSearch}
+          onSearchChange={handleSearchChange}
+          searchTerm={searchTerm}
         />
 
-        {hasProducts ? (
-          <div className="rounded-lg bg-white shadow-sm">
-            <div className="w-full">
-              {mockProducts.map((product, index) => (
-                <ProductRow
-                  key={product.id}
-                  onDelete={handleDelete}
-                  onViewDetails={handleViewDetails}
-                  product={product}
-                  isLast={index === mockProducts.length - 1}
-                />
-              ))}
-            </div>
-
-            <PaginationControls />
-          </div>
-        ) : (
-          <EmptyState onAddProduct={handleAddProduct} />
+        {renderProductsContent(
+          determineProductsRenderState(isLoading, isError, hasProducts),
+          products,
+          handleViewDetails,
+          handleDelete,
+          () => setIsAddModalOpen(true)
         )}
-
 
         <div className="fixed right-4 bottom-4">
           <Button
             className="bg-white shadow-lg"
-            onClick={() => setHasProducts(!hasProducts)}
+            onClick={() => refetch()}
             variant="outline"
           >
-            Toggle {hasProducts ? "Empty" : "Populated"} State
+            Refresh Products
           </Button>
         </div>
       </div>
 
       <AddProductModal
+        isLoading={addProductMutation.isPending}
         isOpen={isAddModalOpen}
+        onAddProduct={handleAddProduct}
         onClose={() => setIsAddModalOpen(false)}
       />
       <ProductDetailsModal
