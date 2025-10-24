@@ -1,20 +1,20 @@
-import { useState, useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
-  ViewType,
+  calculateAnalyticsStats,
+  getFilteredData,
+  getTotalPages,
+  paginateData,
+  type SearchFilters,
+} from "@/lib/analytics-utils";
+import {
   mockPatients,
   mockPharmacies,
   mockSuppliers,
   patientColumns,
   pharmacyColumns,
   supplierColumns,
+  type ViewType,
 } from "@/store/analytics";
-import {
-  SearchFilters,
-  getFilteredData,
-  calculateAnalyticsStats,
-  paginateData,
-  getTotalPages,
-} from "@/lib/analytics-utils";
 
 // Types for component compatibility
 type TableColumn = {

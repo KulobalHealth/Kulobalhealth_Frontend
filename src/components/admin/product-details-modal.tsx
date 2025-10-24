@@ -45,16 +45,24 @@ export function ProductDetailsModal({
                 Product Images
               </Label>
               <div className="grid grid-cols-4 gap-3">
-                {[1, 2, 3, 4].map((index) => (
-                  <div
-                    className="flex aspect-square items-center justify-center rounded-lg bg-gradient-to-br from-blue-400 to-blue-600"
-                    key={index}
-                  >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white/20">
-                      <div className="h-6 w-6 rounded-sm bg-white" />
+                {product.photos && product.photos.length > 0 ? (
+                  product.photos.map((photo, idx) => (
+                    <div
+                      className="flex aspect-square items-center justify-center rounded-lg bg-gradient-to-br from-blue-400 to-blue-600"
+                      key={photo}
+                    >
+                      <img
+                        alt={`Product image ${idx + 1}`}
+                        className="h-12 w-12 rounded-lg object-cover"
+                        src={photo}
+                      />
                     </div>
+                  ))
+                ) : (
+                  <div className="col-span-4 text-center text-gray-400">
+                    No images available
                   </div>
-                ))}
+                )}
               </div>
             </div>
 
@@ -62,34 +70,28 @@ export function ProductDetailsModal({
             <div className="mb-6 grid grid-cols-3 gap-6">
               <div>
                 <Label className="text-gray-600 text-sm">Product Name</Label>
-                <div className="font-medium">Fertilizer</div>
+                <div className="font-medium">{product.productName}</div>
               </div>
               <div>
-                <Label className="text-gray-600 text-sm">
-                  Quantity Available
-                </Label>
-                <div className="font-medium">300</div>
+                <Label className="text-gray-600 text-sm">Product Type</Label>
+                <div className="font-medium">{product.productType}</div>
               </div>
               <div>
                 <Label className="text-gray-600 text-sm">
                   Product Price (GHS)
                 </Label>
-                <div className="font-medium">200.00</div>
+                <div className="font-medium">GHS {product.price}</div>
               </div>
             </div>
 
             <div className="mb-6 grid grid-cols-2 gap-6">
               <div>
-                <Label className="text-gray-600 text-sm">
-                  Product Visibility
-                </Label>
-                <div className="mt-1 flex items-center gap-2">
-                  <Badge className="bg-success-100 text-success-700">On</Badge>
-                </div>
+                <Label className="text-gray-600 text-sm">Brand</Label>
+                <div className="font-medium">{product.brand}</div>
               </div>
               <div>
-                <Label className="text-gray-600 text-sm">Brand</Label>
-                <div className="font-medium">Greater Accra</div>
+                <Label className="text-gray-600 text-sm">Manufacturer</Label>
+                <div className="font-medium">{product.manufacturer}</div>
               </div>
             </div>
 
@@ -98,11 +100,7 @@ export function ProductDetailsModal({
               <Label className="text-gray-600 text-sm">
                 Product Description
               </Label>
-              <p className="mt-1 text-sm">
-                Lorem ipsum dolor sit amet consectetur. Odio quisque sed arcu
-                elit justo tortor. Vitae facilisi nam aliquet est placerat
-                venenatis.
-              </p>
+              <p className="mt-1 text-sm">{product.description}</p>
             </div>
           </div>
         </div>

@@ -4,6 +4,7 @@ import localfont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import Providers from "@/lib/providers/tanstack-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -93,7 +94,7 @@ export default function RootLayout({
           disableTransitionOnChange
           enableSystem
         >
-          {children}
+          <Providers>{children}</Providers>
           <Toaster position="top-right" />
         </ThemeProvider>
       </body>

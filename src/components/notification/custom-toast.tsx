@@ -1,7 +1,7 @@
 "use client";
 
+import { AlertCircle, CheckCircle, Info, XCircle } from "lucide-react";
 import toast from "react-hot-toast";
-import { CheckCircle, XCircle, AlertCircle, Info } from "lucide-react";
 
 interface CustomToastProps {
   message: string;
@@ -15,13 +15,13 @@ export const showCustomToast = ({ message, type, icon }: CustomToastProps) => {
 
     switch (type) {
       case "success":
-        return <CheckCircle className="w-5 h-5 text-green-500" />;
+        return <CheckCircle className="h-5 w-5 text-green-500" />;
       case "error":
-        return <XCircle className="w-5 h-5 text-red-500" />;
+        return <XCircle className="h-5 w-5 text-red-500" />;
       case "warning":
-        return <AlertCircle className="w-5 h-5 text-yellow-500" />;
+        return <AlertCircle className="h-5 w-5 text-yellow-500" />;
       case "info":
-        return <Info className="w-5 h-5 text-blue-500" />;
+        return <Info className="h-5 w-5 text-blue-500" />;
       default:
         return null;
     }
@@ -62,22 +62,22 @@ export const showCustomToast = ({ message, type, icon }: CustomToastProps) => {
       <div
         className={`${
           t.visible ? "animate-enter" : "animate-leave"
-        } max-w-md w-full ${getBackgroundColor()} shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+        } w-full max-w-md ${getBackgroundColor()} pointer-events-auto flex rounded-lg shadow-lg ring-1 ring-black ring-opacity-5`}
       >
-        <div className="flex-1 w-0 p-4">
+        <div className="w-0 flex-1 p-4">
           <div className="flex items-start">
             <div className="flex-shrink-0">{getIcon()}</div>
             <div className="ml-3 flex-1">
-              <p className={`text-sm font-medium ${getTextColor()}`}>
+              <p className={`font-medium text-sm ${getTextColor()}`}>
                 {message}
               </p>
             </div>
           </div>
         </div>
-        <div className="flex border-l border-gray-200">
+        <div className="flex border-gray-200 border-l">
           <button
+            className="flex w-full items-center justify-center rounded-none rounded-r-lg border border-transparent p-4 font-medium text-gray-600 text-sm hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500"
             onClick={() => toast.dismiss(t.id)}
-            className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-gray-600 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500"
           >
             ×
           </button>
