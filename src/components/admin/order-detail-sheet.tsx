@@ -1,16 +1,22 @@
-'use client';
+"use client";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
-} from '@/components/ui/sheet';
-import type { Order } from '@/store/orders';
-import { Icons } from '../ui/icons';
+} from "@/components/ui/sheet";
+import { formatCurrency, formatDate, formatOrderId } from "@/lib/format-utils";
+import { canCompleteOrder, canProcessOrder } from "@/lib/order-utils";
+import {
+  getPaymentTypeDisplayName,
+  getStatusBadgeClass,
+} from "@/lib/status-utils";
+import type { Order } from "@/store/orders";
+import { Icons } from "../ui/icons";
 
 interface OrderDetailSheetProps {
   readonly isOpen: boolean;
@@ -23,47 +29,28 @@ export function OrderDetailSheet({
   onClose,
   order,
 }: OrderDetailSheetProps) {
-  if (!order) return null;
-
-  const getStatusBadgeClass = (color: string) => {
-    switch (color) {
-      case 'green':
-        return 'bg-green-50 text-green-700 hover:bg-green-50';
-      case 'blue':
-        return 'bg-blue-50 text-blue-700 hover:bg-blue-50';
-      case 'yellow':
-        return 'bg-yellow-50 text-yellow-700 hover:bg-yellow-50';
-      case 'red':
-        return 'bg-red-50 text-red-700 hover:bg-red-50';
-      case 'gray':
-      default:
-        return 'bg-gray-50 text-gray-700 hover:bg-gray-50';
-    }
-  };
+  if (!order) {
+    return null;
+  }
 
   const getActionButton = () => {
-    switch (order.status) {
-      case 'New Order':
-        return (
-          <Button className="w-full bg-teal-600 text-white hover:bg-teal-700">
-            Confirm Order
-          </Button>
-        );
-      case 'Confirmed':
-        return (
-          <Button className="w-full bg-blue-600 text-white hover:bg-blue-700">
-            Mark as In Transit
-          </Button>
-        );
-      case 'In Transit':
-        return (
-          <Button className="w-full bg-green-600 text-white hover:bg-green-700">
-            Mark as Delivered
-          </Button>
-        );
-      default:
-        return null;
+    if (canProcessOrder(order.status)) {
+      return (
+        <Button className="w-full bg-teal-600 text-white hover:bg-teal-700">
+          Process Order
+        </Button>
+      );
     }
+
+    if (canCompleteOrder(order.status)) {
+      return (
+        <Button className="w-full bg-green-600 text-white hover:bg-green-700">
+          Mark as Completed
+        </Button>
+      );
+    }
+
+    return null;
   };
 
   return (
@@ -87,23 +74,36 @@ export function OrderDetailSheet({
                   className={getStatusBadgeClass(order.statusColor)}
                   variant="secondary"
                 >
-                  {order.status}
+                  {order.displayStatus || order.status}
                 </Badge>
               </div>
 
-              {/* Product Item */}
-              <div className="flex items-center gap-3 rounded-lg bg-gray-50 p-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary">
-                  <Icons.Basket className="h-6 w-6 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h4 className="font-medium text-gray-900">
-                    {order.productName}
-                  </h4>
-                  <div className="mt-1 flex items-center gap-4 text-gray-600 text-sm">
-                    <span>Order No. {order.orderNumber}</span>
+              {/* Products List */}
+              <div className="space-y-3">
+                {order.products.map((product) => (
+                  <div
+                    className="flex items-center gap-3 rounded-lg bg-gray-50 p-3"
+                    key={product.productId}
+                  >
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary">
+                      <Icons.Basket className="h-6 w-6 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-medium text-gray-900">
+                        {product.productName}
+                      </h4>
+                      <div className="mt-1 flex items-center gap-4 text-gray-600 text-sm">
+                        <span>Qty: {product.quantity}</span>
+                        <span>{formatCurrency(product.price)} each</span>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-medium text-sm">
+                        {formatCurrency(product.price * product.quantity)}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
 
               {/* Action Button */}
@@ -118,26 +118,48 @@ export function OrderDetailSheet({
 
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-600 text-sm">Date</span>
-                  <span className="font-medium text-sm">{order.orderDate}</span>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-600 text-sm">Pharmacy</span>
+                  <span className="text-gray-600 text-sm">Order ID</span>
                   <span className="font-medium text-sm">
-                    {order.pharmacyName}
+                    {formatOrderId(order.orderId)}
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-600 text-sm">Amount</span>
-                  <span className="font-medium text-sm">{order.amount}</span>
+                  <span className="text-gray-600 text-sm">Date</span>
+                  <span className="font-medium text-sm">
+                    {formatDate(order.dateOrdered)}
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-600 text-sm">Items</span>
+                  <span className="font-medium text-sm">
+                    {order.numberOfItems}
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-600 text-sm">Delivery Method</span>
+                  <span className="font-medium text-sm">
+                    {order.deliveryMethod}
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-600 text-sm">Payment Method</span>
+                  <span className="font-medium text-sm">
+                    {getPaymentTypeDisplayName(order.paymentType)}
+                  </span>
                 </div>
 
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600 text-sm">Payment Status</span>
-                  <span className="font-medium text-green-600 text-sm">
-                    {order.paymentStatus}
+                  <span
+                    className={`font-medium text-sm ${
+                      order.paid ? "text-green-600" : "text-red-600"
+                    }`}
+                  >
+                    {order.paid ? "Paid" : "Pending Payment"}
                   </span>
                 </div>
 
@@ -146,60 +168,31 @@ export function OrderDetailSheet({
                 <div className="flex items-center justify-between">
                   <span className="font-semibold text-base">Total</span>
                   <span className="font-semibold text-base">
-                    {order.amount}
+                    {formatCurrency(order.totalCost)}
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Customer Information */}
-            {order.customerName && (
-              <>
-                <Separator />
-                <div className="space-y-4">
-                  <h3 className="font-semibold text-gray-900">
-                    Customer Information
-                  </h3>
-                  <div className="space-y-2 text-sm">
-                    <p className="font-medium">{order.customerName}</p>
-                    {order.customerPhone && (
-                      <p className="text-gray-600">{order.customerPhone}</p>
-                    )}
-                    {order.customerEmail && (
-                      <p className="text-gray-600">{order.customerEmail}</p>
-                    )}
-                  </div>
-                </div>
-              </>
-            )}
-
-            {/* Delivery Address */}
-            {order.deliveryAddress && (
-              <>
-                <Separator />
-                <div className="space-y-4">
-                  <h3 className="font-semibold text-gray-900">
-                    Delivery Address
-                  </h3>
-                  <div className="space-y-2 text-sm">
-                    <p className="text-gray-600">{order.deliveryAddress}</p>
-                  </div>
-                </div>
-              </>
-            )}
-
-            {/* Notes */}
-            {order.notes && (
-              <>
-                <Separator />
-                <div className="space-y-4">
-                  <h3 className="font-semibold text-gray-900">Notes</h3>
-                  <div className="rounded-lg bg-gray-50 p-3 text-gray-600 text-sm">
-                    {order.notes}
-                  </div>
-                </div>
-              </>
-            )}
+            {/* Pharmacy Information */}
+            <Separator />
+            <div className="space-y-4">
+              <h3 className="font-semibold text-gray-900">
+                Pharmacy Information
+              </h3>
+              <div className="space-y-2 text-sm">
+                <p className="font-medium">{order.pharmacy.pharmacyName}</p>
+                <p className="text-gray-600">
+                  {order.pharmacy.firstName} {order.pharmacy.lastName}
+                </p>
+                <p className="text-gray-600">{order.pharmacy.email}</p>
+                <p className="text-gray-600">{order.pharmacy.phoneNumber}</p>
+                <p className="text-gray-600">{order.pharmacy.location}</p>
+                <p className="text-gray-600 text-xs">
+                  License: {order.pharmacy.licenceNumber}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </SheetContent>

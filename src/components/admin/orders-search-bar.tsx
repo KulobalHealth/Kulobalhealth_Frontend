@@ -1,12 +1,13 @@
-import { ChevronDown, Search } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ChevronDown, Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Input } from '@/components/ui/input';
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { getOrderStatusDisplayName } from "@/lib/status-utils";
 
 interface OrdersSearchBarProps {
   readonly searchTerm: string;
@@ -16,16 +17,10 @@ interface OrdersSearchBarProps {
   readonly isSearching: boolean;
   readonly onSearchTermChange: (term: string) => void;
   readonly onStatusFilterChange: (
-    status:
-      | 'All'
-      | 'Delivered'
-      | 'New Order'
-      | 'In Transit'
-      | 'Confirmed'
-      | 'Cancelled'
+    status: "All" | "PENDING" | "PROCESSING" | "COMPLETED" | "CANCELLED"
   ) => void;
   readonly onDateFilterChange: (
-    filter: 'All' | 'Today' | 'This Week' | 'This Month' | 'Custom Range'
+    filter: "All" | "Today" | "This Week" | "This Month" | "Custom Range"
   ) => void;
   readonly onItemsPerPageChange: (count: number) => void;
   readonly onSearch: () => void;
@@ -44,7 +39,7 @@ export function OrdersSearchBar({
   onSearch,
 }: OrdersSearchBarProps) {
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       onSearch();
     }
   };
@@ -70,27 +65,26 @@ export function OrdersSearchBar({
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button className="bg-white" disabled={isSearching} variant="outline">
-            {statusFilter === 'All' ? 'Select Status' : statusFilter}
+            {statusFilter === "All"
+              ? "Select Status"
+              : getOrderStatusDisplayName(statusFilter)}
             <ChevronDown className="ml-2 h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem onClick={() => onStatusFilterChange('All')}>
+          <DropdownMenuItem onClick={() => onStatusFilterChange("All")}>
             All Status
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onStatusFilterChange('Delivered')}>
-            Delivered
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onStatusFilterChange('In Transit')}>
-            In Transit
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onStatusFilterChange('Confirmed')}>
-            Confirmed
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onStatusFilterChange('New Order')}>
+          <DropdownMenuItem onClick={() => onStatusFilterChange("PENDING")}>
             New Order
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onStatusFilterChange('Cancelled')}>
+          <DropdownMenuItem onClick={() => onStatusFilterChange("PROCESSING")}>
+            In Transit
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => onStatusFilterChange("COMPLETED")}>
+            Delivered
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => onStatusFilterChange("CANCELLED")}>
             Cancelled
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -100,24 +94,24 @@ export function OrdersSearchBar({
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button className="bg-white" disabled={isSearching} variant="outline">
-            {dateFilter === 'All' ? 'Select Dates' : dateFilter}
+            {dateFilter === "All" ? "Select Dates" : dateFilter}
             <ChevronDown className="ml-2 h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem onClick={() => onDateFilterChange('All')}>
+          <DropdownMenuItem onClick={() => onDateFilterChange("All")}>
             All Dates
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onDateFilterChange('Today')}>
+          <DropdownMenuItem onClick={() => onDateFilterChange("Today")}>
             Today
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onDateFilterChange('This Week')}>
+          <DropdownMenuItem onClick={() => onDateFilterChange("This Week")}>
             This Week
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onDateFilterChange('This Month')}>
+          <DropdownMenuItem onClick={() => onDateFilterChange("This Month")}>
             This Month
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onDateFilterChange('Custom Range')}>
+          <DropdownMenuItem onClick={() => onDateFilterChange("Custom Range")}>
             Custom Range
           </DropdownMenuItem>
         </DropdownMenuContent>

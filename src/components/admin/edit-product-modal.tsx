@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { ArrowLeft } from "lucide-react";
+import { useEffect, useState } from "react";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -10,8 +12,6 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -19,8 +19,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ArrowLeft } from "lucide-react";
-import { useProductsStore } from "@/store/products";
+import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
+import { useUpdateProduct } from "@/hooks/use-admin-product";
+import {
+  createUpdateProductPayload,
+  PRODUCT_CATEGORIES,
+} from "@/lib/product-utils";
 import type { Product } from "@/store/products";
 
 interface EditProductModalProps {
@@ -34,7 +39,7 @@ export function EditProductModal({
   onClose,
   product,
 }: EditProductModalProps) {
-  const { updateProduct } = useProductsStore();
+  const updateProductMutation = useUpdateProduct();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -42,81 +47,72 @@ export function EditProductModal({
     description: "",
     price: "",
     stock: "",
-    sku: "",
-    supplier: "",
     visibility: true,
-    status: "Active" as Product["status"],
   });
-
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     if (product) {
       setFormData({
-        name: product.name,
-        category: product.category,
-        description: product.description,
-        price: product.price.replace("₵", "").trim(),
-        stock: product.stock.toString(),
-        sku: product.sku,
-        supplier: product.supplier,
-        visibility: product.visibility,
-        status: product.status,
+        name: product.productName ?? product.name ?? "",
+        category: product.productType ?? product.category ?? "",
+        description: product.description ?? "",
+        price: product.price !== undefined ? String(product.price) : "",
+        stock: product.stock !== undefined ? String(product.stock) : "",
+        visibility: product.visibility ?? true,
       });
     }
   }, [product]);
 
+  const schema = z.object({
+    name: z.string().min(1, "Product name is required"),
+    category: z.string().min(1, "Category is required"),
+    description: z.string().optional(),
+    price: z
+      .string()
+      .min(1, "Price is required")
+      .refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
+        message: "Price must be a valid positive number",
+      }),
+    stock: z
+      .string()
+      .min(1, "Stock is required")
+      .refine((val) => !isNaN(Number(val)) && Number(val) >= 0, {
+        message: "Stock must be a valid non-negative number",
+      }),
+    visibility: z.boolean(),
+  });
+
   const validateForm = () => {
-    const newErrors: Record<string, string> = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Product name is required";
+    const result = schema.safeParse(formData);
+    if (!result.success) {
+      const newErrors: Record<string, string> = {};
+      for (const err of result.error.errors) {
+        if (err.path[0]) {
+          newErrors[err.path[0]] = err.message;
+        }
+      }
+      setErrors(newErrors);
+      return false;
     }
-
-    if (!formData.category.trim()) {
-      newErrors.category = "Category is required";
-    }
-
-    if (!formData.price.trim()) {
-      newErrors.price = "Price is required";
-    } else if (isNaN(Number(formData.price)) || Number(formData.price) <= 0) {
-      newErrors.price = "Price must be a valid positive number";
-    }
-
-    if (!formData.stock.trim()) {
-      newErrors.stock = "Stock is required";
-    } else if (isNaN(Number(formData.stock)) || Number(formData.stock) < 0) {
-      newErrors.stock = "Stock must be a valid non-negative number";
-    }
-
-    if (!formData.sku.trim()) {
-      newErrors.sku = "SKU is required";
-    }
-
-    if (!formData.supplier.trim()) {
-      newErrors.supplier = "Supplier is required";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    setErrors({});
+    return true;
   };
 
   const handleSave = () => {
-    if (!validateForm() || !product) return;
+    if (!(validateForm() && product)) {
+      return;
+    }
 
-    updateProduct(product.id, {
-      name: formData.name,
-      category: formData.category,
-      description: formData.description,
-      price: `₵${formData.price}`,
-      stock: Number(formData.stock),
-      sku: formData.sku,
-      supplier: formData.supplier,
-      visibility: formData.visibility,
-      status: formData.status,
+    const payload = createUpdateProductPayload(product, formData);
+    updateProductMutation.mutate(payload, {
+      onSuccess: () => {
+        onClose();
+      },
+      onError: () => {
+        // Error handling could be added here if needed
+      },
     });
-
-    onClose();
   };
 
   const handleInputChange = (field: string, value: string | boolean) => {
@@ -126,21 +122,9 @@ export function EditProductModal({
     }
   };
 
-  const categories = [
-    "Pain Relief",
-    "Vitamins",
-    "Antibiotics",
-    "Gastric",
-    "Antihistamines",
-    "Diabetes",
-    "Cardiovascular",
-  ];
-
-  const statuses: Product["status"][] = ["Active", "Inactive", "Out of Stock"];
-
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+    <Dialog onOpenChange={onClose} open={isOpen}>
+      <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto">
         <DialogHeader className="flex flex-row items-center justify-between">
           <div className="flex items-center gap-2">
             <Button onClick={onClose} size="sm" variant="ghost">
@@ -148,157 +132,93 @@ export function EditProductModal({
             </Button>
             <div>
               <DialogTitle>Edit Product</DialogTitle>
-              <p className="mt-1 text-sm text-gray-600">
+              <p className="mt-1 text-gray-600 text-sm">
                 Update the product information below
               </p>
             </div>
           </div>
         </DialogHeader>
-
         <div className="space-y-6">
-          {/* Product Name */}
           <div className="space-y-2">
             <Label htmlFor="name">Product Name *</Label>
             <Input
+              className={errors.name ? "border-red-500" : ""}
               id="name"
+              onChange={(e) => handleInputChange("name", e.target.value)}
               placeholder="Enter product name"
               value={formData.name}
-              onChange={(e) => handleInputChange("name", e.target.value)}
-              className={errors.name ? "border-red-500" : ""}
             />
             {errors.name && (
-              <p className="text-sm text-red-500">{errors.name}</p>
+              <p className="text-red-500 text-sm">{errors.name}</p>
             )}
           </div>
-
-          {/* Category and SKU */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="category">Category *</Label>
-              <Select
-                value={formData.category}
-                onValueChange={(value) => handleInputChange("category", value)}
-              >
-                <SelectTrigger
-                  className={errors.category ? "border-red-500" : ""}
-                >
-                  <SelectValue placeholder="Select category" />
-                </SelectTrigger>
-                <SelectContent>
-                  {categories.map((category) => (
-                    <SelectItem key={category} value={category}>
-                      {category}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.category && (
-                <p className="text-sm text-red-500">{errors.category}</p>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="sku">SKU *</Label>
-              <Input
-                id="sku"
-                placeholder="Enter SKU"
-                value={formData.sku}
-                onChange={(e) => handleInputChange("sku", e.target.value)}
-                className={errors.sku ? "border-red-500" : ""}
-              />
-              {errors.sku && (
-                <p className="text-sm text-red-500">{errors.sku}</p>
-              )}
-            </div>
-          </div>
-
-          {/* Price and Stock */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="price">Price (₵) *</Label>
-              <Input
-                id="price"
-                type="number"
-                placeholder="0.00"
-                value={formData.price}
-                onChange={(e) => handleInputChange("price", e.target.value)}
-                className={errors.price ? "border-red-500" : ""}
-              />
-              {errors.price && (
-                <p className="text-sm text-red-500">{errors.price}</p>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="stock">Stock Quantity *</Label>
-              <Input
-                id="stock"
-                type="number"
-                placeholder="0"
-                value={formData.stock}
-                onChange={(e) => handleInputChange("stock", e.target.value)}
-                className={errors.stock ? "border-red-500" : ""}
-              />
-              {errors.stock && (
-                <p className="text-sm text-red-500">{errors.stock}</p>
-              )}
-            </div>
-          </div>
-
-          {/* Supplier */}
           <div className="space-y-2">
-            <Label htmlFor="supplier">Supplier *</Label>
-            <Input
-              id="supplier"
-              placeholder="Enter supplier name"
-              value={formData.supplier}
-              onChange={(e) => handleInputChange("supplier", e.target.value)}
-              className={errors.supplier ? "border-red-500" : ""}
-            />
-            {errors.supplier && (
-              <p className="text-sm text-red-500">{errors.supplier}</p>
-            )}
-          </div>
-
-          {/* Description */}
-          <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
-            <Textarea
-              id="description"
-              placeholder="Enter product description"
-              value={formData.description}
-              onChange={(e) => handleInputChange("description", e.target.value)}
-              rows={3}
-            />
-          </div>
-
-          {/* Status */}
-          <div className="space-y-2">
-            <Label htmlFor="status">Status</Label>
+            <Label htmlFor="category">Category *</Label>
             <Select
-              value={formData.status}
-              onValueChange={(value) =>
-                handleInputChange("status", value as Product["status"])
-              }
+              onValueChange={(value) => handleInputChange("category", value)}
+              value={formData.category}
             >
-              <SelectTrigger>
-                <SelectValue />
+              <SelectTrigger
+                className={errors.category ? "border-red-500" : ""}
+              >
+                <SelectValue placeholder="Select category" />
               </SelectTrigger>
               <SelectContent>
-                {statuses.map((status) => (
-                  <SelectItem key={status} value={status}>
-                    {status}
+                {PRODUCT_CATEGORIES.map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {category}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
+            {errors.category && (
+              <p className="text-red-500 text-sm">{errors.category}</p>
+            )}
           </div>
-
-          {/* Visibility */}
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="space-y-2">
+              <Label htmlFor="price">Price (₵) *</Label>
+              <Input
+                className={errors.price ? "border-red-500" : ""}
+                id="price"
+                onChange={(e) => handleInputChange("price", e.target.value)}
+                placeholder="0.00"
+                type="number"
+                value={formData.price}
+              />
+              {errors.price && (
+                <p className="text-red-500 text-sm">{errors.price}</p>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="stock">Stock Quantity *</Label>
+              <Input
+                className={errors.stock ? "border-red-500" : ""}
+                id="stock"
+                onChange={(e) => handleInputChange("stock", e.target.value)}
+                placeholder="0"
+                type="number"
+                value={formData.stock}
+              />
+              {errors.stock && (
+                <p className="text-red-500 text-sm">{errors.stock}</p>
+              )}
+            </div>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="description">Description</Label>
+            <Textarea
+              id="description"
+              onChange={(e) => handleInputChange("description", e.target.value)}
+              placeholder="Enter product description"
+              rows={3}
+              value={formData.description}
+            />
+          </div>
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label>Product Visibility</Label>
-              <p className="text-sm text-gray-600">
+              <p className="text-gray-600 text-sm">
                 Make this product visible to customers
               </p>
             </div>
@@ -310,15 +230,13 @@ export function EditProductModal({
             />
           </div>
         </div>
-
-        {/* Actions */}
-        <div className="flex justify-end gap-3 pt-6 border-t">
+        <div className="flex justify-end gap-3 border-t pt-6">
           <Button onClick={onClose} variant="outline">
             Cancel
           </Button>
           <Button
+            className="bg-blue-600 text-white hover:bg-blue-700"
             onClick={handleSave}
-            className="bg-blue-600 hover:bg-blue-700 text-white"
           >
             Save Changes
           </Button>

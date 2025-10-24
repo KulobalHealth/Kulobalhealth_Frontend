@@ -4,10 +4,15 @@ import { Edit, Eye, Trash2 } from "lucide-react";
 import { PolarRadiusAxis, RadialBar, RadialBarChart } from "recharts";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
-import { ChartConfig, ChartContainer } from "@/components/ui/chart";
+import { type ChartConfig, ChartContainer } from "@/components/ui/chart";
 import { Icons } from "@/components/ui/icons";
-import { Product } from "@/store/products";
+import { Switch } from "@/components/ui/switch";
+import { getProductImage } from "@/lib/product-utils";
+import {
+  getPerformanceBadgeClass,
+  getPerformanceValue,
+} from "@/lib/status-utils";
+import type { Product } from "@/store/products";
 
 interface ProductRowProps {
   readonly product: Product;
@@ -22,67 +27,57 @@ export function ProductRow({
   onDelete,
   isLast,
 }: ProductRowProps) {
-  const getPerformanceBadgeClass = (color: string) => {
-    switch (color) {
-      case "success":
-        return "bg-success-100 text-success-700";
-      case "primary":
-        return "bg-primary-100 text-primary-700";
-      default:
-        return "bg-gray-100 text-gray-700";
-    }
-  };
+  const productImageSrc = getProductImage(product);
 
-  const getPerformanceValue = (performance: string) => {
-    switch (performance) {
-      case "Excellent":
-        return 90;
-      case "Best":
-        return 85;
-      case "Good":
-        return 70;
-      case "Poor":
-        return 40;
-      default:
-        return 0;
-    }
-  };
+  const productImage = productImageSrc ? (
+    <img
+      alt={product.productName ?? product.name ?? "Product"}
+      className="h-10 w-10 rounded-lg object-cover"
+      src={productImageSrc}
+    />
+  ) : (
+    <Icons.Basket className="h-6 w-6 text-white" />
+  );
 
-  const performanceValue = getPerformanceValue(product.performance);
+  const performanceValue = getPerformanceValue(
+    product.performance ?? "Excellent"
+  );
+
   const chartData = [{ performance: performanceValue }];
 
   const chartConfig = {
     performance: {
       label: "Performance",
-      color: product.performanceColor === "success" ? "#10b981" : "#3b82f6",
+      color: product.performanceColor === "success" ? "#3b82f6" : "#10b981",
     },
   } satisfies ChartConfig;
 
   return (
     <>
-      <div className="p-6 bg-white hover:bg-gray-50">
+      <div className="bg-white p-6 hover:bg-gray-50">
         <div className="flex items-center justify-between">
           {/* Product Name */}
           <div className="flex-1">
-            <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
+            <div className="mb-2 font-medium text-gray-500 text-xs uppercase tracking-wide">
               Product Name
             </div>
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary">
-                <Icons.Basket className="h-6 w-6 text-white" />
+              <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg bg-secondary">
+                {productImage}
               </div>
-              <span className="font-medium">{product.name}</span>
+              <span className="font-medium">
+                {product.productName ?? product.name ?? "-"}
+              </span>
             </div>
           </div>
 
-          <div className="h-16 w-px bg-gray-200 mx-6" />
+          <div className="mx-6 h-16 w-px bg-gray-200" />
 
-          {/* Performance Section */}
-          <div className="flex gap-3 flex-row">
-            <div className="text-xs flex flex-col gap-2 font-medium text-gray-500 uppercase tracking-wide mb-2">
+          <div className="flex flex-row gap-3">
+            <div className="mb-2 flex flex-col gap-2 font-medium text-gray-500 text-xs uppercase tracking-wide">
               Performance
-              <div className="text-sm text-gray-600">
-                <span className="flex *:items-center justify-center gap-1">
+              <div className="text-gray-600 text-sm">
+                <span className="flex justify-center gap-1 *:items-center">
                   Total Sold
                   <Icons.Basket className="h-full w-4 text-gray-500" />
                 </span>
@@ -91,82 +86,114 @@ export function ProductRow({
             <div className="flex gap-2">
               <div className="flex flex-col">
                 <Badge
-                  className={getPerformanceBadgeClass(product.performanceColor)}
+                  className={getPerformanceBadgeClass(
+                    product.performanceColor ?? ""
+                  )}
                 >
-                  {product.performance}
+                  {product.performance ?? "Excellent"}
                 </Badge>
-                <div className="text-sm text-gray-600 *:items-center">
-                  Quantity: {product.stock}
+                <div className="text-gray-600 text-sm *:items-center">
+                  Quantity: {product.stock ?? "100 (fb)"}
                 </div>
               </div>
             </div>
-            <ChartContainer
-              config={chartConfig}
-              className="aspect-square w-16 h-16"
-            >
-              <RadialBarChart
-                data={chartData}
-                startAngle={180}
-                endAngle={0}
-                innerRadius={16}
-                outerRadius={32}
+            <div className="aspect-square h-16 w-16">
+              <ChartContainer
+                className="aspect-square h-16 w-16"
+                config={chartConfig}
               >
-                <PolarRadiusAxis
-                  tick={false}
-                  tickLine={false}
-                  axisLine={false}
-                />
-                <RadialBar
-                  dataKey="performance"
-                  cornerRadius={2}
-                  fill="var(--color-performance)"
-                  className="stroke-transparent stroke-1"
-                />
-              </RadialBarChart>
-            </ChartContainer>
+                <RadialBarChart
+                  data={chartData}
+                  endAngle={0}
+                  innerRadius={16}
+                  outerRadius={32}
+                  startAngle={180}
+                >
+                  <PolarRadiusAxis
+                    axisLine={false}
+                    tick={false}
+                    tickLine={false}
+                  />
+                  <RadialBar
+                    className="stroke-1 stroke-transparent"
+                    cornerRadius={2}
+                    dataKey="performance"
+                    fill="var(--color-performance)"
+                  />
+                </RadialBarChart>
+              </ChartContainer>
+            </div>
           </div>
 
-          {/* Vertical Divider */}
-          <div className="h-16 w-px bg-gray-200 mx-6" />
+          <div className="mx-6 h-16 w-px bg-gray-200" />
 
           {/* Stock */}
           <div className="flex-1">
-            <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
+            <div className="mb-2 font-medium text-gray-500 text-xs uppercase tracking-wide">
               Stock
             </div>
             <Badge className="bg-gray-50" variant="outline">
-              {product.stock}
+              {product.stock ?? "100 (fb)"}
             </Badge>
           </div>
 
-          {/* Vertical Divider */}
-          <div className="h-16 w-px bg-gray-200 mx-6" />
+          <div className="mx-6 h-16 w-px bg-gray-200" />
+
+          {/* Product Type */}
+          <div className="flex-1">
+            <div className="mb-2 font-medium text-gray-500 text-xs uppercase tracking-wide">
+              Product Type
+            </div>
+            <div className="font-medium">
+              {product.productType ?? product.category ?? "-"}
+            </div>
+          </div>
+
+          <div className="mx-6 h-16 w-px bg-gray-200" />
 
           {/* Product Price */}
           <div className="flex-1">
-            <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
+            <div className="mb-2 font-medium text-gray-500 text-xs uppercase tracking-wide">
               Product Price
             </div>
-            <div className="font-medium">{product.price}</div>
+            <div className="font-medium">GHS {product.price ?? "-"}</div>
           </div>
 
-          {/* Vertical Divider */}
-          <div className="h-16 w-px bg-gray-200 mx-6" />
+          <div className="mx-6 h-16 w-px bg-gray-200" />
 
           {/* Visibility */}
           <div className="flex-1">
-            <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
+            <div className="mb-2 font-medium text-gray-500 text-xs uppercase tracking-wide">
               Visibility
             </div>
-            <Switch checked={product.visibility} />
+            <Switch checked={product.visibility ?? false} />
           </div>
 
-          {/* Vertical Divider */}
-          <div className="h-16 w-px bg-gray-200 mx-6" />
+          <div className="mx-6 h-16 w-px bg-gray-200" />
+
+          {/* Brand */}
+          <div className="flex-1">
+            <div className="mb-2 font-medium text-gray-500 text-xs uppercase tracking-wide">
+              Brand
+            </div>
+            <div className="font-medium">{product.brand ?? "-"}</div>
+          </div>
+
+          <div className="mx-6 h-16 w-px bg-gray-200" />
+
+          {/* Manufacturer */}
+          <div className="flex-1">
+            <div className="mb-2 font-medium text-gray-500 text-xs uppercase tracking-wide">
+              Manufacturer
+            </div>
+            <div className="font-medium">{product.manufacturer ?? "-"}</div>
+          </div>
+
+          <div className="mx-6 h-16 w-px bg-gray-200" />
 
           {/* Actions */}
           <div className="flex-1">
-            <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
+            <div className="mb-2 font-medium text-gray-500 text-xs uppercase tracking-wide">
               Actions
             </div>
             <div className="flex items-center gap-2">
@@ -192,7 +219,7 @@ export function ProductRow({
         </div>
       </div>
       {/* Horizontal Ruler Divider */}
-      {!isLast && <div className="border-t border-gray-200" />}
+      {!isLast && <div className="border-gray-200 border-t" />}
     </>
   );
 }

@@ -1,7 +1,9 @@
 "use client";
 
-import { ArrowLeft, Upload } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -9,29 +11,106 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { ImageUpload, type UploadedImage } from "@/components/ui/image-upload";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
+import { useGetAllProductTypes } from "@/hooks/use-admin-product-type";
+import { removeLeadingZeros } from "@/lib/format-utils";
+import {
+  extractImageUrls,
+  resetProductForm,
+  validateProductImages,
+} from "@/lib/product-utils";
 
-interface AddProductModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+interface ProductType {
+  productType: string;
+  productTypeCode: string;
 }
 
-export function AddProductModal({ isOpen, onClose }: AddProductModalProps) {
-  const [formData, setFormData] = useState({
-    productName: "",
-    price: "",
-    quantity: "",
-    brand: "",
-    description: "",
-    visibility: true,
-  });
+interface AddProductModalProps {
+  readonly isOpen: boolean;
+  readonly onClose: () => void;
+  readonly onAddProduct: (productData: AddProductFormData) => Promise<void>;
+  readonly isLoading?: boolean;
+}
 
-  const handleSave = () => {
-    console.log("Adding new product:", formData);
-    onClose();
+export interface AddProductFormData {
+  productName: string;
+  price: number;
+  quantity: number;
+  brand: string;
+  description: string;
+  visibility: boolean;
+  productTypeCode?: string;
+  manufacturer?: string;
+  photos?: string[];
+}
+
+// Zod schema for validation
+const productSchema = z.object({
+  productName: z.string().min(2, "Product name is required"),
+  price: z.number().min(1, "Price must be greater than 0"),
+  quantity: z.number().min(1, "Quantity must be at least 1"),
+  brand: z.string().min(2, "Brand is required"),
+  description: z.string().min(5, "Description is required"),
+  visibility: z.boolean(),
+  productTypeCode: z.string().min(1, "Product type is required"),
+  manufacturer: z.string().min(1, "Manufacturer is required"),
+  photos: z.array(z.string()).optional(),
+});
+
+export function AddProductModal({
+  isOpen,
+  onClose,
+  onAddProduct,
+  isLoading,
+}: AddProductModalProps) {
+  const { data: productTypes = [], isLoading: typesLoading } =
+    useGetAllProductTypes();
+
+  const [uploadedImages, setUploadedImages] = useState<UploadedImage[]>([]);
+
+  const [formData, setFormData] = useState<AddProductFormData>(
+    resetProductForm()
+  );
+
+  const handleSave = async () => {
+    if (!validateProductImages(uploadedImages)) {
+      toast.error("Please wait for all images to finish uploading");
+      return;
+    }
+
+    const imageUrls = extractImageUrls(uploadedImages);
+
+    const dataToValidate = {
+      ...formData,
+      price: Number(formData.price),
+      quantity: Number(formData.quantity),
+      photos: imageUrls,
+    };
+
+    const parsed = productSchema.safeParse(dataToValidate);
+    if (!parsed.success) {
+      toast.error(parsed.error.errors[0]?.message || "Validation error");
+      return;
+    }
+
+    // Show warning if no images uploaded
+    if (imageUrls.length === 0) {
+      toast.warning("No images uploaded. Product will use a default image.");
+    }
+
+    try {
+      await onAddProduct(parsed.data);
+      setFormData(resetProductForm());
+      setUploadedImages([]);
+    } catch (error) {
+      toast.error(
+        error instanceof Error ? error.message : "Failed to add product"
+      );
+    }
   };
 
   return (
@@ -62,20 +141,16 @@ export function AddProductModal({ isOpen, onClose }: AddProductModalProps) {
               <Label className="mb-3 block font-medium text-sm">
                 Product Images
               </Label>
-              <div className="grid grid-cols-5 gap-3">
-                {[1, 2, 3, 4, 5].map((index) => (
-                  <div
-                    className="flex aspect-square cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-gray-300 border-dashed transition-colors hover:border-primary-400"
-                    key={index}
-                  >
-                    <Upload className="mb-2 h-6 w-6 text-gray-400" />
-                    <span className="text-primary-600 text-xs">
-                      Click to upload
-                    </span>
-                    <span className="text-gray-500 text-xs">PNG or JPG</span>
-                  </div>
-                ))}
-              </div>
+              <ImageUpload
+                images={uploadedImages}
+                maxImages={5}
+                onImagesChange={setUploadedImages}
+              />
+              {uploadedImages.length === 0 && (
+                <p className="mt-2 text-amber-600 text-sm">
+                  💡 Adding images helps customers see your product better
+                </p>
+              )}
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -94,23 +169,58 @@ export function AddProductModal({ isOpen, onClose }: AddProductModalProps) {
                 <Label htmlFor="price">Price Per Product (GHS)*</Label>
                 <Input
                   id="price"
-                  onChange={(e) =>
-                    setFormData({ ...formData, price: e.target.value })
-                  }
+                  inputMode="numeric"
+                  min={1}
+                  onChange={(e) => {
+                    const value = removeLeadingZeros(e.target.value);
+                    setFormData({ ...formData, price: Number(value) });
+                  }}
+                  pattern="[0-9]*"
                   placeholder="eg. 200"
-                  value={formData.price}
+                  type="number"
+                  value={formData.price || ""}
                 />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="quantity">Quantity*</Label>
                 <Input
                   id="quantity"
-                  onChange={(e) =>
-                    setFormData({ ...formData, quantity: e.target.value })
-                  }
+                  inputMode="numeric"
+                  min={1}
+                  onChange={(e) => {
+                    const value = removeLeadingZeros(e.target.value);
+                    setFormData({ ...formData, quantity: Number(value) });
+                  }}
+                  pattern="[0-9]*"
                   placeholder=""
-                  value={formData.quantity}
+                  type="number"
+                  value={formData.quantity || ""}
                 />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="product-type">Product Type*</Label>
+                <select
+                  className="w-full rounded border px-2 py-2"
+                  disabled={typesLoading}
+                  id="product-type"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      productTypeCode: e.target.value,
+                    })
+                  }
+                  value={formData.productTypeCode}
+                >
+                  <option value="">Select product type</option>
+                  {(productTypes?.data ?? []).map((type: ProductType) => (
+                    <option
+                      key={type.productTypeCode}
+                      value={type.productTypeCode}
+                    >
+                      {type.productType}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="brand">Brand*</Label>
@@ -121,6 +231,17 @@ export function AddProductModal({ isOpen, onClose }: AddProductModalProps) {
                   }
                   placeholder="Enter the product brand"
                   value={formData.brand}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="manufacturer">Manufacturer*</Label>
+                <Input
+                  id="manufacturer"
+                  onChange={(e) =>
+                    setFormData({ ...formData, manufacturer: e.target.value })
+                  }
+                  placeholder="Enter the manufacturer"
+                  value={formData.manufacturer}
                 />
               </div>
             </div>
@@ -163,9 +284,10 @@ export function AddProductModal({ isOpen, onClose }: AddProductModalProps) {
           </Button>
           <Button
             className="bg-primary-500 text-white hover:bg-primary-600"
+            disabled={isLoading}
             onClick={handleSave}
           >
-            Add New Stock
+            {isLoading ? "Adding..." : "Add New Stock"}
           </Button>
         </div>
       </DialogContent>
